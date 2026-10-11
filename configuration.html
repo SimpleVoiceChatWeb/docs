@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vollständige Referenz aller Konfigurationsoptionen für Plugin und Webend.">
+    <title>Konfiguration - SimpleVoiceChatWeb Dokumentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+                <span>SimpleVoiceChatWeb</span>
+            </a>
+            <nav class="nav-main" aria-label="Hauptnavigation">
+                <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <ul class="nav-list">
+<li><a href="index.html" class="nav-link">Start</a></li>
+<li><a href="quickstart.html" class="nav-link">Schnellstart</a></li>
+<li><a href="architecture.html" class="nav-link">Architektur</a></li>
+<li><a href="peerjs.html" class="nav-link">PeerJS & TURN</a></li>
+<li><a href="deployment.html" class="nav-link">Deployment</a></li>
+<li><a href="api.html" class="nav-link">API Referenz</a></li>
+<li><a href="configuration.html" class="nav-link active">Konfiguration</a></li>
+<li><a href="troubleshooting.html" class="nav-link">Troubleshooting</a></li>
+                    <li><a href="https://simplevoicechatweb.github.io/#/" class="nav-link nav-app" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                </ul>
+            </nav>
+            <a href="https://github.com/SimpleVoiceChatWeb" class="btn-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.077-.785.271-1.565.492-1.929-1.665-.157-3.419-.83-3.419-3.7 0-.873.315-1.587.823-2.147-.082-.202-.366-1.015.074-2.114 0 0 .671-.215 2.2.83.64-.181 1.32-.272 2-.272.68 0 1.36.091 2 .272 1.525-1.045 2.19-.83 2.19-.83.439 1.099.16 1.804.074 2.114.508.56.823 1.253.823 2.147 0 2.873-1.734 3.686-3.424 3.7.25.227.472.53.472 1.076v2.593c0 .319.192.686.794.577C23.999 17.301 24 12.7 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <aside class="sidebar" aria-label="Inhaltsverzeichnis">
+                <nav class="sidebar-nav" aria-label="Seiteninhaltsverzeichnis">
+                    <h2 class="sidebar-title">Auf dieser Seite</h2>
+                    <ul class="sidebar-list" id="toc">
+                        <!-- Wird per JS befüllt -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <article class="content" role="main" id="main-content">
+                <header class="page-header">
+                    <nav class="breadcrumb" aria-label="Brotkrumennavigation">
+                        <ol>
+                            <li><a href="index.html">Start</a></li>
+                            <li aria-current="page">Konfiguration</li>
+                        </ol>
+                    </nav>
+                    <h1>Konfiguration</h1>
+                    <p class="lead">Alle Schalter an einem Ort - mit echten Defaults aus dem Code, nicht geraten.</p>
+                </header>
+
+<section>
+<h2 id="plugin-config-configyml">Plugin Config (<code>config.yml</code>)</h2>
+<p>Datei: <code>plugins/SimpleVoiceChatWeb/config.yml</code> (HOCON). Fehlt sie, wird sie mit</p>
+<p>Defaults angelegt. Umgebungsvariablen mit Prefix <code>SVCWEB_</code> überschreiben</p>
+<p>Dateiwerte, z. B. <code>SVCWEB_WEB_PORT=24455</code> → <code>web.port</code>. Neustart nach Änderungen</p>
+<p>nötig - Hot-Reload gibt es nicht.</p>
+<h3 id="web-auth-und-peerjs">Web, Auth und PeerJS</h3>
+<table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>web.host</code></td><td><code>&quot;0.0.0.0&quot;</code></td><td>Bind-Adresse des Signaling-Servers</td></tr><tr><td><code>web.port</code></td><td><code>24454</code></td><td>Signaling-Port (TCP, <code>wss://</code>)</td></tr><tr><td><code>web.corsAllowedOrigins</code></td><td>Pages + <code>localhost:3000</code></td><td>Erlaubte Origins, darf nicht leer sein</td></tr><tr><td><code>web.portShareWithSvc</code></td><td><code>true</code></td><td>Port mit SVC teilen</td></tr><tr><td><code>web.tlsTerminatedExternally</code></td><td><code>false</code></td><td><code>true</code> = Reverse Proxy handhabt TLS</td></tr><tr><td><code>web.maxParticipants</code></td><td><code>50</code></td><td>Max Teilnehmer</td></tr><tr><td><code>web.staticDir</code></td><td><code>&quot;web&quot;</code></td><td>Statische Dateien</td></tr><tr><td><code>auth.codeTtlSeconds</code></td><td><code>300</code></td><td>Link-Code-Gültigkeit (Sekunden)</td></tr><tr><td><code>auth.jwtTtlSeconds</code></td><td><code>86400</code></td><td>JWT-Gültigkeit (Sekunden)</td></tr><tr><td><code>auth.jwtSecret</code></td><td><code>&quot;&quot;</code></td><td>HS256-Secret - leer = wird beim Start auto-generiert</td></tr><tr><td><code>auth.joinLinkBaseUrl</code></td><td>Pages-URL</td><td>Basis für Invite-Links (<code>?code=...</code>)</td></tr><tr><td><code>peerjs.enabled</code></td><td><code>false</code></td><td>Ausgehenden PeerJS-Client einschalten (Invite-Pfad)</td></tr><tr><td><code>peerjs.scheme/host/port/path/key</code></td><td><code>wss</code> / <code>0.peerjs.com</code> / <code>443</code> / <code>/</code> / <code>peerjs</code></td><td>PeerServer-Anschluss</td></tr><tr><td><code>peerjs.token</code></td><td><code>&quot;&quot;</code></td><td>Leer = zufälliges Signaling-Token</td></tr></tbody></table>
+<h3 id="svc-audio-turn">SVC, Audio, TURN</h3>
+<table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>svc.mirrorGroups</code></td><td><code>true</code></td><td>Gruppen mit SVC spiegeln</td></tr><tr><td><code>svc.positionalAudio</code></td><td><code>true</code></td><td>Positions-Audio</td></tr><tr><td><code>svc.showWebPlayersInSvc</code></td><td><code>true</code></td><td>Browser in Mod-Listen zeigen</td></tr><tr><td><code>svc.simulateMicrophone</code></td><td><code>false</code></td><td>Nur für Tests</td></tr><tr><td><code>audio.minDistance</code></td><td><code>1.0</code></td><td>Volle Lautstärke bis Distanz (Blöcke)</td></tr><tr><td><code>audio.maxDistance</code></td><td><code>50.0</code></td><td>Stumm ab Distanz (Blöcke)</td></tr><tr><td><code>turn.enabled</code></td><td><code>false</code></td><td>TURN-Relay (siehe <a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td><code>turn.urls</code> / <code>turn.username</code> / <code>turn.credential</code></td><td>leer</td><td>Pflicht, wenn <code>turn.enabled</code></td></tr></tbody></table>
+<h3 id="betrieb">Betrieb</h3>
+<table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>private.enabled</code></td><td><code>false</code></td><td>Privater Modus</td></tr><tr><td><code>logging.level</code></td><td><code>&quot;INFO&quot;</code></td><td><code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code></td></tr><tr><td><code>logging.logSvcPackets</code></td><td><code>false</code></td><td>SVC-Pakete mitschneiden (laut!)</td></tr><tr><td><code>logging.logWebsocketMessages</code></td><td><code>false</code></td><td>WebSocket-Nachrichten mitschneiden (laut!)</td></tr><tr><td><code>webhooks.enabled/url/events/secret</code></td><td>aus</td><td>Webhook-Benachrichtigungen</td></tr><tr><td><code>distribution.bundleWebClient</code></td><td><code>false</code></td><td>Web-Client mit ausliefern</td></tr><tr><td><code>development</code></td><td><code>true</code></td><td>Self-Signed-Zertifikate erlauben</td></tr><tr><td><code>tls.keystorePassword</code></td><td><code>&quot;&quot;</code></td><td>Keystore-Passwort (besser per Env)</td></tr><tr><td><code>debug</code></td><td><code>false</code></td><td>Debug-Modus</td></tr><tr><td><code>language</code></td><td><code>&quot;de_DE&quot;</code></td><td>Sprache</td></tr></tbody></table>
+<blockquote><p><strong>Hinweis:</strong> <code>webrtc.port</code> (Default <code>24455</code>) steht in der Config, wird aber<br>derzeit nicht benutzt - ein Überbleibsel. Der PeerJS-Medienpfad braucht<br>keinen eingehenden Port.</p></blockquote>
+<p>Secrets gehören in die Umgebung, nicht in die Datei. <code>auth.jwtSecret</code> darf</p>
+<p>leer bleiben (Auto-Generierung), für <code>tls.keystorePassword</code> die Env-Variante</p>
+<p>nutzen.</p>
+
+</section>
+<section>
+<h2 id="webend-build-variablen">Webend Build-Variablen</h2>
+<p>Datei: <code>webend/.env</code> (nicht committen!). Öffentliche PeerServer-Werte für den</p>
+<p>Pages-Build, siehe <a href="deployment.html">Deployment</a>:</p>
+<pre data-lang="bash"><code class="language-bash">VITE_PEERJS_HOST=0.peerjs.com
+VITE_PEERJS_PORT=443
+VITE_PEERJS_PATH=/
+VITE_PEERJS_SECURE=true
+VITE_PEERJS_KEY=peerjs</code></pre>
+<p>Ohne diese Variablen gelten die PeerJS-Cloud-Defaults. Es wird kein festes</p>
+<p>Token in den Build geschrieben - die Ziel-Peer-ID steckt im Invite-Code.</p>
+
+</section>
+<section>
+<h2 id="browser-einstellungen-ehrlichkeit">Browser-Einstellungen (Ehrlichkeit)</h2>
+<p>Die Einstellungsseite speichert alles, aber nur drei Schalter wirken wirklich</p>
+<p>(browser-nativ, ab dem <strong>nächsten Verbinden</strong>): Echo-Unterdrückung,</p>
+<p>Rauschunterdrückung, automatische Verstärkung. Der Rest (Mikrofon- und</p>
+<p>Ausgabe-Lautstärke, Rauschstärke, 3D-Audio, Push-to-Talk, Schwelle) ist als</p>
+<p>&quot;Bald verfügbar&quot; markiert, bis er verdrahtet ist. Die Lautstärke steht</p>
+<p>derzeit am Mixer im Voice-Tab.</p>
+</section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>SimpleVoiceChatWeb</h3>
+                    <p>Open Source Bridge zwischen Minecraft Simple Voice Chat Mod und WebRTC Browser-Clients.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+<li><a href="index.html">Start</a></li>
+<li><a href="quickstart.html">Schnellstart</a></li>
+<li><a href="architecture.html">Architektur</a></li>
+<li><a href="peerjs.html">PeerJS & TURN</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>API & Entwicklung</h3>
+                    <ul>
+<li><a href="deployment.html">Deployment</a></li>
+<li><a href="api.html">API Referenz</a></li>
+<li><a href="configuration.html">Konfiguration</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub Organisation</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb" target="_blank" rel="noopener">Haupt-Repository</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues & Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SimpleVoiceChatWeb. Open Source unter MIT Lizenz.</p>
+                <p>Diese Seite wird aus Markdown gebaut - Agents lesen die <code>.ai.md</code>-Quellen im Repository.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Häufige Probleme, Diagnose-Schritte und Lösungen für SimpleVoiceChatWeb.">
+    <title>Troubleshooting - SimpleVoiceChatWeb Dokumentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+                <span>SimpleVoiceChatWeb</span>
+            </a>
+            <nav class="nav-main" aria-label="Hauptnavigation">
+                <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <ul class="nav-list">
+<li><a href="index.html" class="nav-link">Start</a></li>
+<li><a href="quickstart.html" class="nav-link">Schnellstart</a></li>
+<li><a href="architecture.html" class="nav-link">Architektur</a></li>
+<li><a href="peerjs.html" class="nav-link">PeerJS & TURN</a></li>
+<li><a href="deployment.html" class="nav-link">Deployment</a></li>
+<li><a href="api.html" class="nav-link">API Referenz</a></li>
+<li><a href="configuration.html" class="nav-link">Konfiguration</a></li>
+<li><a href="troubleshooting.html" class="nav-link active">Troubleshooting</a></li>
+                    <li><a href="https://simplevoicechatweb.github.io/#/" class="nav-link nav-app" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                </ul>
+            </nav>
+            <a href="https://github.com/SimpleVoiceChatWeb" class="btn-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.077-.785.271-1.565.492-1.929-1.665-.157-3.419-.83-3.419-3.7 0-.873.315-1.587.823-2.147-.082-.202-.366-1.015.074-2.114 0 0 .671-.215 2.2.83.64-.181 1.32-.272 2-.272.68 0 1.36.091 2 .272 1.525-1.045 2.19-.83 2.19-.83.439 1.099.16 1.804.074 2.114.508.56.823 1.253.823 2.147 0 2.873-1.734 3.686-3.424 3.7.25.227.472.53.472 1.076v2.593c0 .319.192.686.794.577C23.999 17.301 24 12.7 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <aside class="sidebar" aria-label="Inhaltsverzeichnis">
+                <nav class="sidebar-nav" aria-label="Seiteninhaltsverzeichnis">
+                    <h2 class="sidebar-title">Auf dieser Seite</h2>
+                    <ul class="sidebar-list" id="toc">
+                        <!-- Wird per JS befüllt -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <article class="content" role="main" id="main-content">
+                <header class="page-header">
+                    <nav class="breadcrumb" aria-label="Brotkrumennavigation">
+                        <ol>
+                            <li><a href="index.html">Start</a></li>
+                            <li aria-current="page">Troubleshooting</li>
+                        </ol>
+                    </nav>
+                    <h1>Troubleshooting</h1>
+                    <p class="lead">Erst messen, dann raten - die meisten Geister sind Verdrahtung, nicht Logik.</p>
+                </header>
+
+<section>
+<h2 id="quick-reference">Quick Reference</h2>
+<table><thead><tr><th>Problem</th><th>Ursache</th><th>Lösung</th></tr></thead><tbody><tr><td><code>ALREADY_LINKED</code></td><td>Alte Sitzung belegt den Slot</td><td>Zweiter Code schließt die alte Sitzung automatisch</td></tr><tr><td>&quot;Keine Verbindung&quot;</td><td>Ports/Signaling nicht erreichbar</td><td>Ports von extern testen, Serverlog prüfen</td></tr><tr><td>&quot;Kein Audio&quot;</td><td>Mute-Gate, Gruppe oder Firewall</td><td>Mute-Status, Gruppenraum, UDP prüfen</td></tr><tr><td>&quot;Nur LAN funktioniert&quot;</td><td>Kein Port-Forwarding</td><td>Router-Forwarding für 24454 einrichten</td></tr><tr><td>&quot;WebRTC bleibt bei signaling connected stehen&quot;</td><td>Symmetrisches NAT/Firewall</td><td>TURN einrichten (<a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td>Gruppe zeigt &quot;0 Personen&quot;</td><td>Falscher Raum oder keine Antwort</td><td>Seite neu laden, Konsole auf echte Fehlermeldung prüfen</td></tr><tr><td>Gruppen-Erstellung läuft in Timeout</td><td>Antwort ohne <code>requestId</code> oder Kanal noch zu</td><td>Seite hart neu laden, dann Konsole lesen</td></tr></tbody></table>
+
+</section>
+<section>
+<h2 id="die-wichtigste-methode">Die wichtigste Methode</h2>
+<p>Bei stillem Scheitern **zuerst die ankommende Nachricht loggen, nicht den</p>
+<p>Code lesen**. Sechs Gruppen-Fehler in Folge saßen alle in der Verdrahtung</p>
+<p>(private Methode per Cast, <code>null</code>-Connection im PeerJS-Pfad, fehlende Antwort,</p>
+<p>doppelt verschachtelter Payload, Antwort-Filter im Browser, zu frühe Anfrage)</p>
+<ul>
+<li>kein einziger in der eigentlichen Logik.</li>
+</ul>
+
+</section>
+<section>
+<h2 id="gruppen-probleme">Gruppen-Probleme</h2>
+<ul>
+<li><strong>Erstellen tut nichts:</strong> Browser-Konsole öffnen - seit dem Error-Handling</li>
+</ul>
+<p>steht dort die echte Plugin-Meldung statt eines Timeouts.</p>
+<ul>
+<li><strong>Liste aktualisiert nicht:</strong> Sie pollt alle 5 Sekunden; bei Stillstand</li>
+</ul>
+<p><code>requestGroupList</code> manuell anstoßen und Netzwerk-Tab prüfen.</p>
+<ul>
+<li><strong>Name wird abgeschnitten:</strong> SVC speichert max 16 Zeichen, Rest fällt still weg.</li>
+<li><strong>Passwortgruppe:</strong> Schloss-Symbol → Dialog. &quot;Passwort nötig&quot; (1005) vs.</li>
+</ul>
+<p>&quot;falsch&quot; (1006) sind verschiedene Fehler.</p>
+<ul>
+<li><strong>Mod sieht Browser nicht:</strong> Presence-Registrierung passiert beim</li>
+</ul>
+<p>Gruppen-Join; ohne Join kein Eintrag in der Mod-Liste.</p>
+
+</section>
+<section>
+<h2 id="audio-probleme">Audio-Probleme</h2>
+<ul>
+<li><strong>Gegenseite hört nichts:</strong> Mute-Status beidseitig prüfen (<code>/voicechat test</code></li>
+</ul>
+<p>zeigt ihn). Serverseitig blockt das Mute-Gate alles - auch &quot;versehentlich&quot;</p>
+<p>gesendete Frames.</p>
+<ul>
+<li><strong>Browser hört nichts:</strong> Deafen-Status prüfen; deafened Browser bekommen keine</li>
+</ul>
+<p>Frames (Drop vor dem Dekodieren).</p>
+<ul>
+<li><strong>Handy ohne Mikrofon:</strong> Der Browser fällt auf einen stillen</li>
+</ul>
+<p>Receive-only-Track zurück (Hörmodus-Warnung). Echte Audio-Tests brauchen</p>
+<p>Desktop-Browser mit Mikrofon.</p>
+<ul>
+<li><strong>Mikrofon in Minecraft muten:</strong> Taste <strong>V</strong>, kein Rechtsklick.</li>
+<li><strong>Echo:</strong> Kopfhörer nutzen; Echo-Unterdrückung in den Browser-Einstellungen</li>
+</ul>
+<p>(wirkt ab nächstem Verbinden).</p>
+
+</section>
+<section>
+<h2 id="build-probleme">Build-Probleme</h2>
+<table><thead><tr><th>Symptom</th><th>Ursache</th><th>Lösung</th></tr></thead><tbody><tr><td><code>de.maxhenkel</code> unauflösbar (CI)</td><td>SVC-API nur lokal vorhanden</td><td>Build holt sie von Modrinth (lokal → Latest → 2.6.21); Versionsfeld heißt <code>bukkit-2.6.21</code></td></tr><tr><td><code>spotlessCheck</code> rot</td><td>War noch nie grün</td><td>Deaktiviert lassen oder einmal <code>spotlessApply</code></td></tr><tr><td><code>vue-tsc</code> bricht ab</td><td><code>&lt;!-- --&gt;</code> in <code>src/main.ts</code></td><td>Nur <code>//</code>-Kommentare dort</td></tr><tr><td>Kein Pages-Deploy</td><td>Push ohne <code>src</code>-Änderung</td><td>Workflow triggert nur auf <code>src/**</code></td></tr></tbody></table>
+
+</section>
+<section>
+<h2 id="server-probleme">Server-Probleme</h2>
+<ul>
+<li><strong>Falsches JAR:</strong> Server heißt <code>paper-26.2-112.jar</code>, nicht <code>paper.jar</code>.</li>
+<li><strong>Alte JARs in <code>plugins/</code>:</strong> Paper lädt sie als Plugins - Backups nur nach <code>jar-backups/</code>.</li>
+<li><strong>Befehle tun nichts (<code>/svcweb</code>, <code>/svcw</code>):</strong> Teilen sich den Executor mit <code>/voice</code> - normal.</li>
+<li><strong>Befehle nach Logout:</strong> OP-Freischaltungen werden bei Logout und Plugin-Stop gelöscht.</li>
+<li><strong>Niemals einen Ordner <code>~</code> anlegen:</strong> Prompts immer mit absoluten Pfaden oder <code>./</code> schreiben.</li>
+</ul>
+
+</section>
+<section>
+<h2 id="browser-diagnose">Browser-Diagnose</h2>
+<ul>
+<li>Verbindungslog im Voice-Tab (einklappbar, dunkles Panel) zeigt</li>
+</ul>
+<p>Signaling-Zustand, ICE-Kandidaten und Chat-Kanal.</p>
+<ul>
+<li><code>chrome://webrtc-internals</code> (Chrome) bzw. <code>about:webrtc</code> (Firefox) für</li>
+</ul>
+<p>Stats, Kandidatenpaare und Paketverlust.</p>
+<ul>
+<li>Latenz Plugin-intern: Debug-Log <code>WebRTC -&gt; SVC inject time</code> (alle 50</li>
+</ul>
+<p>Frames). Kleine Zahl beweist keinen schnellen Call - Ende-zu-Ende mit zwei</p>
+<p>Spielern messen.</p>
+
+</section>
+<section>
+<h2 id="support">Support</h2>
+<p>Vor einem Issue prüfen: Ports von extern getestet? Browser-Konsole? Plugin-Log</p>
+<p>(DEBUG)? <code>config.yml</code> ohne Secrets teilen?</p>
+<p><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues">Issue erstellen auf GitHub</a></p>
+</section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>SimpleVoiceChatWeb</h3>
+                    <p>Open Source Bridge zwischen Minecraft Simple Voice Chat Mod und WebRTC Browser-Clients.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+<li><a href="index.html">Start</a></li>
+<li><a href="quickstart.html">Schnellstart</a></li>
+<li><a href="architecture.html">Architektur</a></li>
+<li><a href="peerjs.html">PeerJS & TURN</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>API & Entwicklung</h3>
+                    <ul>
+<li><a href="deployment.html">Deployment</a></li>
+<li><a href="api.html">API Referenz</a></li>
+<li><a href="configuration.html">Konfiguration</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub Organisation</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb" target="_blank" rel="noopener">Haupt-Repository</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues & Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SimpleVoiceChatWeb. Open Source unter MIT Lizenz.</p>
+                <p>Diese Seite wird aus Markdown gebaut - Agents lesen die <code>.ai.md</code>-Quellen im Repository.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

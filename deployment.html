@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Produktionsreifes Deployment von SimpleVoiceChatWeb - Plugin, Webend und Dokumentation.">
+    <title>Deployment - SimpleVoiceChatWeb Dokumentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+                <span>SimpleVoiceChatWeb</span>
+            </a>
+            <nav class="nav-main" aria-label="Hauptnavigation">
+                <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <ul class="nav-list">
+<li><a href="index.html" class="nav-link">Start</a></li>
+<li><a href="quickstart.html" class="nav-link">Schnellstart</a></li>
+<li><a href="architecture.html" class="nav-link">Architektur</a></li>
+<li><a href="peerjs.html" class="nav-link">PeerJS & TURN</a></li>
+<li><a href="deployment.html" class="nav-link active">Deployment</a></li>
+<li><a href="api.html" class="nav-link">API Referenz</a></li>
+<li><a href="configuration.html" class="nav-link">Konfiguration</a></li>
+<li><a href="troubleshooting.html" class="nav-link">Troubleshooting</a></li>
+                    <li><a href="https://simplevoicechatweb.github.io/#/" class="nav-link nav-app" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                </ul>
+            </nav>
+            <a href="https://github.com/SimpleVoiceChatWeb" class="btn-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.077-.785.271-1.565.492-1.929-1.665-.157-3.419-.83-3.419-3.7 0-.873.315-1.587.823-2.147-.082-.202-.366-1.015.074-2.114 0 0 .671-.215 2.2.83.64-.181 1.32-.272 2-.272.68 0 1.36.091 2 .272 1.525-1.045 2.19-.83 2.19-.83.439 1.099.16 1.804.074 2.114.508.56.823 1.253.823 2.147 0 2.873-1.734 3.686-3.424 3.7.25.227.472.53.472 1.076v2.593c0 .319.192.686.794.577C23.999 17.301 24 12.7 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <aside class="sidebar" aria-label="Inhaltsverzeichnis">
+                <nav class="sidebar-nav" aria-label="Seiteninhaltsverzeichnis">
+                    <h2 class="sidebar-title">Auf dieser Seite</h2>
+                    <ul class="sidebar-list" id="toc">
+                        <!-- Wird per JS befüllt -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <article class="content" role="main" id="main-content">
+                <header class="page-header">
+                    <nav class="breadcrumb" aria-label="Brotkrumennavigation">
+                        <ol>
+                            <li><a href="index.html">Start</a></li>
+                            <li aria-current="page">Deployment</li>
+                        </ol>
+                    </nav>
+                    <h1>Deployment</h1>
+                    <p class="lead">Plugin bauen, Server starten, Web-App und Docs kommen per Workflow.</p>
+                </header>
+
+<section>
+<h2 id="plugin-paper-server">Plugin (Paper-Server)</h2>
+<pre data-lang="bash"><code class="language-bash">cd plugin
+JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew fatJar --no-daemon --console=plain
+cp build/libs/SimpleVoiceChatWebPlugin-1.0.0-SNAPSHOT-fat.jar /paper-server/plugins/</code></pre>
+<p>Mit Java 25 scheitert der Build an <code>JavaVersion.parse</code> (alte Kotlin-Version) -</p>
+<p>deshalb Java 21 per <code>JAVA_HOME</code>. Das Fat-JAR ist <strong>plattformgebunden</strong> (natives</p>
+<p>Artefakt des Build-Hosts): Für Linux-Server auf Linux bauen. Benötigt im</p>
+<p><code>plugins/</code>-Ordner außerdem <code>ProtocolLib.jar</code> und</p>
+<p><code>voicechat-bukkit-2.6.21.jar</code> (oder neuer). Alte Fat-JARs nach</p>
+<p><code>jar-backups/</code> legen - <strong>nie</strong> in <code>plugins/</code>, sonst lädt Paper sie als Plugins.</p>
+<h3 id="testserver-rezept">Testserver-Rezept</h3>
+<pre data-lang="bash"><code class="language-bash">tmux new-session -d -s testmc -c /pfad/zu/TestMCServer \
+  &quot;java -Xms1G -Xmx2G -jar paper-26.2-112.jar nogui&quot;</code></pre>
+<p>Es heißt <code>paper-26.2-112.jar</code>, nicht <code>paper.jar</code>. Ca. 40 Sekunden bis <code>Done</code>.</p>
+<p>Stoppen mit <code>tmux send-keys -t testmc &quot;stop&quot; Enter</code>. Ports: 25565 (MC) und</p>
+<p>24454 (Signaling + SVC-Voice).</p>
+
+</section>
+<section>
+<h2 id="webend-github-pages">Webend (GitHub Pages)</h2>
+<p>Der Workflow <code>Deploy Webend to GitHub Pages</code> baut die Vue-App bei jeder</p>
+<p>Änderung unter <code>src/**</code> (plus <code>index.html</code>, <code>package.json</code>,</p>
+<p><code>vite.config.ts</code>) auf <code>main</code> - oder manuell über Actions → Run workflow. Er</p>
+<p>pusht <code>dist/</code> ins Root des <code>main</code>-Branches von</p>
+<p><code>SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io</code>:</p>
+<ul>
+<li><strong>Source:</strong> Deploy from a branch, <strong>Branch:</strong> main / root</li>
+<li><strong>Live:</strong> <code>https://simplevoicechatweb.github.io</code> (Hash-Routing: <code>/#/login</code>, <code>/#/voice</code>, <code>/#/settings</code>)</li>
+<li>Auth per SSH-Deploy-Key: Öffentlicher Teil als Deploy Key mit Write-Access</li>
+</ul>
+<p>im Pages-Repo, privater Teil als Actions-Secret <code>PAGES_DEPLOY_KEY</code> im</p>
+<p>Webend-Repo (nur für dieses Pages-Repo verwenden).</p>
+<ul>
+<li>PeerJS-Werte als Actions-Variables (<code>VITE_PEERJS_HOST</code>, <code>VITE_PEERJS_PORT</code>,</li>
+</ul>
+<p><code>VITE_PEERJS_PATH</code>, <code>VITE_PEERJS_SECURE</code>, <code>VITE_PEERJS_KEY</code>), sonst</p>
+<p>PeerJS-Cloud-Defaults.</p>
+<blockquote><p><strong>Falle:</strong> Der Workflow triggert auf <code>paths: src/**</code>. Ein Push ohne<br><code>src</code>-Änderung (z. B. nur Docs) löst <strong>keinen</strong> Deploy aus. Status:<br><code>gh run list --repo SimpleVoiceChatWeb/webend</code>.</p></blockquote>
+
+</section>
+<section>
+<h2 id="docs-docs">Docs (<code>/docs</code>)</h2>
+<p>Diese Seiten leben als Markdown unter <code>webend/docs/*.ai.md</code> und werden per</p>
+<p><code>node scripts/build.js</code> nach <code>webend/docs/dist/</code> gebaut (<code>.html</code> plus die</p>
+<p><code>.ai.md</code>-Quellen für Agents). Lokal prüfen mit <code>npx serve dist -l 3001</code>.</p>
+<p>Der Publish nach <code>https://simplevoicechatweb.github.io/docs</code> hängt am selben</p>
+<p>Pages-Repo wie die Web-App und wird als nächster Schritt eingerichtet.</p>
+
+</section>
+<section>
+<h2 id="ports-und-firewall">Ports und Firewall</h2>
+<table><thead><tr><th>Port</th><th>Protokoll</th><th>Zweck</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket-Signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC Voice</td></tr><tr><td>443</td><td>TCP (ausgehend)</td><td>PeerJS-Signalisierung</td></tr></tbody></table>
+<pre data-lang="bash"><code class="language-bash"># UFW Beispiel
+ufw allow 25565/tcp   # Minecraft
+ufw allow 24454/tcp   # WebSocket Signaling
+ufw allow 24454/udp   # SVC Voice
+ufw enable</code></pre>
+<blockquote><p><strong>Tipp:</strong> Ports immer von einem <strong>externen Netzwerk</strong> testen<br>(Handy-Hotspot), nicht vom Server selbst!</p></blockquote>
+
+</section>
+<section>
+<h2 id="umgebungsvariablen">Umgebungsvariablen</h2>
+<table><thead><tr><th>Variable</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>JWT_SECRET</code></td><td>Falls <code>auth.jwtSecret</code> nicht leer verwaltet wird (auto-generiert sonst)</td></tr><tr><td><code>PAGES_DEPLOY_KEY</code></td><td>Actions-Secret für den Pages-Push (nur Webend-Repo)</td></tr></tbody></table>
+</section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>SimpleVoiceChatWeb</h3>
+                    <p>Open Source Bridge zwischen Minecraft Simple Voice Chat Mod und WebRTC Browser-Clients.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+<li><a href="index.html">Start</a></li>
+<li><a href="quickstart.html">Schnellstart</a></li>
+<li><a href="architecture.html">Architektur</a></li>
+<li><a href="peerjs.html">PeerJS & TURN</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>API & Entwicklung</h3>
+                    <ul>
+<li><a href="deployment.html">Deployment</a></li>
+<li><a href="api.html">API Referenz</a></li>
+<li><a href="configuration.html">Konfiguration</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub Organisation</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb" target="_blank" rel="noopener">Haupt-Repository</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues & Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SimpleVoiceChatWeb. Open Source unter MIT Lizenz.</p>
+                <p>Diese Seite wird aus Markdown gebaut - Agents lesen die <code>.ai.md</code>-Quellen im Repository.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Signaling-Protokoll, Gruppen-Nachrichten und TypeScript-Interfaces von SimpleVoiceChatWeb.">
+    <title>API Referenz - SimpleVoiceChatWeb Dokumentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+                <span>SimpleVoiceChatWeb</span>
+            </a>
+            <nav class="nav-main" aria-label="Hauptnavigation">
+                <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <ul class="nav-list">
+<li><a href="index.html" class="nav-link">Start</a></li>
+<li><a href="quickstart.html" class="nav-link">Schnellstart</a></li>
+<li><a href="architecture.html" class="nav-link">Architektur</a></li>
+<li><a href="peerjs.html" class="nav-link">PeerJS & TURN</a></li>
+<li><a href="deployment.html" class="nav-link">Deployment</a></li>
+<li><a href="api.html" class="nav-link active">API Referenz</a></li>
+<li><a href="configuration.html" class="nav-link">Konfiguration</a></li>
+<li><a href="troubleshooting.html" class="nav-link">Troubleshooting</a></li>
+                    <li><a href="https://simplevoicechatweb.github.io/#/" class="nav-link nav-app" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                </ul>
+            </nav>
+            <a href="https://github.com/SimpleVoiceChatWeb" class="btn-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.077-.785.271-1.565.492-1.929-1.665-.157-3.419-.83-3.419-3.7 0-.873.315-1.587.823-2.147-.082-.202-.366-1.015.074-2.114 0 0 .671-.215 2.2.83.64-.181 1.32-.272 2-.272.68 0 1.36.091 2 .272 1.525-1.045 2.19-.83 2.19-.83.439 1.099.16 1.804.074 2.114.508.56.823 1.253.823 2.147 0 2.873-1.734 3.686-3.424 3.7.25.227.472.53.472 1.076v2.593c0 .319.192.686.794.577C23.999 17.301 24 12.7 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <aside class="sidebar" aria-label="Inhaltsverzeichnis">
+                <nav class="sidebar-nav" aria-label="Seiteninhaltsverzeichnis">
+                    <h2 class="sidebar-title">Auf dieser Seite</h2>
+                    <ul class="sidebar-list" id="toc">
+                        <!-- Wird per JS befüllt -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <article class="content" role="main" id="main-content">
+                <header class="page-header">
+                    <nav class="breadcrumb" aria-label="Brotkrumennavigation">
+                        <ol>
+                            <li><a href="index.html">Start</a></li>
+                            <li aria-current="page">API Referenz</li>
+                        </ol>
+                    </nav>
+                    <h1>API Referenz</h1>
+                    <p class="lead">Das echte Wire-Protokoll - verifiziert am Code, nicht geraten.</p>
+                </header>
+
+<section>
+<h2 id="signaling-protokoll-websocket">Signaling-Protokoll (WebSocket)</h2>
+<p>WebSocket-Endpoint: <code>wss://&lt;host&gt;:24454/signaling</code>. JSON-Nachrichten mit</p>
+<p>Korrelations-ID - der Browser **verwirft jede Gruppen-Antwort ohne</p>
+<p><code>requestId</code>**, der Server echot sie auf beiden Transporten. Gruppen-Anfragen</p>
+<p>laufen nach 8 Sekunden in einen sichtbaren Timeout.</p>
+<h3 id="nachrichtentypen">Nachrichtentypen</h3>
+<table><thead><tr><th>Typ</th><th>Richtung</th><th>Zweck</th></tr></thead><tbody><tr><td><code>offer</code> / <code>answer</code> / <code>ice-candidate</code></td><td>beide</td><td>WebRTC-Signaling</td></tr><tr><td><code>mute</code> (<code>{muted}</code>)</td><td>beide</td><td>Mikrofon-Status, serverseitig erzwungen</td></tr><tr><td><code>deafen</code> (<code>{deafened}</code>)</td><td>beide</td><td>Vollmute-Symbol für Mod-Spieler</td></tr><tr><td><code>volume</code></td><td>beide</td><td>Lautstärke</td></tr><tr><td><code>position</code> (<code>x/y/z/yaw/pitch</code>)</td><td>beide</td><td>3D-Position für räumliches Audio</td></tr><tr><td><code>group-list</code> / <code>group-create</code> / <code>group-delete</code> / <code>group-join</code> / <code>group-leave</code></td><td>Client → Server</td><td>Gruppen-Operationen</td></tr><tr><td><code>group-created</code> / <code>group-joined</code> / <code>group-left</code> / <code>group-list</code></td><td>Server → Client</td><td>Antworten (immer mit <code>requestId</code>)</td></tr><tr><td><code>leave</code></td><td>beide</td><td>Verbindung/Gruppe verlassen</td></tr><tr><td><code>ping</code> / <code>pong</code></td><td>beide</td><td>Keepalive (PeerJS zusätzlich <code>HEARTBEAT</code> alle 5 s)</td></tr><tr><td><code>error</code> (<code>code</code>, <code>message</code>)</td><td>Server → Client</td><td>Echte Begründung statt Timeout</td></tr></tbody></table>
+<h3 id="fehlercodes">Fehlercodes</h3>
+<table><thead><tr><th>Code</th><th>Bedeutung</th></tr></thead><tbody><tr><td><code>1001</code></td><td>Nicht authentifiziert</td></tr><tr><td><code>1004</code></td><td>Kein Spieler zu dieser Verbindung / unbekannte Gruppe</td></tr><tr><td><code>1005</code></td><td>Gruppe braucht ein Passwort (Dialog öffnen)</td></tr><tr><td><code>1006</code></td><td>Passwort falsch (Dialog offen lassen)</td></tr><tr><td><code>1009</code></td><td>Token ungültig oder abgelaufen</td></tr><tr><td><code>1010</code></td><td>Token ohne <code>voice</code>-Scope</td></tr></tbody></table>
+<h3 id="gruppen-payloads">Gruppen-Payloads</h3>
+<pre data-lang="json"><code class="language-json">// Beitritt, Passwort nur mitschicken wenn vorhanden
+{ &quot;type&quot;: &quot;group-join&quot;, &quot;payload&quot;: { &quot;id&quot;: &quot;&lt;uuid&gt;&quot; } }
+{ &quot;type&quot;: &quot;group-join&quot;, &quot;payload&quot;: { &quot;id&quot;: &quot;&lt;uuid&gt;&quot;, &quot;password&quot;: &quot;...&quot; } }
+
+// Antwort trägt GroupInfo direkt, Liste als {groups: [...]}
+{ &quot;type&quot;: &quot;group-joined&quot;, &quot;requestId&quot;: &quot;...&quot;,
+  &quot;payload&quot;: { &quot;id&quot;: &quot;&lt;uuid&gt;&quot;, &quot;name&quot;: &quot;...&quot;, &quot;hasPassword&quot;: false } }</code></pre>
+<p>Gruppennamen begrenzt SVC auf <strong>16 Zeichen</strong> (längere werden still</p>
+<p>abgeschnitten). Typen wie in der Mod: <code>normal</code>, <code>open</code>, <code>isolated</code>.</p>
+
+</section>
+<section>
+<h2 id="typescript-interfaces-webend-gekrzt">TypeScript-Interfaces (Webend, gekürzt)</h2>
+<pre data-lang="typescript"><code class="language-typescript">interface BaseSignalingMessage&lt;T, P&gt; {
+  type: T;
+  payload: P;
+  from?: string;
+  to?: string;
+  roomId?: string;
+  timestamp?: number;
+}
+
+interface JoinPayload {
+  token: string;
+  roomId: string;
+  displayName: string;
+}
+
+interface MutePayload { muted: boolean }
+interface DeafenPayload { deafened: boolean }
+
+interface PositionPayload {
+  x: number; y: number; z: number;
+  yaw: number; pitch: number;
+}</code></pre>
+<p>Vollständig in <code>webend/src/signaling/types.ts</code> (mit <code>is*Payload</code>-Guards und</p>
+<p><code>create*Message</code>-Factories).</p>
+
+</section>
+<section>
+<h2 id="plugin-seite-kotlin-berblick">Plugin-Seite (Kotlin, Überblick)</h2>
+<ul>
+<li><code>SvcBridge.injectPcmFromWebRtc</code>: WebRTC-Audio → SVC, mit Mute-Gate und</li>
+</ul>
+<p>Latenzmessung (alle 50 Frames als Debug-Log).</p>
+<ul>
+<li><code>BrowserPresenceBridge</code>: registriert eine echte <code>VoicechatConnection</code> und</li>
+</ul>
+<p>broadcastet <code>PlayerState.disabled</code> für das Vollmute-Symbol.</p>
+<ul>
+<li><code>ActualVoicechatApi.setReceiverSilencer</code>: pro-Empfänger-Filter über</li>
+</ul>
+<p><code>StaticSoundPacketEvent</code> - ein gemuteter Browser ist für genau diesen</p>
+<p>Mod-Spieler stumm.</p>
+<ul>
+<li><code>SvcGroupService</code>: echte SVC-Gruppen-API, Zählung aus SVC-Verbindungen über</li>
+</ul>
+<p>alle Welten (gruppenunabhängig von Distanz).</p>
+
+</section>
+<section>
+<h2 id="chat--und-spielbefehle">Chat- und Spielbefehle</h2>
+<p>Browser-Nachrichten führen <code>Player.chat</code> aus, Kommandos</p>
+<p><code>Player.performCommand</code>. Servernachrichten und Command-Antworten spiegelt das</p>
+<p>Chat-Panel; Spieler-Chat kommt über <code>AsyncChatEvent</code>, System-Chat über</p>
+<p>ProtocolLib. Siehe <a href="quickstart.html">Schnellstart</a> für die Befehlsliste.</p>
+</section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>SimpleVoiceChatWeb</h3>
+                    <p>Open Source Bridge zwischen Minecraft Simple Voice Chat Mod und WebRTC Browser-Clients.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+<li><a href="index.html">Start</a></li>
+<li><a href="quickstart.html">Schnellstart</a></li>
+<li><a href="architecture.html">Architektur</a></li>
+<li><a href="peerjs.html">PeerJS & TURN</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>API & Entwicklung</h3>
+                    <ul>
+<li><a href="deployment.html">Deployment</a></li>
+<li><a href="api.html">API Referenz</a></li>
+<li><a href="configuration.html">Konfiguration</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App öffnen</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub Organisation</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb" target="_blank" rel="noopener">Haupt-Repository</a></li>
+                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues & Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SimpleVoiceChatWeb. Open Source unter MIT Lizenz.</p>
+                <p>Diese Seite wird aus Markdown gebaut - Agents lesen die <code>.ai.md</code>-Quellen im Repository.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
