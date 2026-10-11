@@ -122,8 +122,10 @@ cp build/libs/SimpleVoiceChatWebPlugin-1.0.0-SNAPSHOT-fat.jar /paper-server/plug
 <p>Diese Seiten leben als Markdown unter <code>webend/docs/*.ai.md</code> und werden per</p>
 <p><code>node scripts/build.js</code> nach <code>webend/docs/dist/</code> gebaut (<code>.html</code> plus die</p>
 <p><code>.ai.md</code>-Quellen für Agents). Lokal prüfen mit <code>npx serve dist -l 3001</code>.</p>
-<p>Der Publish nach <code>https://simplevoicechatweb.github.io/docs</code> hängt am selben</p>
-<p>Pages-Repo wie die Web-App und wird als nächster Schritt eingerichtet.</p>
+<p>Der Workflow <code>Deploy Docs to docs repository</code> pusht <code>dist/</code> per SSH-Deploy-Key</p>
+<p>(<code>DOCS_DEPLOY_KEY</code>) nach <code>SimpleVoiceChatWeb/docs</code> (Branch <code>main</code>, Root) -</p>
+<p>live unter <code>https://simplevoicechatweb.github.io/docs</code>. Repo dafür auf public</p>
+<p>und Pages-Quelle &quot;Deploy from a branch&quot; stellen.</p>
 
 </section>
 <section>

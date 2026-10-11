@@ -58,8 +58,10 @@ pusht `dist/` ins Root des `main`-Branches von
 Diese Seiten leben als Markdown unter `webend/docs/*.ai.md` und werden per
 `node scripts/build.js` nach `webend/docs/dist/` gebaut (`.html` plus die
 `.ai.md`-Quellen für Agents). Lokal prüfen mit `npx serve dist -l 3001`.
-Der Publish nach `https://simplevoicechatweb.github.io/docs` hängt am selben
-Pages-Repo wie die Web-App und wird als nächster Schritt eingerichtet.
+Der Workflow `Deploy Docs to docs repository` pusht `dist/` per SSH-Deploy-Key
+(`DOCS_DEPLOY_KEY`) nach `SimpleVoiceChatWeb/docs` (Branch `main`, Root) -
+live unter `https://simplevoicechatweb.github.io/docs`. Repo dafür auf public
+und Pages-Quelle "Deploy from a branch" stellen.
 
 ## Ports und Firewall
 
