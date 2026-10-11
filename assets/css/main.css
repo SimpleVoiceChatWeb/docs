@@ -287,6 +287,25 @@ hr {
   color: var(--color-primary);
 }
 
+/* Built commit next to the logo: which source state is actually live. */
+.commit-badge {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.commit-badge:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  text-decoration: none;
+}
+
 /* Navigation */
 .nav-main {
   display: flex;
