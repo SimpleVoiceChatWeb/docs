@@ -99,6 +99,9 @@ body {
   line-height: 1.7;
   color: var(--color-text);
   background-color: var(--color-bg);
+  /* Safety net: nothing on these pages may cause horizontal scrolling.
+     clip (not hidden) keeps position:sticky working. */
+  overflow-x: clip;
   transition: background-color var(--transition-normal), color var(--transition-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -207,6 +210,10 @@ img {
 
 table {
   width: 100%;
+  /* Fixed layout + anywhere-wrapping: long code/URLs in cells (JAR names,
+     config keys, error strings) break instead of pushing the page wider
+     than the viewport. */
+  table-layout: fixed;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
@@ -216,6 +223,7 @@ th, td {
   padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--color-border);
+  overflow-wrap: anywhere;
 }
 
 th {
