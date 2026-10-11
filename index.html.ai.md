@@ -6,6 +6,11 @@ lead: Willkommen bei der offiziellen Dokumentation von SimpleVoiceChatWeb - der 
 ---
 # SimpleVoiceChatWeb Dokumentation
 
+> **Alpha:** Diese Dokumentation und das gesamte System befinden sich in
+> aktiver Entwicklung. Anleitungen und Verhalten können sich ändern - bei
+> Abweichungen gilt der Code, Fehler bitte als
+> [Issue melden](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues).
+
 ## Was ist SimpleVoiceChatWeb?
 
 SimpleVoiceChatWeb ist eine Bridge zwischen dem **Simple Voice Chat Minecraft Mod** und **WebRTC Browser-Clients**. Sie ermöglicht es Spielern ohne Mod, per Browser am Voice-Chat teilzunehmen - mit echten SVC-Gruppen, Mute-Symbolen und Befehlen.

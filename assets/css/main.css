@@ -787,6 +787,25 @@ pre::before {
   letter-spacing: 0.05em;
 }
 
+/* Site-wide alpha notice: docs and system are both in active development. */
+.alpha-banner {
+  background-color: var(--color-warning-light);
+  border-bottom: 1px solid var(--color-warning);
+  padding: 0.625rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.alpha-banner strong {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 0.5rem;
+}
+
+.alpha-banner a {
+  font-weight: 600;
+}
+
 /* Footer */
 .footer {
   background-color: var(--color-bg-alt);
