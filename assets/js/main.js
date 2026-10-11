@@ -104,7 +104,10 @@
 
     if (!content || !tocList) return;
 
-    const headings = content.querySelectorAll('h2, h3');
+    // Card titles (h3 inside .card-grid) are teaser links, not document
+    // structure - they would drown the real sections in noise.
+    const headings = Array.from(content.querySelectorAll('h2, h3'))
+      .filter(heading => !heading.closest('.card-grid'));
     if (headings.length === 0) {
       tocList.parentElement.style.display = 'none';
       return;
