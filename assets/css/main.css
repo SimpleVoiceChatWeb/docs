@@ -487,15 +487,9 @@ img { max-width: 100%; height: auto; border-radius: var(--radius-md); }
   .article-footer a { margin-left: 0; }
 }
 
-/* Article topbar: breadcrumbs left, language picker right. */
-.article-topbar {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 26px;
-}
-.article-topbar .breadcrumbs { margin-bottom: 0; padding-top: 8px; }
+/* Language picker lives at the top of the right TOC rail. */
+.toc .language-picker { margin-bottom: 14px; }
+.toc .language-picker summary { min-height: 30px; }
 
 .language-picker {
   position: relative;
