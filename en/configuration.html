@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete reference of all configuration options for plugin and webend.">
+    <title>Configuration - SimpleVoiceChatWeb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+        </div>
+    </div>
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="On this page">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/2822544" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 2822544">2822544</a></p>
+            <nav class="side-nav-wrap" aria-label="On this page">
+<p class="nav-label">Guide</p>
+<div class="side-nav">
+<a href="index.html">Home</a>
+<a href="quickstart.html">Quickstart</a>
+</div>
+<p class="nav-label">Understand</p>
+<div class="side-nav">
+<a href="architecture.html">Architecture</a>
+<a href="peerjs.html">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Operate</p>
+<div class="side-nav">
+<a href="deployment.html">Deployment</a>
+<a href="configuration.html" class="active">Configuration</a>
+<a href="troubleshooting.html">Troubleshooting</a>
+</div>
+<p class="nav-label">Reference</p>
+<div class="side-nav">
+<a href="api.html">API Reference</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <div class="article-topbar">
+                <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>Configuration</strong></nav>
+                <details class="language-picker">
+<summary><span>English</span></summary>
+<div class="language-picker-body">
+<a href="../configuration.html">Deutsch</a>
+<a href="configuration.html" aria-current="true">English</a>
+</div>
+</details>
+            </div>
+            <header class="article-header">
+                <p class="eyebrow">Operate</p>
+                <h1>Configuration</h1>
+                <p class="lead">Every switch in one place - with real defaults from the code, not guessed.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
+<section class="doc-section">
+<h2 id="plugin-config-configyml">Plugin config (<code>config.yml</code>)</h2>
+<p>File: <code>plugins/SimpleVoiceChatWeb/config.yml</code> (HOCON). If missing, it is</p>
+<p>created with defaults. Environment variables with the <code>SVCWEB_</code> prefix</p>
+<p>override file values, e.g. <code>SVCWEB_WEB_PORT=24455</code> → <code>web.port</code>. Restart after</p>
+<p>changes - there is no hot-reload.</p>
+<h3 id="web-auth-and-peerjs">Web, auth and PeerJS</h3>
+<table><thead><tr><th>Option</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>web.host</code></td><td><code>&quot;0.0.0.0&quot;</code></td><td>Signaling server bind address</td></tr><tr><td><code>web.port</code></td><td><code>24454</code></td><td>Signaling port (TCP, <code>wss://</code>)</td></tr><tr><td><code>web.corsAllowedOrigins</code></td><td>Pages + <code>localhost:3000</code></td><td>Allowed origins, must not be empty</td></tr><tr><td><code>web.portShareWithSvc</code></td><td><code>true</code></td><td>Share port with SVC</td></tr><tr><td><code>web.tlsTerminatedExternally</code></td><td><code>false</code></td><td><code>true</code> = reverse proxy handles TLS</td></tr><tr><td><code>web.maxParticipants</code></td><td><code>50</code></td><td>Max participants</td></tr><tr><td><code>web.staticDir</code></td><td><code>&quot;web&quot;</code></td><td>Static files</td></tr><tr><td><code>auth.codeTtlSeconds</code></td><td><code>300</code></td><td>Link code validity (seconds)</td></tr><tr><td><code>auth.jwtTtlSeconds</code></td><td><code>86400</code></td><td>JWT validity (seconds)</td></tr><tr><td><code>auth.jwtSecret</code></td><td><code>&quot;&quot;</code></td><td>HS256 secret - empty = auto-generated on startup</td></tr><tr><td><code>auth.joinLinkBaseUrl</code></td><td>Pages URL</td><td>Base for invite links (<code>?code=...</code>)</td></tr><tr><td><code>peerjs.enabled</code></td><td><code>false</code></td><td>Enable outbound PeerJS client (invite path)</td></tr><tr><td><code>peerjs.scheme/host/port/path/key</code></td><td><code>wss</code> / <code>0.peerjs.com</code> / <code>443</code> / <code>/</code> / <code>peerjs</code></td><td>PeerServer connection</td></tr><tr><td><code>peerjs.token</code></td><td><code>&quot;&quot;</code></td><td>Empty = random signaling token</td></tr></tbody></table>
+<h3 id="svc-audio-turn">SVC, audio, TURN</h3>
+<table><thead><tr><th>Option</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>svc.mirrorGroups</code></td><td><code>true</code></td><td>Mirror groups with SVC</td></tr><tr><td><code>svc.positionalAudio</code></td><td><code>true</code></td><td>Positional audio</td></tr><tr><td><code>svc.showWebPlayersInSvc</code></td><td><code>true</code></td><td>Show browser in mod lists</td></tr><tr><td><code>svc.simulateMicrophone</code></td><td><code>false</code></td><td>Tests only</td></tr><tr><td><code>audio.minDistance</code></td><td><code>1.0</code></td><td>Full volume up to distance (blocks)</td></tr><tr><td><code>audio.maxDistance</code></td><td><code>50.0</code></td><td>Silent beyond distance (blocks)</td></tr><tr><td><code>turn.enabled</code></td><td><code>false</code></td><td>TURN relay (see <a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td><code>turn.urls</code> / <code>turn.username</code> / <code>turn.credential</code></td><td>empty</td><td>Required when <code>turn.enabled</code></td></tr></tbody></table>
+<h3 id="operations">Operations</h3>
+<table><thead><tr><th>Option</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>private.enabled</code></td><td><code>false</code></td><td>Private mode</td></tr><tr><td><code>logging.level</code></td><td><code>&quot;INFO&quot;</code></td><td><code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code></td></tr><tr><td><code>logging.logSvcPackets</code></td><td><code>false</code></td><td>Capture SVC packets (loud!)</td></tr><tr><td><code>logging.logWebsocketMessages</code></td><td><code>false</code></td><td>Capture WebSocket messages (loud!)</td></tr><tr><td><code>webhooks.enabled/url/events/secret</code></td><td>off</td><td>Webhook notifications</td></tr><tr><td><code>distribution.bundleWebClient</code></td><td><code>false</code></td><td>Ship web client along</td></tr><tr><td><code>development</code></td><td><code>true</code></td><td>Allow self-signed certificates</td></tr><tr><td><code>tls.keystorePassword</code></td><td><code>&quot;&quot;</code></td><td>Keystore password (prefer env)</td></tr><tr><td><code>debug</code></td><td><code>false</code></td><td>Debug mode</td></tr><tr><td><code>language</code></td><td><code>&quot;de_DE&quot;</code></td><td>Language</td></tr></tbody></table>
+<blockquote><p><strong>Note:</strong> <code>webrtc.port</code> (default <code>24455</code>) is in the config but currently<br>unused - a leftover. The PeerJS media path needs no inbound port.</p></blockquote>
+<p>Keep secrets in the environment, not in the file. <code>auth.jwtSecret</code> may stay</p>
+<p>empty (auto-generation); use the env variant for <code>tls.keystorePassword</code>.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="webend-build-variables">Webend build variables</h2>
+<p>File: <code>webend/.env</code> (never commit!). Public PeerServer values for the Pages</p>
+<p>build, see <a href="deployment.html">Deployment</a>:</p>
+<pre data-lang="bash"><code class="language-bash">VITE_PEERJS_HOST=0.peerjs.com
+VITE_PEERJS_PORT=443
+VITE_PEERJS_PATH=/
+VITE_PEERJS_SECURE=true
+VITE_PEERJS_KEY=peerjs</code></pre>
+<p>Without these variables the PeerJS cloud defaults apply. No fixed token is</p>
+<p>written into the build - the target peer ID is inside the invite code.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="browser-settings-honesty">Browser settings (honesty)</h2>
+<p>The settings page stores everything, but only three switches really work</p>
+<p>(browser-native, effective on <strong>next connect</strong>): echo cancellation, noise</p>
+<p>suppression, automatic gain. The rest (microphone and output volume, noise</p>
+<p>level, 3D audio, push-to-talk, threshold) is marked &quot;coming soon&quot; until wired.</p>
+<p>Volume currently lives on the mixer in the voice tab.</p>
+</section>
+<nav class="pager" aria-label="Keep reading">
+<a class="pager-prev" href="deployment.html"><span>← Back</span><strong>Deployment</strong></a>
+<a class="pager-next" href="troubleshooting.html"><span>Next →</span><strong>Troubleshooting</strong></a>
+</nav>
+            <footer class="article-footer"><span>Open source under MIT license.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown sources for agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="On this page">
+            <p class="toc-title">On this page</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

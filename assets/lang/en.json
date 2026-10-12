@@ -1,0 +1,35 @@
+{
+  "id": "en",
+  "label": "English",
+  "skip": "Skip to main content",
+  "menu": "Menu",
+  "theme": "Toggle theme",
+  "themeToLight": "Switch to light mode",
+  "themeToDark": "Switch to dark mode",
+  "copyCode": "Copy code",
+  "tocTitle": "On this page",
+  "crumbRoot": "Docs",
+  "pagerLabel": "Keep reading",
+  "pagerBack": "Back",
+  "pagerNext": "Next",
+  "alphaHtml": "<strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span>",
+  "footerNote": "Open source under MIT license.",
+  "mdSources": "Markdown sources for agents",
+  "brandAria": "SimpleVoiceChatWeb documentation - home",
+  "groups": {
+    "guide": "Guide",
+    "understand": "Understand",
+    "operate": "Operate",
+    "reference": "Reference"
+  },
+  "pages": {
+    "index": "Home",
+    "quickstart": "Quickstart",
+    "architecture": "Architecture",
+    "peerjs": "PeerJS & TURN",
+    "deployment": "Deployment",
+    "api": "API Reference",
+    "configuration": "Configuration",
+    "troubleshooting": "Troubleshooting"
+  }
+}

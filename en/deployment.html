@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Production-grade SimpleVoiceChatWeb deployment - plugin, webend and documentation.">
+    <title>Deployment - SimpleVoiceChatWeb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+        </div>
+    </div>
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="On this page">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/2822544" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 2822544">2822544</a></p>
+            <nav class="side-nav-wrap" aria-label="On this page">
+<p class="nav-label">Guide</p>
+<div class="side-nav">
+<a href="index.html">Home</a>
+<a href="quickstart.html">Quickstart</a>
+</div>
+<p class="nav-label">Understand</p>
+<div class="side-nav">
+<a href="architecture.html">Architecture</a>
+<a href="peerjs.html">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Operate</p>
+<div class="side-nav">
+<a href="deployment.html" class="active">Deployment</a>
+<a href="configuration.html">Configuration</a>
+<a href="troubleshooting.html">Troubleshooting</a>
+</div>
+<p class="nav-label">Reference</p>
+<div class="side-nav">
+<a href="api.html">API Reference</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <div class="article-topbar">
+                <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>Deployment</strong></nav>
+                <details class="language-picker">
+<summary><span>English</span></summary>
+<div class="language-picker-body">
+<a href="../deployment.html">Deutsch</a>
+<a href="deployment.html" aria-current="true">English</a>
+</div>
+</details>
+            </div>
+            <header class="article-header">
+                <p class="eyebrow">Operate</p>
+                <h1>Deployment</h1>
+                <p class="lead">Build the plugin, start the server, web app and docs arrive via workflow.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
+<section class="doc-section">
+<h2 id="plugin-paper-server">Plugin (Paper server)</h2>
+<pre data-lang="bash"><code class="language-bash">cd plugin
+JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew fatJar --no-daemon --console=plain
+cp build/libs/SimpleVoiceChatWebPlugin-1.0.0-SNAPSHOT-fat.jar /paper-server/plugins/</code></pre>
+<p>Building fails on Java 25 with <code>JavaVersion.parse</code> (old Kotlin version) -</p>
+<p>hence Java 21 via <code>JAVA_HOME</code>. The fat JAR is <strong>platform-bound</strong> (native</p>
+<p>artifact of the build host): build on Linux for Linux servers. It also needs</p>
+<p><code>ProtocolLib.jar</code> and <code>voicechat-bukkit-2.6.21.jar</code> (or newer) in <code>plugins/</code>.</p>
+<p>Old fat JARs go to <code>jar-backups/</code> - <strong>never</strong> into <code>plugins/</code>, or Paper loads</p>
+<p>them as plugins.</p>
+<h3 id="test-server-recipe">Test server recipe</h3>
+<pre data-lang="bash"><code class="language-bash">tmux new-session -d -s testmc -c /path/to/TestMCServer \
+  &quot;java -Xms1G -Xmx2G -jar paper-26.2-112.jar nogui&quot;</code></pre>
+<p>It is called <code>paper-26.2-112.jar</code>, not <code>paper.jar</code>. About 40 seconds to <code>Done</code>.</p>
+<p>Stop with <code>tmux send-keys -t testmc &quot;stop&quot; Enter</code>. Ports: 25565 (MC) and</p>
+<p>24454 (signaling + SVC voice).</p>
+
+</section>
+<section class="doc-section">
+<h2 id="webend-github-pages">Webend (GitHub Pages)</h2>
+<p>The <code>Deploy Webend to GitHub Pages</code> workflow builds the Vue app on every</p>
+<p>change under <code>src/**</code> (plus <code>index.html</code>, <code>package.json</code>, <code>vite.config.ts</code>)</p>
+<p>on <code>main</code> - or manually via Actions → Run workflow. It pushes <code>dist/</code> into</p>
+<p>the root of <code>main</code> in <code>SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io</code>:</p>
+<ul>
+<li><strong>Source:</strong> Deploy from a branch, <strong>Branch:</strong> main / root</li>
+<li><strong>Live:</strong> <code>https://simplevoicechatweb.github.io</code> (hash routing: <code>/#/login</code>, <code>/#/voice</code>, <code>/#/settings</code>)</li>
+<li>Auth via SSH deploy key: public part as deploy key with write access in the</li>
+</ul>
+<p>Pages repo, private part as <code>PAGES_DEPLOY_KEY</code> Actions secret in the webend</p>
+<p>repo (use only for this Pages repo).</p>
+<ul>
+<li>PeerJS values as Actions variables (<code>VITE_PEERJS_HOST</code>, <code>VITE_PEERJS_PORT</code>,</li>
+</ul>
+<p><code>VITE_PEERJS_PATH</code>, <code>VITE_PEERJS_SECURE</code>, <code>VITE_PEERJS_KEY</code>), otherwise</p>
+<p>PeerJS cloud defaults.</p>
+<blockquote><p><strong>Trap:</strong> The workflow triggers on <code>paths: src/**</code>. A push without <code>src</code><br>changes (e.g. docs only) triggers <strong>no</strong> deploy. Status:<br><code>gh run list --repo SimpleVoiceChatWeb/webend</code>.</p></blockquote>
+
+</section>
+<section class="doc-section">
+<h2 id="docs-docs">Docs (<code>/docs</code>)</h2>
+<p>These pages live as Markdown under <code>webend/docs/*.ai.md</code> (German) and</p>
+<p><code>*.en.ai.md</code> (English), built with <code>node scripts/build.js</code> into</p>
+<p><code>webend/docs/dist/</code> (<code>.html</code> plus the <code>.ai.md</code> sources for agents). Check</p>
+<p>locally with <code>npx serve dist -l 3001</code>. The <code>Deploy Docs to docs repository</code></p>
+<p>workflow pushes <code>dist/</code> via SSH deploy key (<code>DOCS_DEPLOY_KEY</code>) to</p>
+<p><code>SimpleVoiceChatWeb/docs</code> (branch <code>main</code>, root) - live at</p>
+<p><code>https://simplevoicechatweb.github.io/docs</code>. The picker at the top right</p>
+<p>switches languages.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="ports-and-firewall">Ports and firewall</h2>
+<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice</td></tr><tr><td>443</td><td>TCP (outbound)</td><td>PeerJS signaling</td></tr></tbody></table>
+<pre data-lang="bash"><code class="language-bash"># UFW example
+ufw allow 25565/tcp   # Minecraft
+ufw allow 24454/tcp   # WebSocket signaling
+ufw allow 24454/udp   # SVC voice
+ufw enable</code></pre>
+<blockquote><p><strong>Tip:</strong> Always test ports from an <strong>external network</strong><br>(phone hotspot), not from the server itself!</p></blockquote>
+
+</section>
+<section class="doc-section">
+<h2 id="environment-variables">Environment variables</h2>
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code>JWT_SECRET</code></td><td>If <code>auth.jwtSecret</code> is not left to auto-generate</td></tr><tr><td><code>PAGES_DEPLOY_KEY</code></td><td>Actions secret for the Pages push (webend repo only)</td></tr></tbody></table>
+</section>
+<nav class="pager" aria-label="Keep reading">
+<a class="pager-prev" href="peerjs.html"><span>← Back</span><strong>PeerJS & TURN</strong></a>
+<a class="pager-next" href="configuration.html"><span>Next →</span><strong>Configuration</strong></a>
+</nav>
+            <footer class="article-footer"><span>Open source under MIT license.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown sources for agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="On this page">
+            <p class="toc-title">On this page</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

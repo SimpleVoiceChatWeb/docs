@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Deep dive into the SimpleVoiceChatWeb architecture - bridge between Simple Voice Chat and WebRTC.">
+    <title>Architecture - SimpleVoiceChatWeb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+        </div>
+    </div>
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="On this page">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/2822544" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 2822544">2822544</a></p>
+            <nav class="side-nav-wrap" aria-label="On this page">
+<p class="nav-label">Guide</p>
+<div class="side-nav">
+<a href="index.html">Home</a>
+<a href="quickstart.html">Quickstart</a>
+</div>
+<p class="nav-label">Understand</p>
+<div class="side-nav">
+<a href="architecture.html" class="active">Architecture</a>
+<a href="peerjs.html">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Operate</p>
+<div class="side-nav">
+<a href="deployment.html">Deployment</a>
+<a href="configuration.html">Configuration</a>
+<a href="troubleshooting.html">Troubleshooting</a>
+</div>
+<p class="nav-label">Reference</p>
+<div class="side-nav">
+<a href="api.html">API Reference</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <div class="article-topbar">
+                <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>Architecture</strong></nav>
+                <details class="language-picker">
+<summary><span>English</span></summary>
+<div class="language-picker-body">
+<a href="../architecture.html">Deutsch</a>
+<a href="architecture.html" aria-current="true">English</a>
+</div>
+</details>
+            </div>
+            <header class="article-header">
+                <p class="eyebrow">Understand</p>
+                <h1>Architecture</h1>
+                <p class="lead">How the browser becomes a full Simple Voice Chat client - no mod, no relay.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
+<section class="doc-section">
+<h2 id="topology-by-design">Topology (by design)</h2>
+<pre data-lang="text"><code class="language-text">Browser &lt;── WebRTC/DTLS/SRTP ──&gt; Plugin &lt;── SVC-API ──&gt; Minecraft players</code></pre>
+<p>There are <strong>no</strong> browser-to-browser audio connections and <strong>no</strong> central</p>
+<p>audio relay outside the Minecraft server. The plugin translates between</p>
+<p>WebRTC audio and Simple Voice Chat. Everything Simple Voice Chat can do</p>
+<p>(groups, range, volume) comes from SVC - nothing is rebuilt.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="two-transports">Two transports</h2>
+<table><thead><tr><th>Transport</th><th>Path</th><th>For</th></tr></thead><tbody><tr><td>PeerJS</td><td>Browser + plugin dial out to <code>0.peerjs.com:443</code></td><td>Invite path (<code>/voice link</code>): only outbound connections needed, ideal behind NAT</td></tr></tbody></table>
+<p>Both transports speak the same message protocol (including <code>requestId</code></p>
+<p>correlation IDs and group messages). See <a href="api.html">API Reference</a> and</p>
+<p><a href="peerjs.html">PeerJS &amp; TURN</a>.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="components">Components</h2>
+<table><thead><tr><th>Component</th><th>Tech</th><th>Purpose</th></tr></thead><tbody><tr><td><code>BrowserPresenceBridge</code></td><td>SVC <code>PlayerStateManager</code></td><td>Register browser as voicechat connection, broadcast mute symbols</td></tr><tr><td><code>SvcGroupService</code></td><td>Real SVC group API</td><td>Real SVC groups (normal/open/isolated), counts from SVC connections</td></tr><tr><td><code>PeerJsVoiceRuntime</code> + <code>PeerJsWebRtcBridge</code></td><td>PeerJS, WebRTC engine</td><td>Invite sessions, groups over data channel</td></tr><tr><td><code>SignalingHandler</code> (Netty)</td><td>WebSocket <code>wss://</code></td><td>Direct path: signaling, WebRTC, groups</td></tr><tr><td><code>SingleSessionGuard</code></td><td>Per player UUID</td><td>Exactly one bridge session per player</td></tr><tr><td><code>InviteMapService</code> + ZXing</td><td>Minecraft maps</td><td>QR invite as map in hand</td></tr><tr><td><code>WebVoicechatCommand</code></td><td>Bukkit commands</td><td><code>/voicechat</code> for browser players, mod fallback for mod players</td></tr><tr><td>Webend</td><td>Vue 3 + Vite + TypeScript</td><td>Browser client (voice, channel and settings UI)</td></tr></tbody></table>
+
+</section>
+<section class="doc-section">
+<h2 id="data-flow">Data flow</h2>
+<h3 id="browser-minecraft-outgoing-audio">Browser → Minecraft (outgoing audio)</h3>
+<ol>
+<li>Browser: microphone → Opus (48 kHz mono, 20 ms) → SRTP</li>
+<li>Plugin: receive → <code>SvcBridge.injectPcmFromWebRtc</code> → Opus → <code>LocalAudioChannel</code></li>
+<li>SVC distributes to everyone who hears the player (group + distance)</li>
+</ol>
+<p>When the browser is muted, the <code>WebMuteGate</code> drops the frames server-side -</p>
+<p>no matter what the client sends.</p>
+<h3 id="minecraft-browser-incoming-audio">Minecraft → Browser (incoming audio)</h3>
+<ol>
+<li>SVC: <code>MicrophonePacketEvent</code> per speaker</li>
+<li>Plugin: extract Opus → forward to eligible WebRTC peers</li>
+<li>Browser: decode → one gain per peer → mixer → speakers</li>
+</ol>
+<p>A deafened browser gets no frames (dropped before decoding).</p>
+
+</section>
+<section class="doc-section">
+<h2 id="mute-and-deafen-across-the-boundary">Mute and deafen across the boundary</h2>
+<ul>
+<li><strong>Browser mutes itself:</strong> message over data channel/signaling → <code>WebMuteGate</code></li>
+</ul>
+<p>blocks the audio flow. Mod players no longer hear them.</p>
+<ul>
+<li><strong>Browser deafens itself:</strong> additionally <code>PlayerState.disabled</code> + broadcast -</li>
+</ul>
+<p>mod players see the full-mute symbol, like with the mod.</p>
+<ul>
+<li><strong>Visibility:</strong> <code>BrowserPresenceBridge</code> registers a real</li>
+</ul>
+<p><code>VoicechatConnection</code> for the browser, so it shows in the mod group list</p>
+<p>with a microphone symbol instead of &quot;disconnected&quot;.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="groups">Groups</h2>
+<p>Browser groups <strong>are</strong> SVC groups (<code>GroupService</code> uses <code>createGroup</code>,</p>
+<p><code>groupBuilder</code>, <code>setGroup</code>). Mod players see and join them. Joining with a</p>
+<p>password is supported (<code>hasPassword</code> lock in the channel UI, error codes for</p>
+<p>&quot;needed&quot; vs. &quot;wrong&quot;). SVC limits group names to <strong>16 characters</strong>. The webend</p>
+<p>list polls every 5 seconds.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="sessions-and-security">Sessions and security</h2>
+<ul>
+<li>One code = one session (<code>/voice link</code> codes are single-use, 5 minute TTL).</li>
+<li>One bridge per player (<code>SingleSessionGuard</code>); a second code closes the old</li>
+</ul>
+<p>session instead of failing. Quit frees immediately.</p>
+<ul>
+<li>OP gate: no <code>/voice link</code> without OP (hint at the mod), `/voice link</li>
+</ul>
+<p>force` unlocks once.</p>
+<ul>
+<li>JWT (HS256) with <code>voice</code> scope for the WebSocket path; empty</li>
+</ul>
+<p><code>auth.jwtSecret</code> is auto-generated on startup.</p>
+<ul>
+<li>Rate limit: 5 codes/minute/player.</li>
+</ul>
+
+</section>
+<section class="doc-section">
+<h2 id="audio-specs">Audio specs</h2>
+<table><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Sample rate</td><td>48 kHz</td></tr><tr><td>Channels</td><td>1 (mono)</td></tr><tr><td>Frame</td><td>20 ms (960 samples)</td></tr><tr><td>Bitrate</td><td>~64 kbps (<code>maxaveragebitrate=64000</code>, FEC, DTX)</td></tr></tbody></table>
+
+</section>
+<section class="doc-section">
+<h2 id="network-ports">Network ports</h2>
+<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice</td></tr><tr><td>443</td><td>TCP (outbound)</td><td>PeerJS signaling (<code>0.peerjs.com</code>)</td></tr></tbody></table>
+</section>
+<nav class="pager" aria-label="Keep reading">
+<a class="pager-prev" href="quickstart.html"><span>← Back</span><strong>Quickstart</strong></a>
+<a class="pager-next" href="peerjs.html"><span>Next →</span><strong>PeerJS & TURN</strong></a>
+</nav>
+            <footer class="article-footer"><span>Open source under MIT license.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown sources for agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="On this page">
+            <p class="toc-title">On this page</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

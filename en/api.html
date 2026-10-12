@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SimpleVoiceChatWeb signaling protocol, group messages and TypeScript interfaces.">
+    <title>API Reference - SimpleVoiceChatWeb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+        </div>
+    </div>
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="On this page">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/2822544" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 2822544">2822544</a></p>
+            <nav class="side-nav-wrap" aria-label="On this page">
+<p class="nav-label">Guide</p>
+<div class="side-nav">
+<a href="index.html">Home</a>
+<a href="quickstart.html">Quickstart</a>
+</div>
+<p class="nav-label">Understand</p>
+<div class="side-nav">
+<a href="architecture.html">Architecture</a>
+<a href="peerjs.html">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Operate</p>
+<div class="side-nav">
+<a href="deployment.html">Deployment</a>
+<a href="configuration.html">Configuration</a>
+<a href="troubleshooting.html">Troubleshooting</a>
+</div>
+<p class="nav-label">Reference</p>
+<div class="side-nav">
+<a href="api.html" class="active">API Reference</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <div class="article-topbar">
+                <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>API Reference</strong></nav>
+                <details class="language-picker">
+<summary><span>English</span></summary>
+<div class="language-picker-body">
+<a href="../api.html">Deutsch</a>
+<a href="api.html" aria-current="true">English</a>
+</div>
+</details>
+            </div>
+            <header class="article-header">
+                <p class="eyebrow">Reference</p>
+                <h1>API Reference</h1>
+                <p class="lead">The real wire protocol - verified against the code, not guessed.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
+<section class="doc-section">
+<h2 id="signaling-protocol-websocket">Signaling protocol (WebSocket)</h2>
+<p>WebSocket endpoint: <code>wss://&lt;host&gt;:24454/signaling</code>. JSON messages with</p>
+<p>correlation ID - the browser <strong>drops every group answer without <code>requestId</code></strong>,</p>
+<p>the server echoes it on both transports. Group requests run into a visible</p>
+<p>timeout after 8 seconds.</p>
+<h3 id="message-types">Message types</h3>
+<table><thead><tr><th>Type</th><th>Direction</th><th>Purpose</th></tr></thead><tbody><tr><td><code>offer</code> / <code>answer</code> / <code>ice-candidate</code></td><td>both</td><td>WebRTC signaling</td></tr><tr><td><code>mute</code> (<code>{muted}</code>)</td><td>both</td><td>Microphone state, enforced server-side</td></tr><tr><td><code>deafen</code> (<code>{deafened}</code>)</td><td>both</td><td>Full-mute symbol for mod players</td></tr><tr><td><code>volume</code></td><td>both</td><td>Volume</td></tr><tr><td><code>position</code> (<code>x/y/z/yaw/pitch</code>)</td><td>both</td><td>3D position for spatial audio</td></tr><tr><td><code>group-list</code> / <code>group-create</code> / <code>group-delete</code> / <code>group-join</code> / <code>group-leave</code></td><td>Client → Server</td><td>Group operations</td></tr><tr><td><code>group-created</code> / <code>group-joined</code> / <code>group-left</code> / <code>group-list</code></td><td>Server → Client</td><td>Answers (always with <code>requestId</code>)</td></tr><tr><td><code>leave</code></td><td>both</td><td>Leave connection/group</td></tr><tr><td><code>ping</code> / <code>pong</code></td><td>both</td><td>Keepalive (PeerJS additionally <code>HEARTBEAT</code> every 5 s)</td></tr><tr><td><code>error</code> (<code>code</code>, <code>message</code>)</td><td>Server → Client</td><td>Real reason instead of timeout</td></tr></tbody></table>
+<h3 id="error-codes">Error codes</h3>
+<table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>1001</code></td><td>Not authenticated</td></tr><tr><td><code>1004</code></td><td>No player on this connection / unknown group</td></tr><tr><td><code>1005</code></td><td>Group needs a password (open dialog)</td></tr><tr><td><code>1006</code></td><td>Wrong password (keep dialog open)</td></tr><tr><td><code>1009</code></td><td>Token invalid or expired</td></tr><tr><td><code>1010</code></td><td>Token without <code>voice</code> scope</td></tr></tbody></table>
+<h3 id="group-payloads">Group payloads</h3>
+<pre data-lang="json"><code class="language-json">// Join, only send password when there is one
+{ &quot;type&quot;: &quot;group-join&quot;, &quot;payload&quot;: { &quot;id&quot;: &quot;&lt;uuid&gt;&quot; } }
+{ &quot;type&quot;: &quot;group-join&quot;, &quot;payload&quot;: { &quot;id&quot;: &quot;&lt;uuid&gt;&quot;, &quot;password&quot;: &quot;...&quot; } }
+
+// Answer carries GroupInfo directly, list as {groups: [...]}
+{ &quot;type&quot;: &quot;group-joined&quot;, &quot;requestId&quot;: &quot;...&quot;,
+  &quot;payload&quot;: { &quot;id&quot;: &quot;&lt;uuid&gt;&quot;, &quot;name&quot;: &quot;...&quot;, &quot;hasPassword&quot;: false } }</code></pre>
+<p>SVC limits group names to <strong>16 characters</strong> (longer ones are silently cut).</p>
+<p>Types like in the mod: <code>normal</code>, <code>open</code>, <code>isolated</code>.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="typescript-interfaces-webend-abbreviated">TypeScript interfaces (webend, abbreviated)</h2>
+<pre data-lang="typescript"><code class="language-typescript">interface BaseSignalingMessage&lt;T, P&gt; {
+  type: T;
+  payload: P;
+  from?: string;
+  to?: string;
+  roomId?: string;
+  timestamp?: number;
+}
+
+interface JoinPayload {
+  token: string;
+  roomId: string;
+  displayName: string;
+}
+
+interface MutePayload { muted: boolean }
+interface DeafenPayload { deafened: boolean }
+
+interface PositionPayload {
+  x: number; y: number; z: number;
+  yaw: number; pitch: number;
+}</code></pre>
+<p>Complete in <code>webend/src/signaling/types.ts</code> (with <code>is*Payload</code> guards and</p>
+<p><code>create*Message</code> factories).</p>
+
+</section>
+<section class="doc-section">
+<h2 id="plugin-side-kotlin-overview">Plugin side (Kotlin, overview)</h2>
+<ul>
+<li><code>SvcBridge.injectPcmFromWebRtc</code>: WebRTC audio → SVC, with mute gate and</li>
+</ul>
+<p>latency measurement (debug log every 50 frames).</p>
+<ul>
+<li><code>BrowserPresenceBridge</code>: registers a real <code>VoicechatConnection</code> and</li>
+</ul>
+<p>broadcasts <code>PlayerState.disabled</code> for the full-mute symbol.</p>
+<ul>
+<li><code>ActualVoicechatApi.setReceiverSilencer</code>: per-receiver filter over</li>
+</ul>
+<p><code>StaticSoundPacketEvent</code> - a muted browser is silent for exactly that mod</p>
+<p>player.</p>
+<ul>
+<li><code>SvcGroupService</code>: real SVC group API, counts from SVC connections across</li>
+</ul>
+<p>all worlds (distance-independent).</p>
+
+</section>
+<section class="doc-section">
+<h2 id="chat-and-game-commands">Chat and game commands</h2>
+<p>Browser messages run <code>Player.chat</code>, commands run <code>Player.performCommand</code>. The</p>
+<p>chat panel mirrors server messages and command answers; player chat arrives</p>
+<p>via <code>AsyncChatEvent</code>, system chat via ProtocolLib. See</p>
+<p><a href="quickstart.html">Quickstart</a> for the command list.</p>
+</section>
+<nav class="pager" aria-label="Keep reading">
+<a class="pager-prev" href="troubleshooting.html"><span>← Back</span><strong>Troubleshooting</strong></a>
+<span></span>
+</nav>
+            <footer class="article-footer"><span>Open source under MIT license.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown sources for agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="On this page">
+            <p class="toc-title">On this page</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Common problems, diagnostic steps and solutions for SimpleVoiceChatWeb.">
+    <title>Troubleshooting - SimpleVoiceChatWeb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+        </div>
+    </div>
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="On this page">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/2822544" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 2822544">2822544</a></p>
+            <nav class="side-nav-wrap" aria-label="On this page">
+<p class="nav-label">Guide</p>
+<div class="side-nav">
+<a href="index.html">Home</a>
+<a href="quickstart.html">Quickstart</a>
+</div>
+<p class="nav-label">Understand</p>
+<div class="side-nav">
+<a href="architecture.html">Architecture</a>
+<a href="peerjs.html">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Operate</p>
+<div class="side-nav">
+<a href="deployment.html">Deployment</a>
+<a href="configuration.html">Configuration</a>
+<a href="troubleshooting.html" class="active">Troubleshooting</a>
+</div>
+<p class="nav-label">Reference</p>
+<div class="side-nav">
+<a href="api.html">API Reference</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <div class="article-topbar">
+                <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>Troubleshooting</strong></nav>
+                <details class="language-picker">
+<summary><span>English</span></summary>
+<div class="language-picker-body">
+<a href="../troubleshooting.html">Deutsch</a>
+<a href="troubleshooting.html" aria-current="true">English</a>
+</div>
+</details>
+            </div>
+            <header class="article-header">
+                <p class="eyebrow">Operate</p>
+                <h1>Troubleshooting</h1>
+                <p class="lead">Measure first, guess later - most ghosts are wiring, not logic.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
+<section class="doc-section">
+<h2 id="quick-reference">Quick reference</h2>
+<table><thead><tr><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><code>ALREADY_LINKED</code></td><td>Old session holds the slot</td><td>Second code closes the old session automatically</td></tr><tr><td>&quot;No connection&quot;</td><td>Ports/signaling unreachable</td><td>Test ports externally, check server log</td></tr><tr><td>&quot;No audio&quot;</td><td>Mute gate, group or firewall</td><td>Check mute status, group room, UDP</td></tr><tr><td>&quot;LAN only works&quot;</td><td>No port forwarding</td><td>Set up router forwarding for 24454</td></tr><tr><td>&quot;WebRTC stuck at signaling connected&quot;</td><td>Symmetric NAT/firewall</td><td>Set up TURN (<a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td>Group shows &quot;0 people&quot;</td><td>Wrong room or no answer</td><td>Reload page, check console for real error</td></tr><tr><td>Group creation times out</td><td>Answer without <code>requestId</code> or channel still closed</td><td>Hard-reload page, then read console</td></tr></tbody></table>
+
+</section>
+<section class="doc-section">
+<h2 id="the-most-important-method">The most important method</h2>
+<p>When something fails silently, **log the incoming message first, don't read</p>
+<p>the code**. Six group bugs in a row sat in wiring (private method via cast,</p>
+<p><code>null</code> connection on PeerJS path, missing answer, doubly nested payload,</p>
+<p>answer filter in browser, too-early request) - not one in actual logic.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="group-problems">Group problems</h2>
+<ul>
+<li><strong>Creating does nothing:</strong> Open the browser console - since error handling,</li>
+</ul>
+<p>the real plugin message shows there instead of a timeout.</p>
+<ul>
+<li><strong>List doesn't refresh:</strong> It polls every 5 seconds; when stuck, trigger</li>
+</ul>
+<p><code>requestGroupList</code> manually and check the network tab.</p>
+<ul>
+<li><strong>Name gets cut:</strong> SVC stores max 16 characters, rest silently dropped.</li>
+<li><strong>Password group:</strong> lock icon → dialog. &quot;Password needed&quot; (1005) vs.</li>
+</ul>
+<p>&quot;wrong&quot; (1006) are different errors.</p>
+<ul>
+<li><strong>Mod doesn't see browser:</strong> presence registration happens on group join;</li>
+</ul>
+<p>without join, no entry in the mod list.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="audio-problems">Audio problems</h2>
+<ul>
+<li><strong>Other side hears nothing:</strong> check mute status on both sides (`/voicechat</li>
+</ul>
+<p>test` shows it). Server-side the mute gate blocks everything - even</p>
+<p>&quot;accidentally&quot; sent frames.</p>
+<ul>
+<li><strong>Browser hears nothing:</strong> check deafen status; deafened browsers get no</li>
+</ul>
+<p>frames (dropped before decoding).</p>
+<ul>
+<li><strong>Phone without microphone:</strong> the browser falls back to a silent</li>
+</ul>
+<p>receive-only track (hearing-mode warning). Real audio tests need a desktop</p>
+<p>browser with microphone.</p>
+<ul>
+<li><strong>Mute microphone in Minecraft:</strong> <strong>V</strong> key, not right-click.</li>
+<li><strong>Echo:</strong> use headphones; echo cancellation in browser settings (effective</li>
+</ul>
+<p>on next connect).</p>
+
+</section>
+<section class="doc-section">
+<h2 id="build-problems">Build problems</h2>
+<table><thead><tr><th>Symptom</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><code>de.maxhenkel</code> unresolvable (CI)</td><td>SVC API only local</td><td>Build fetches from Modrinth (local → Latest → 2.6.21); version field is <code>bukkit-2.6.21</code></td></tr><tr><td><code>spotlessCheck</code> red</td><td>Never green</td><td>Keep disabled or run <code>spotlessApply</code> once</td></tr><tr><td><code>vue-tsc</code> breaks</td><td><code>&lt;!-- --&gt;</code> in <code>src/main.ts</code></td><td>Only <code>//</code> comments there</td></tr><tr><td>No Pages deploy</td><td>Push without <code>src</code> changes</td><td>Workflow only triggers on <code>src/**</code></td></tr></tbody></table>
+
+</section>
+<section class="doc-section">
+<h2 id="server-problems">Server problems</h2>
+<ul>
+<li><strong>Wrong JAR:</strong> server is called <code>paper-26.2-112.jar</code>, not <code>paper.jar</code>.</li>
+<li><strong>Old JARs in <code>plugins/</code>:</strong> Paper loads them as plugins - backups only to <code>jar-backups/</code>.</li>
+<li><strong>Commands do nothing (<code>/svcweb</code>, <code>/svcw</code>):</strong> they share the executor with <code>/voice</code> - normal.</li>
+<li><strong>Commands after logout:</strong> OP unlocks are deleted on logout and plugin stop.</li>
+<li><strong>Never create a <code>~</code> folder:</strong> write prompts with absolute paths or <code>./</code>.</li>
+</ul>
+
+</section>
+<section class="doc-section">
+<h2 id="browser-diagnostics">Browser diagnostics</h2>
+<ul>
+<li>Connection log in the voice tab (collapsible, dark panel) shows signaling</li>
+</ul>
+<p>state, ICE candidates and chat channel.</p>
+<ul>
+<li><code>chrome://webrtc-internals</code> (Chrome) or <code>about:webrtc</code> (Firefox) for stats,</li>
+</ul>
+<p>candidate pairs and packet loss.</p>
+<ul>
+<li>Plugin-internal latency: debug log <code>WebRTC -&gt; SVC inject time</code> (every 50</li>
+</ul>
+<p>frames). A small number proves no fast call - measure end to end with two</p>
+<p>players.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="support">Support</h2>
+<p>Before an issue check: ports tested externally? Browser console? Plugin log</p>
+<p>(DEBUG)? Share <code>config.yml</code> without secrets?</p>
+<p><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues">Create issue on GitHub</a></p>
+</section>
+<nav class="pager" aria-label="Keep reading">
+<a class="pager-prev" href="configuration.html"><span>← Back</span><strong>Configuration</strong></a>
+<a class="pager-next" href="api.html"><span>Next →</span><strong>API Reference</strong></a>
+</nav>
+            <footer class="article-footer"><span>Open source under MIT license.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown sources for agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="On this page">
+            <p class="toc-title">On this page</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

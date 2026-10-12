@@ -30,10 +30,27 @@
     setTheme(next);
   }
 
+  // ==========================================================================
+  // Language-aware labels (page language comes from <html lang>)
+  // ==========================================================================
+  const STR = {
+    de: {
+      themeToLight: 'Zum hellen Modus wechseln',
+      themeToDark: 'Zum dunklen Modus wechseln',
+      copyCode: 'Code kopieren',
+    },
+    en: {
+      themeToLight: 'Switch to light mode',
+      themeToDark: 'Switch to dark mode',
+      copyCode: 'Copy code',
+    },
+  };
+  const PAGE_LANG = document.documentElement.lang === 'en' ? 'en' : 'de';
+
   function updateThemeToggle(theme) {
     const toggles = document.querySelectorAll('.theme-toggle');
     toggles.forEach(toggle => {
-      toggle.setAttribute('aria-label', theme === 'dark' ? 'Zum hellen Modus wechseln' : 'Zum dunklen Modus wechseln');
+      toggle.setAttribute('aria-label', theme === 'dark' ? STR[PAGE_LANG].themeToLight : STR[PAGE_LANG].themeToDark);
     });
   }
 
@@ -255,7 +272,7 @@
       const btn = document.createElement('button');
       btn.className = 'copy-btn';
       btn.type = 'button';
-      btn.setAttribute('aria-label', 'Code kopieren');
+      btn.setAttribute('aria-label', STR[PAGE_LANG].copyCode);
       btn.innerHTML = `
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>

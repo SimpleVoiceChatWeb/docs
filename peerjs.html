@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PeerJS-Signalisierung, STUN/TURN und Netzwerkmodell von SimpleVoiceChatWeb.">
-    <title>PeerJS & TURN - SimpleVoiceChatWeb Dokumentation</title>
+    <title>PeerJS & TURN - SimpleVoiceChatWeb</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,37 +37,37 @@
         </div>
     </div>
     <div class="docs-layout">
-        <aside class="sidebar" id="sidebar" aria-label="Dokumentationsnavigation">
+        <aside class="sidebar" id="sidebar" aria-label="Auf dieser Seite">
             <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/4343c76" target="_blank" rel="noopener" title="Geladener Stand: Commit 4343c76">4343c76</a></p>
-            <nav class="side-nav-wrap" aria-label="Seiten">
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/2822544" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 2822544">2822544</a></p>
+            <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
-<a href="index.html" class="">Start</a>
-<a href="quickstart.html" class="">Schnellstart</a>
+<a href="index.html">Start</a>
+<a href="quickstart.html">Schnellstart</a>
 </div>
 <p class="nav-label">Verstehen</p>
 <div class="side-nav">
-<a href="architecture.html" class="">Architektur</a>
+<a href="architecture.html">Architektur</a>
 <a href="peerjs.html" class="active">PeerJS & TURN</a>
 </div>
 <p class="nav-label">Betreiben</p>
 <div class="side-nav">
-<a href="deployment.html" class="">Deployment</a>
-<a href="configuration.html" class="">Konfiguration</a>
-<a href="troubleshooting.html" class="">Troubleshooting</a>
+<a href="deployment.html">Deployment</a>
+<a href="configuration.html">Konfiguration</a>
+<a href="troubleshooting.html">Troubleshooting</a>
 </div>
 <p class="nav-label">Referenz</p>
 <div class="side-nav">
-<a href="api.html" class="">API Referenz</a>
+<a href="api.html">API Referenz</a>
 </div>
             </nav>
             <div class="sidebar-footer">
-                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App öffnen</a>
+                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App</a>
                 <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
                 <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
                 <button class="theme-toggle" type="button" aria-label="Thema umschalten"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -87,13 +87,22 @@
             </div>
         </aside>
         <article class="article content" role="main" id="main-content">
-            <nav class="breadcrumbs" aria-label="Brotkrumen"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>PeerJS & TURN</strong></nav>
+            <div class="article-topbar">
+                <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>PeerJS & TURN</strong></nav>
+                <details class="language-picker">
+<summary><span>Deutsch</span></summary>
+<div class="language-picker-body">
+<a href="peerjs.html" aria-current="true">Deutsch</a>
+<a href="en/peerjs.html">English</a>
+</div>
+</details>
+            </div>
             <header class="article-header">
                 <p class="eyebrow">Verstehen</p>
                 <h1>PeerJS & TURN</h1>
                 <p class="lead">PeerJS Cloud ist nur Signalisierung - Audio läuft direkt zwischen Browser und Plugin.</p>
             </header>
-            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>Diese Dokumentation und das gesamte System befinden sich in aktiver Entwicklung - Verhalten kann sich ändern. <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Fehler melden</a></span></div>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>Diese Dokumentation und das gesamte System befinden sich in aktiver Entwicklung - Verhalten kann sich ändern.</span> <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
 <p>Der Minecraft-Server nimmt keine eingehenden Browser-Verbindungen an. Deshalb</p>
 <p>wählen sich für den Invite-Pfad <strong>beide Seiten ausgehend</strong> bei PeerJS Cloud</p>
 <p>ein (<code>0.peerjs.com:443</code>). Nach dem Handshake versucht WebRTC eine direkte</p>
