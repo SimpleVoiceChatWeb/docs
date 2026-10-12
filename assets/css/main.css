@@ -393,7 +393,8 @@ img { max-width: 100%; height: auto; border-radius: var(--radius-md); }
   display: grid;
   gap: 4px;
   align-content: start;
-  padding-top: 88px;
+  /* Same top edge as the breadcrumbs row, so the picker sits level with it. */
+  padding-top: 30px;
   font-size: 0.77rem;
   max-height: calc(100vh - 40px);
   overflow-y: auto;
