@@ -1,10 +1,8 @@
 ---
 title: Quickstart
-nav: Quickstart
 description: Get SimpleVoiceChatWeb running in 5 minutes - plugin, code, connect.
 lead: From empty server to first browser call in 5 minutes.
 ---
-# Quickstart
 
 ## Requirements
 

@@ -1,10 +1,8 @@
 ---
 title: Architektur
-nav: Architektur
 description: Deep Dive in die Architektur von SimpleVoiceChatWeb - Bridge zwischen Simple Voice Chat und WebRTC.
 lead: Wie der Browser zum vollwertigen Simple-Voice-Chat-Client wird - ohne Mod, ohne Relay.
 ---
-# Architektur
 
 ## Topologie (bewusst so)
 

@@ -1,10 +1,8 @@
 ---
 title: SimpleVoiceChatWeb
-nav: Home
 description: SimpleVoiceChatWeb - documentation for the Minecraft voice chat bridge system
 lead: Welcome to the official SimpleVoiceChatWeb documentation - the bridge between the Minecraft Simple Voice Chat mod and WebRTC browser clients.
 ---
-# SimpleVoiceChatWeb
 
 > **Alpha:** This documentation and the whole system are in active
 > development. Guides and behavior may change - when in doubt the code wins,

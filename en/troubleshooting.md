@@ -1,10 +1,8 @@
 ---
 title: Troubleshooting
-nav: Troubleshooting
 description: Common problems, diagnostic steps and solutions for SimpleVoiceChatWeb.
 lead: Measure first, guess later - most ghosts are wiring, not logic.
 ---
-# Troubleshooting
 
 ## Quick reference
 

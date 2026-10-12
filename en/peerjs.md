@@ -1,10 +1,8 @@
 ---
 title: PeerJS & TURN
-nav: PeerJS & TURN
 description: PeerJS signaling, STUN/TURN and the SimpleVoiceChatWeb network model.
 lead: PeerJS Cloud is signaling only - audio runs directly between browser and plugin.
 ---
-# PeerJS & TURN
 
 The Minecraft server accepts no incoming browser connections. For the invite
 path, **both sides dial out** to PeerJS Cloud (`0.peerjs.com:443`). After the

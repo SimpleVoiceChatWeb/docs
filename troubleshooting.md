@@ -1,10 +1,8 @@
 ---
 title: Troubleshooting
-nav: Troubleshooting
 description: Häufige Probleme, Diagnose-Schritte und Lösungen für SimpleVoiceChatWeb.
 lead: Erst messen, dann raten - die meisten Geister sind Verdrahtung, nicht Logik.
 ---
-# Troubleshooting
 
 ## Quick Reference
 

@@ -1,10 +1,8 @@
 ---
 title: Schnellstart
-nav: Schnellstart
 description: SimpleVoiceChatWeb in 5 Minuten zum Laufen bringen - Plugin, Code, Verbinden.
 lead: Vom leeren Server zum ersten Browser-Anruf in 5 Minuten.
 ---
-# Schnellstart
 
 ## Voraussetzungen
 

@@ -1,10 +1,8 @@
 ---
 title: API Reference
-nav: API Reference
 description: SimpleVoiceChatWeb signaling protocol, group messages and TypeScript interfaces.
 lead: The real wire protocol - verified against the code, not guessed.
 ---
-# API Reference
 
 ## Signaling protocol (WebSocket)
 

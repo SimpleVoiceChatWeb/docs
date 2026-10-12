@@ -1,10 +1,8 @@
 ---
 title: Konfiguration
-nav: Konfiguration
 description: Vollständige Referenz aller Konfigurationsoptionen für Plugin und Webend.
 lead: Alle Schalter an einem Ort - mit echten Defaults aus dem Code, nicht geraten.
 ---
-# Konfiguration
 
 ## Plugin Config (`config.yml`)
 

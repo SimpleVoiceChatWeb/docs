@@ -1,10 +1,8 @@
 ---
 title: API Referenz
-nav: API Referenz
 description: Signaling-Protokoll, Gruppen-Nachrichten und TypeScript-Interfaces von SimpleVoiceChatWeb.
 lead: Das echte Wire-Protokoll - verifiziert am Code, nicht geraten.
 ---
-# API Referenz
 
 ## Signaling-Protokoll (WebSocket)
 

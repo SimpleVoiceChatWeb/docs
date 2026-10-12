@@ -1,10 +1,8 @@
 ---
 title: Deployment
-nav: Deployment
 description: Produktionsreifes Deployment von SimpleVoiceChatWeb - Plugin, Webend und Dokumentation.
 lead: Plugin bauen, Server starten, Web-App und Docs kommen per Workflow.
 ---
-# Deployment
 
 ## Plugin (Paper-Server)
 

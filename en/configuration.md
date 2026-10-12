@@ -1,10 +1,8 @@
 ---
 title: Configuration
-nav: Configuration
 description: Complete reference of all configuration options for plugin and webend.
 lead: Every switch in one place - with real defaults from the code, not guessed.
 ---
-# Configuration
 
 ## Plugin config (`config.yml`)
 
