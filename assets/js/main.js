@@ -51,9 +51,9 @@
   // Mobile Navigation Toggle
   // ==========================================================================
   function initMobileNav() {
-    const toggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.nav-main');
-    const links = document.querySelectorAll('.nav-link');
+    const toggle = document.querySelector('.menu-button');
+    const nav = document.querySelector('.sidebar');
+    const links = document.querySelectorAll('.side-nav a');
 
     if (!toggle || !nav) return;
 
@@ -146,14 +146,14 @@
       }
     });
 
-    // Render TOC
+    // Render TOC (plain links, styled by .toc CSS)
     tocList.innerHTML = tocItems.map(item => `
       <li>
-        <a class="sidebar-link" href="#${item.id}">${escapeHtml(item.text)}</a>
+        <a href="#${item.id}">${escapeHtml(item.text)}</a>
         ${item.children.length > 0 ? `
-          <ul class="sidebar-sublist">
+          <ul>
             ${item.children.map(child => `
-              <li><a class="sidebar-link sidebar-sublink" href="#${child.id}">${escapeHtml(child.text)}</a></li>
+              <li><a href="#${child.id}">${escapeHtml(child.text)}</a></li>
             `).join('')}
           </ul>
         ` : ''}
@@ -165,20 +165,14 @@
       const style = document.createElement('style');
       style.id = 'toc-styles';
       style.textContent = `
-        .sidebar-sublist {
+        #toc ul {
           list-style: none;
-          padding: 0 0 0.5rem 1rem;
-          margin: 0;
-          border-left: 1px solid var(--color-border-light);
+          padding: 0 0 0.4rem 10px;
+          margin: 2px 0 0;
+          display: grid;
+          gap: 4px;
         }
-        .sidebar-sublist li { margin: 0.125rem 0; }
-        .sidebar-sublink {
-          font-size: 0.8125rem;
-          padding: 0.25rem 0.5rem;
-        }
-        .sidebar-sublink.active {
-          font-weight: 500;
-        }
+        #toc ul a { font-size: 0.72rem; }
       `;
       document.head.appendChild(style);
     }
@@ -194,7 +188,7 @@
   // Active TOC Link Highlighting (IntersectionObserver)
   // ==========================================================================
   function initTOCHighlight() {
-    const tocLinks = document.querySelectorAll('.sidebar-link[href^="#"]');
+    const tocLinks = document.querySelectorAll('#toc a[href^="#"]');
     if (tocLinks.length === 0) return;
 
     const headings = Array.from(tocLinks).map(link => {
@@ -207,7 +201,7 @@
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const id = entry.target.id;
-        const link = document.querySelector(`.sidebar-link[href="#${id}"]`);
+        const link = document.querySelector(`#toc a[href="#${id}"]`);
         if (link) {
           link.classList.toggle('active', entry.isIntersecting);
         }
@@ -232,8 +226,8 @@
         const target = document.querySelector(targetId);
         if (target) {
           e.preventDefault();
-          const headerHeight = document.querySelector('.header')?.offsetHeight || 72;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 16;
+          const barHeight = document.querySelector('.mobile-header')?.offsetHeight || 16;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - barHeight - 16;
 
           window.scrollTo({
             top: targetPosition,
@@ -270,7 +264,7 @@
       `;
       btn.style.cssText = `
         position: absolute;
-        top: 0.5rem;
+        bottom: 0.5rem;
         right: 0.5rem;
         padding: 0.375rem;
         background: var(--color-bg-alt);
@@ -318,34 +312,13 @@
   }
 
   // ==========================================================================
-  // Theme Toggle Button Creation
+  // Theme Toggle Buttons (rendered by the template, bound here)
   // ==========================================================================
-  function createThemeToggle() {
-    const header = document.querySelector('.header .container');
-    if (!header || document.querySelector('.theme-toggle')) return;
-
-    const btn = document.createElement('button');
-    btn.className = 'theme-toggle';
-    btn.type = 'button';
-    btn.setAttribute('aria-label', 'Thema umschalten');
-    btn.innerHTML = `
-      <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-      </svg>
-      <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-      </svg>
-    `;
-    btn.addEventListener('click', toggleTheme);
-    header.appendChild(btn);
+  function bindThemeToggles() {
+    document.querySelectorAll('.theme-toggle').forEach(btn => {
+      btn.addEventListener('click', toggleTheme);
+    });
+    updateThemeToggle(getTheme());
   }
 
   // ==========================================================================
@@ -372,7 +345,7 @@
     }
 
     createSkipLink();
-    createThemeToggle();
+    bindThemeToggles();
     initMobileNav();
     generateTOC();
     initTOCHighlight();

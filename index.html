@@ -12,87 +12,91 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                    <line x1="12" y1="19" x2="12" y2="22"/>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                    <line x1="12" y1="19" x2="12" y2="22"/>
-                </svg>
-                <span>SimpleVoiceChatWeb</span>
-            </a>
-            <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/d6eda73" target="_blank" rel="noopener" title="Geladener Stand: Commit d6eda73 (neuer Tab)">d6eda73</a>
-            <nav class="nav-main" aria-label="Hauptnavigation">
-                <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-                <ul class="nav-list">
-<li><a href="index.html" class="nav-link active">Start</a></li>
-<li><a href="quickstart.html" class="nav-link">Schnellstart</a></li>
-<li><a href="architecture.html" class="nav-link">Architektur</a></li>
-<li><a href="peerjs.html" class="nav-link">PeerJS & TURN</a></li>
-<li><a href="deployment.html" class="nav-link">Deployment</a></li>
-<li><a href="api.html" class="nav-link">API Referenz</a></li>
-<li><a href="configuration.html" class="nav-link">Konfiguration</a></li>
-<li><a href="troubleshooting.html" class="nav-link">Troubleshooting</a></li>
-                </ul>
-            </nav>
-            <a href="https://simplevoicechatweb.github.io/#/" class="btn-app" target="_blank" rel="noopener" aria-label="Web-App öffnen">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-                <span>Web-App</span>
-            </a>
-            <a href="https://github.com/SimpleVoiceChatWeb" class="btn-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.077-.785.271-1.565.492-1.929-1.665-.157-3.419-.83-3.419-3.7 0-.873.315-1.587.823-2.147-.082-.202-.366-1.015.074-2.114 0 0 .671-.215 2.2.83.64-.181 1.32-.272 2-.272.68 0 1.36.091 2 .272 1.525-1.045 2.19-.83 2.19-.83.439 1.099.16 1.804.074 2.114.508.56.823 1.253.823 2.147 0 2.873-1.734 3.686-3.424 3.7.25.227.472.53.472 1.076v2.593c0 .319.192.686.794.577C23.999 17.301 24 12.7 24 12c0-6.627-5.373-12-12-12z"/>
-                </svg>
-                <span>GitHub</span>
-            </a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <button class="theme-toggle" type="button" aria-label="Thema umschalten"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menü</button>
         </div>
-    </header>
-
-    <div class="alpha-banner" role="note">
-        <strong>Alpha</strong> Diese Dokumentation und das gesamte SimpleVoiceChatWeb-System
-        befinden sich in aktiver Entwicklung - Verhalten kann sich ändern.
-        <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Fehler melden</a>
     </div>
-
-    <main class="main">
-        <div class="container">
-            <aside class="sidebar" aria-label="Inhaltsverzeichnis">
-                <nav class="sidebar-nav" aria-label="Seiteninhaltsverzeichnis">
-                    <h2 class="sidebar-title">Auf dieser Seite</h2>
-                    <ul class="sidebar-list" id="toc">
-                        <!-- Wird per JS befüllt -->
-                    </ul>
-                </nav>
-            </aside>
-
-            <article class="content" role="main" id="main-content">
-                <header class="page-header">
-                    <nav class="breadcrumb" aria-label="Brotkrumennavigation">
-                        <ol>
-                            <li><a href="index.html">Start</a></li>
-                            <li aria-current="page">Übersicht</li>
-                        </ol>
-                    </nav>
-                    <h1>SimpleVoiceChatWeb</h1>
-                    <p class="lead">Willkommen bei der offiziellen Dokumentation von SimpleVoiceChatWeb - der Bridge zwischen Minecraft Simple Voice Chat Mod und WebRTC Browser-Clients.</p>
-                </header>
-
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="Dokumentationsnavigation">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/4343c76" target="_blank" rel="noopener" title="Geladener Stand: Commit 4343c76">4343c76</a></p>
+            <nav class="side-nav-wrap" aria-label="Seiten">
+<p class="nav-label">Übersicht</p>
+<div class="side-nav">
+<a href="index.html" class="active">Start</a>
+<a href="quickstart.html" class="">Schnellstart</a>
+</div>
+<p class="nav-label">Verstehen</p>
+<div class="side-nav">
+<a href="architecture.html" class="">Architektur</a>
+<a href="peerjs.html" class="">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Betreiben</p>
+<div class="side-nav">
+<a href="deployment.html" class="">Deployment</a>
+<a href="configuration.html" class="">Konfiguration</a>
+<a href="troubleshooting.html" class="">Troubleshooting</a>
+</div>
+<p class="nav-label">Referenz</p>
+<div class="side-nav">
+<a href="api.html" class="">API Referenz</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App öffnen</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Thema umschalten"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <nav class="breadcrumbs" aria-label="Brotkrumen"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>Start</strong></nav>
+            <header class="article-header">
+                <p class="eyebrow">Übersicht</p>
+                <h1>SimpleVoiceChatWeb</h1>
+                <p class="lead">Willkommen bei der offiziellen Dokumentation von SimpleVoiceChatWeb - der Bridge zwischen Minecraft Simple Voice Chat Mod und WebRTC Browser-Clients.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>Diese Dokumentation und das gesamte System befinden sich in aktiver Entwicklung - Verhalten kann sich ändern. <a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Fehler melden</a></span></div>
 <blockquote><p><strong>Alpha:</strong> Diese Dokumentation und das gesamte System befinden sich in<br>aktiver Entwicklung. Anleitungen und Verhalten können sich ändern - bei<br>Abweichungen gilt der Code, Fehler bitte als<br><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues">Issue melden</a>.</p></blockquote>
 
-<section>
+<section class="doc-section">
 <h2 id="was-ist-simplevoicechatweb">Was ist SimpleVoiceChatWeb?</h2>
 <p>SimpleVoiceChatWeb ist eine Bridge zwischen dem <strong>Simple Voice Chat Minecraft Mod</strong> und <strong>WebRTC Browser-Clients</strong>. Sie ermöglicht es Spielern ohne Mod, per Browser am Voice-Chat teilzunehmen - mit echten SVC-Gruppen, Mute-Symbolen und Befehlen.</p>
 <h3 id="statistiken">Statistiken</h3>
@@ -108,7 +112,7 @@
 </ul>
 
 </section>
-<section>
+<section class="doc-section">
 <h2 id="architektur-bersicht">Architektur-Übersicht</h2>
 <pre data-lang="text"><code class="language-text">Browser &lt;── WebRTC/DTLS/SRTP ──&gt; Plugin &lt;── SVC-API ──&gt; Minecraft-Spieler</code></pre>
 <p>Keine Browser-zu-Browser-Verbindungen, kein Audio-Relay außerhalb des</p>
@@ -117,12 +121,12 @@
 <div class="card-grid"><article class="card"><h3>Echte SVC-Gruppen</h3><p>Browser-Gruppen sind echte SVC-Gruppen: Mod-Spieler sehen und betreten sie, mit Passwort-Schutz und Typen wie in der Mod.</p></article><article class="card"><h3>QR-Einladung</h3><p><code>/voice link</code> legt eine Karten-QR in die Hand - Rechtsklick öffnet den Invite-Link, kein Fremd-Plugin nötig.</p></article><article class="card"><h3>Mute mit Symbol</h3><p>Browser-Mute wird serverseitig erzwungen, Deafen zeigt Mod-Spielern das Vollmute-Symbol wie bei der Mod.</p></article><article class="card"><h3>Eigene Befehle</h3><p><code>/voicechat invite/join/leave/test</code> für Browser-Spieler, mit Mod-Fallback für Mod-Spieler.</p></article></div>
 
 </section>
-<section>
+<section class="doc-section">
 <h2 id="technische-bersicht">Technische Übersicht</h2>
 <table><thead><tr><th>Komponente</th><th>Technologie</th><th>Zweck</th></tr></thead><tbody><tr><td><strong>Webend</strong></td><td>Vue 3 + Vite + TypeScript</td><td>Browser-Client (Voice, Kanäle, Settings)</td></tr><tr><td><strong>Signaling</strong></td><td>Netty <code>wss://</code>, PeerJS</td><td>Zwei Transporte, ein Protokoll</td></tr><tr><td><strong>Audio</strong></td><td>Opus 48 kHz mono 20 ms</td><td>WebRTC-Standard, ~64 kbps</td></tr><tr><td><strong>Docs</strong></td><td>Markdown → statisches HTML</td><td>Diese Seiten, Agents lesen die <code>.ai.md</code>-Quellen</td></tr></tbody></table>
 
 </section>
-<section>
+<section class="doc-section">
 <h2 id="projektstruktur">Projektstruktur</h2>
 <pre data-lang="text"><code class="language-text">SimpleVoiceChatWeb/
 ├── plugin/           # Paper-Plugin (Kotlin): svc/, peerjs/, signaling/, qr/, config/
@@ -131,12 +135,12 @@
 └── TestMCServer/     # Lokaler Paper-Testserver (Ports 25565/24454)</code></pre>
 
 </section>
-<section>
+<section class="doc-section">
 <h2 id="schnellzugriff">Schnellzugriff</h2>
 <div class="card-grid"><article class="card"><h3>Schnellstart</h3><p>In 5 Minuten zum laufenden Voice Chat - Plugin installieren, Code generieren, verbinden.</p></article><article class="card"><h3>Architektur</h3><p>Deep-Dive in die Datenflüsse: WebRTC ↔ Plugin ↔ SVC, Presence, Gruppen, Sitzungen.</p></article><article class="card"><h3>PeerJS &amp; TURN</h3><p>Wenn die direkte Verbindung nicht reicht: Signalisierung, STUN, TURN-Relay.</p></article><article class="card"><h3>Deployment</h3><p>Produktions-Setup: Plugin bauen, Testserver, GitHub Pages, Ports.</p></article><article class="card"><h3>API Referenz</h3><p>Das echte Wire-Protokoll: Nachrichten, Gruppen-Payloads, Fehlercodes.</p></article><article class="card"><h3>Konfiguration</h3><p>Alle <code>config.yml</code>-Optionen mit echten Defaults plus Build-Variablen.</p></article></div>
 
 </section>
-<section>
+<section class="doc-section">
 <h2 id="links-ressourcen">Links &amp; Ressourcen</h2>
 <ul>
 <li><a href="https://simplevoicechatweb.github.io">Web-App öffnen</a> (neuer Tab)</li>
@@ -145,52 +149,17 @@
 <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues">Issues &amp; Support</a></li>
 </ul>
 </section>
-            </article>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h3>SimpleVoiceChatWeb</h3>
-                    <p>Open Source Bridge zwischen Minecraft Simple Voice Chat Mod und WebRTC Browser-Clients.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Navigation</h3>
-                    <ul>
-<li><a href="index.html">Start</a></li>
-<li><a href="quickstart.html">Schnellstart</a></li>
-<li><a href="architecture.html">Architektur</a></li>
-<li><a href="peerjs.html">PeerJS & TURN</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>API & Entwicklung</h3>
-                    <ul>
-<li><a href="deployment.html">Deployment</a></li>
-<li><a href="api.html">API Referenz</a></li>
-<li><a href="configuration.html">Konfiguration</a></li>
-<li><a href="troubleshooting.html">Troubleshooting</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Links</h3>
-                    <ul>
-                        <li><a href="https://simplevoicechatweb.github.io/#/" target="_blank" rel="noopener">Web-App öffnen</a></li>
-                        <li><a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub Organisation</a></li>
-                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb" target="_blank" rel="noopener">Haupt-Repository</a></li>
-                        <li><a href="https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues & Support</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 SimpleVoiceChatWeb. Open Source unter MIT Lizenz.</p>
-                <p>Diese Seite wird aus Markdown gebaut - Agents lesen die <code>.ai.md</code>-Quellen im Repository.</p>
-            </div>
-        </div>
-    </footer>
-
+<nav class="pager" aria-label="Weiterblättern">
+<span></span>
+<a class="pager-next" href="quickstart.html"><span>Weiter →</span><strong>Schnellstart</strong></a>
+</nav>
+            <footer class="article-footer"><span>Open Source unter MIT Lizenz.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown-Quellen für Agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="Auf dieser Seite">
+            <p class="toc-title">Auf dieser Seite</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
