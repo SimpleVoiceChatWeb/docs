@@ -84,4 +84,4 @@ doppelt verschachtelter Payload, Antwort-Filter im Browser, zu frühe Anfrage)
 Vor einem Issue prüfen: Ports von extern getestet? Browser-Konsole? Plugin-Log
 (DEBUG)? `config.yml` ohne Secrets teilen?
 
-[Issue erstellen auf GitHub](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues)
+[Issue erstellen auf GitHub](https://github.com/SimpleVoiceChatWeb/issues)

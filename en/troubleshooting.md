@@ -83,4 +83,4 @@ answer filter in browser, too-early request) - not one in actual logic.
 Before an issue check: ports tested externally? Browser console? Plugin log
 (DEBUG)? Share `config.yml` without secrets?
 
-[Create issue on GitHub](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues)
+[Create issue on GitHub](https://github.com/SimpleVoiceChatWeb/issues)

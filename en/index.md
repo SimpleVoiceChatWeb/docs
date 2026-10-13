@@ -7,7 +7,7 @@ lead: Welcome to the official SimpleVoiceChatWeb documentation - the bridge betw
 > **Alpha:** This documentation and the whole system are in active
 > development. Guides and behavior may change - when in doubt the code wins,
 > please report bugs as an
-> [issue](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues).
+> [issue](https://github.com/SimpleVoiceChatWeb/issues).
 
 ## What is SimpleVoiceChatWeb?
 
@@ -106,4 +106,4 @@ All `config.yml` options with real defaults plus build variables.
 - [Open the web app](https://simplevoicechatweb.github.io) (new tab)
 - [GitHub organization](https://github.com/SimpleVoiceChatWeb)
 - [Main repository](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb)
-- [Issues & support](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb/issues)
+- [Issues & support](https://github.com/SimpleVoiceChatWeb/issues)
