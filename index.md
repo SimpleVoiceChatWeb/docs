@@ -75,27 +75,27 @@ SimpleVoiceChatWeb/
 ## Schnellzugriff
 
 ::: cards
-### Schnellstart
+### [Schnellstart](quickstart.html)
 
 In 5 Minuten zum laufenden Voice Chat - Plugin installieren, Code generieren, verbinden.
 
-### Architektur
+### [Architektur](architecture.html)
 
 Deep-Dive in die Datenflüsse: WebRTC ↔ Plugin ↔ SVC, Presence, Gruppen, Sitzungen.
 
-### PeerJS & TURN
+### [PeerJS & TURN](peerjs.html)
 
 Wenn die direkte Verbindung nicht reicht: Signalisierung, STUN, TURN-Relay.
 
-### Deployment
+### [Deployment](deployment.html)
 
 Produktions-Setup: Plugin bauen, Testserver, GitHub Pages, Ports.
 
-### API Referenz
+### [API Referenz](api.html)
 
 Das echte Wire-Protokoll: Nachrichten, Gruppen-Payloads, Fehlercodes.
 
-### Konfiguration
+### [Konfiguration](configuration.html)
 
 Alle `config.yml`-Optionen mit echten Defaults plus Build-Variablen.
 :::
