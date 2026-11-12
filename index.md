@@ -102,7 +102,7 @@ Alle `config.yml`-Optionen mit echten Defaults plus Build-Variablen.
 
 ## Links & Ressourcen
 
-- [Web-App öffnen](https://simplevoicechatweb.github.io) (neuer Tab)
+- [Web-App öffnen](https://SimpleVCWeb.github.io) (neuer Tab)
 - [GitHub Organisation](https://github.com/SimpleVoiceChatWeb)
 - [Haupt-Repository](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb)
 - [Issues & Support](https://github.com/SimpleVoiceChatWeb/issues)

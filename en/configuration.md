@@ -85,8 +85,11 @@ written into the build - the target peer ID is inside the invite code.
 
 ## Browser settings (honesty)
 
-The settings page stores everything, but only three switches really work
-(browser-native, effective on **next connect**): echo cancellation, noise
-suppression, automatic gain. The rest (microphone and output volume, noise
-level, 3D audio, push-to-talk, threshold) is marked "coming soon" until wired.
-Volume currently lives on the mixer in the voice tab.
+The settings page stores everything. Actually wired are echo cancellation,
+noise suppression and automatic gain (browser-native, effective on **next
+connect**), the output volume on the mixer, and **push-to-talk**: hold the
+key and the microphone is open (default **V**, changeable in the field; the
+key position is stored, not the character). The microphone button still
+mutes on top of it and always wins. Not wired and therefore marked "coming
+soon": microphone volume, noise level, 3D audio and the voice activation
+threshold.

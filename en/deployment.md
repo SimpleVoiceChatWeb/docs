@@ -38,7 +38,7 @@ on `main` - or manually via Actions → Run workflow. It pushes `dist/` into
 the root of `main` in `SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io`:
 
 - **Source:** Deploy from a branch, **Branch:** main / root
-- **Live:** `https://simplevoicechatweb.github.io` (hash routing: `/#/login`, `/#/voice`, `/#/settings`)
+- **Live:** `https://SimpleVCWeb.github.io` (hash routing: `/#/login`, `/#/voice`, `/#/settings`)
 - Auth via SSH deploy key: public part as deploy key with write access in the
   Pages repo, private part as `PAGES_DEPLOY_KEY` Actions secret in the webend
   repo (use only for this Pages repo).
@@ -58,7 +58,7 @@ These pages live as Markdown under `webend/docs/*.ai.md` (German) and
 locally with `npx serve dist -l 3001`. The `Deploy Docs to docs repository`
 workflow pushes `dist/` via SSH deploy key (`DOCS_DEPLOY_KEY`) to
 `SimpleVoiceChatWeb/docs` (branch `main`, root) - live at
-`https://simplevoicechatweb.github.io/docs`. The picker at the top right
+`https://SimpleVCWeb.github.io/docs`. The picker at the top right
 switches languages.
 
 ## Ports and firewall

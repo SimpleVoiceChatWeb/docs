@@ -87,9 +87,12 @@ Token in den Build geschrieben - die Ziel-Peer-ID steckt im Invite-Code.
 
 ## Browser-Einstellungen (Ehrlichkeit)
 
-Die Einstellungsseite speichert alles, aber nur drei Schalter wirken wirklich
-(browser-nativ, ab dem **nächsten Verbinden**): Echo-Unterdrückung,
-Rauschunterdrückung, automatische Verstärkung. Der Rest (Mikrofon- und
-Ausgabe-Lautstärke, Rauschstärke, 3D-Audio, Push-to-Talk, Schwelle) ist als
-"Bald verfügbar" markiert, bis er verdrahtet ist. Die Lautstärke steht
-derzeit am Mixer im Voice-Tab.
+Die Einstellungsseite speichert alles. Wirklich verdrahtet sind
+Echo-Unterdrückung, Rauschunterdrückung und automatische Verstärkung
+(browser-nativ, ab dem **nächsten Verbinden**), die Ausgabe-Lautstärke am
+Mixer und **Push-to-Talk**: Taste gedrückt halten, dann ist das Mikrofon
+offen (Standard **V**, im Feld umstellbar; gespeichert wird die
+Tastenposition). Der Mikrofon-Knopf schaltet zusätzlich stumm und gewinnt
+immer. Nicht verdrahtet und deshalb als "Bald verfügbar" markiert sind
+Mikrofon-Lautstärke, Rauschstärke, 3D-Audio und die
+Sprachaktivierungs-Schwelle.
