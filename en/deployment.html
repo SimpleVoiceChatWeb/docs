@@ -50,7 +50,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/4b93c34" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 4b93c34">4b93c34</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/520a8d2" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 520a8d2">520a8d2</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -145,6 +145,26 @@ cp build/libs/SimpleVoiceChatWebPlugin-1.0.0-SNAPSHOT-fat.jar /paper-server/plug
 
 </section>
 <section class="doc-section">
+<h2 id="landing-github-pages">Landing (GitHub Pages)</h2>
+<p>The project page at <code>/</code> is static HTML in <code>landing/</code>. The workflow</p>
+<p><code>Deploy Landing to GitHub Pages</code> pushes it into the root of</p>
+<p><code>SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io</code> on changes under</p>
+<p><code>landing/**</code> or manually via Actions → Run workflow.</p>
+<ul>
+<li><strong>Source:</strong> <code>landing/</code> (no build step, copied as-is)</li>
+<li><strong>Live:</strong> <code>https://SimpleVCWeb.github.io/</code></li>
+<li><strong>Pages:</strong> Deploy from a branch, <code>main</code> / root</li>
+<li><strong>Auth:</strong> <code>PAGES_DEPLOY_KEY</code> Actions secret in the webend repo, public</li>
+</ul>
+<p>part as deploy key with write access in the target repo</p>
+<ul>
+<li><strong>Old links:</strong> <code>/?code=...</code> and <code>/#/...</code> redirect to <code>/app/</code> via</li>
+</ul>
+<p>JavaScript, keeping query and hash</p>
+<blockquote><p><strong>Trap:</strong> The workflow triggers on <code>paths: landing/**</code>. A push without<br>changes in <code>landing/</code> triggers <strong>no</strong> deploy.</p></blockquote>
+
+</section>
+<section class="doc-section">
 <h2 id="docs-docs">Docs (<code>/docs</code>)</h2>
 <p>These pages live as Markdown under <code>webend/docs/*.ai.md</code> (German) and</p>
 <p><code>*.en.ai.md</code> (English), built with <code>node scripts/build.js</code> into</p>
@@ -169,7 +189,7 @@ ufw enable</code></pre>
 </section>
 <section class="doc-section">
 <h2 id="environment-variables">Environment variables</h2>
-<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code>JWT_SECRET</code></td><td>If <code>auth.jwtSecret</code> is not left to auto-generate</td></tr><tr><td><code>PAGES_DEPLOY_KEY</code></td><td>Actions secret for the Pages push (webend repo only)</td></tr></tbody></table>
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code>JWT_SECRET</code></td><td>If <code>auth.jwtSecret</code> is not left to auto-generate</td></tr></tbody></table>
 </section>
 <nav class="pager" aria-label="Keep reading">
 <a class="pager-prev" href="peerjs.html"><span>← Back</span><strong>PeerJS & TURN</strong></a>

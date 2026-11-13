@@ -51,6 +51,24 @@ pushes `dist/` into the root of `main` in `SimpleVoiceChatWeb/app`:
 > without those changes (e.g. docs only) triggers **no** deploy. Status:
 > `gh run list --repo SimpleVoiceChatWeb/webend`.
 
+## Landing (GitHub Pages)
+
+The project page at `/` is static HTML in `landing/`. The workflow
+`Deploy Landing to GitHub Pages` pushes it into the root of
+`SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io` on changes under
+`landing/**` or manually via Actions → Run workflow.
+
+- **Source:** `landing/` (no build step, copied as-is)
+- **Live:** `https://SimpleVCWeb.github.io/`
+- **Pages:** Deploy from a branch, `main` / root
+- **Auth:** `PAGES_DEPLOY_KEY` Actions secret in the webend repo, public
+  part as deploy key with write access in the target repo
+- **Old links:** `/?code=...` and `/#/...` redirect to `/app/` via
+  JavaScript, keeping query and hash
+
+> **Trap:** The workflow triggers on `paths: landing/**`. A push without
+> changes in `landing/` triggers **no** deploy.
+
 ## Docs (`/docs`)
 
 These pages live as Markdown under `webend/docs/*.ai.md` (German) and
@@ -88,4 +106,3 @@ ufw enable
 |----------|--------------|
 | `SVCWEB_WEB_PORT` | Example: override file values via env (`SVCWEB_` + dotted path) |
 | `JWT_SECRET` | If `auth.jwtSecret` is not left to auto-generate |
-| `PAGES_DEPLOY_KEY` | Actions secret for the Pages push (webend repo only) |

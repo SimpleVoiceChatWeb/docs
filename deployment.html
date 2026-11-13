@@ -50,7 +50,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/4b93c34" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 4b93c34">4b93c34</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/520a8d2" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 520a8d2">520a8d2</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -145,6 +145,26 @@ cp build/libs/SimpleVoiceChatWebPlugin-1.0.0-SNAPSHOT-fat.jar /paper-server/plug
 
 </section>
 <section class="doc-section">
+<h2 id="landing-github-pages">Landing (GitHub Pages)</h2>
+<p>Die Projektvorstellung unter <code>/</code> liegt als statisches HTML in <code>landing/</code> und</p>
+<p>wird vom Workflow <code>Deploy Landing to GitHub Pages</code> ins Root von</p>
+<p><code>SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io</code> gepusht - bei Änderungen</p>
+<p>unter <code>landing/**</code> oder manuell über Actions → Run workflow.</p>
+<ul>
+<li><strong>Quelle:</strong> <code>landing/</code> (kein Build, wird nur kopiert)</li>
+<li><strong>Live:</strong> <code>https://SimpleVCWeb.github.io/</code></li>
+<li><strong>Pages:</strong> Deploy from a branch, <code>main</code> / root</li>
+<li><strong>Auth:</strong> Actions-Secret <code>PAGES_DEPLOY_KEY</code> im Webend-Repo, öffentlicher</li>
+</ul>
+<p>Teil als Deploy Key mit Write-Access im Ziel-Repo</p>
+<ul>
+<li><strong>Alte Links:</strong> <code>/?code=...</code> und <code>/#/...</code> leiten per JavaScript nach</li>
+</ul>
+<p><code>/app/</code> weiter, Query und Hash bleiben erhalten</p>
+<blockquote><p><strong>Falle:</strong> Der Workflow triggert auf <code>paths: landing/**</code>. Ein Push ohne<br>Änderungen in <code>landing/</code> löst <strong>keinen</strong> Deploy aus.</p></blockquote>
+
+</section>
+<section class="doc-section">
 <h2 id="docs-docs">Docs (<code>/docs</code>)</h2>
 <p>Diese Seiten leben als Markdown unter <code>webend/docs/*.ai.md</code> und werden per</p>
 <p><code>node scripts/build.js</code> nach <code>webend/docs/dist/</code> gebaut (<code>.html</code> plus die</p>
@@ -168,7 +188,7 @@ ufw enable</code></pre>
 </section>
 <section class="doc-section">
 <h2 id="umgebungsvariablen">Umgebungsvariablen</h2>
-<table><thead><tr><th>Variable</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>JWT_SECRET</code></td><td>Falls <code>auth.jwtSecret</code> nicht leer verwaltet wird (auto-generiert sonst)</td></tr><tr><td><code>PAGES_DEPLOY_KEY</code></td><td>Actions-Secret für den Pages-Push (nur Webend-Repo)</td></tr></tbody></table>
+<table><thead><tr><th>Variable</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>JWT_SECRET</code></td><td>Falls <code>auth.jwtSecret</code> nicht leer verwaltet wird (auto-generiert sonst)</td></tr></tbody></table>
 </section>
 <nav class="pager" aria-label="Weiterblättern">
 <a class="pager-prev" href="peerjs.html"><span>← Zurück</span><strong>PeerJS & TURN</strong></a>
