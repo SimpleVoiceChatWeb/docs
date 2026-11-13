@@ -32,7 +32,10 @@ ufw enable
 
 ## Environment variables
 
+Every option can be overridden with the `SVCWEB_` prefix plus the dotted path in upper case, with dots replaced by underscores:
+
 | Variable | Description |
 |----------|--------------|
-| `SVCWEB_WEB_PORT` | Example: override file values via env (`SVCWEB_` + dotted path) |
-| `JWT_SECRET` | If `auth.jwtSecret` is not left to auto-generate |
+| `SVCWEB_WEB_PORT` | Example: `web.port` |
+| `SVCWEB_AUTH_JWT_SECRET` | Fixed JWT secret instead of auto-generation |
+| `SVCWEB_TLS_KEYSTORE_PASSWORD` | Keystore password, preferred over the file |

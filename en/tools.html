@@ -60,7 +60,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/64388d4" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 64388d4">64388d4</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/f483d1c" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: f483d1c">f483d1c</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -114,22 +114,23 @@
             <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
 <section class="doc-section">
 <h2 id="config-editor">Config editor</h2>
-<p>Open <a href="https://SimpleVCWeb.github.io/tools/#/config">Tools → Config editor</a> and load your <code>config.yml</code>. Every key the plugin knows becomes a form field, grouped like the file itself: web, WebRTC, PeerJS, authentication, TURN and so on.</p>
+<p>Open <a href="https://SimpleVCWeb.github.io/tools/#/config">Tools → Config editor</a> and load your <code>config.yml</code>. Every option the plugin actually reads becomes a form field, grouped like the file itself: general, web/TLS, PeerJS, authentication and TURN.</p>
 <ul>
+<li><strong>Only active options are shown.</strong> Keys from older releases (for example <code>webrtc.port</code>, <code>web.corsAllowedOrigins</code> or <code>svc.*</code>) are removed on load and listed separately.</li>
 <li><strong>Unknown keys are kept.</strong> If your file has options the editor does not know (a newer release, a fork), they stay in the output unchanged and are listed separately.</li>
-<li><strong>Comments are kept</strong> as long as the edit only changes values. Adding a missing key rewrites the file, and the editor tells you that comments are lost.</li>
-<li><strong>Validation runs live:</strong> port ranges, required origins, TURN credentials and audio distances are checked before you download.</li>
+<li><strong>Comments are kept</strong> as long as the edit only changes values. Adding a missing key or removing an obsolete one rewrites the file, and the editor tells you that comments are lost.</li>
+<li><strong>Validation runs live:</strong> the web port, the PeerJS host/port and the TURN credentials are checked before you download.</li>
 <li><strong>Only changed values</strong> hides everything you did not touch; <strong>Add missing keys</strong> fills the whole schema with defaults.</li>
 </ul>
 <p>Although the file is called <code>config.yml</code>, the plugin writes JSON and reads it through Typesafe Config. The editor accepts JSON and YAML 1.2 and always downloads valid JSON (four-space indent), which Typesafe Config reads without surprises.</p>
-<p>The editor also normalises allowed origins: paths, queries and trailing slashes are dropped, so <code>https://example.org/app/?code=1</code> becomes <code>https://example.org</code>.</p>
 
 </section>
 <section class="doc-section">
 <h2 id="ports-firewall">Ports &amp; firewall</h2>
-<p><a href="https://SimpleVCWeb.github.io/tools/#/ports">Ports &amp; firewall</a> turns your three ports into copy-paste snippets:</p>
-<table><thead><tr><th>Output</th><th>Use</th></tr></thead><tbody><tr><td><code>iptables</code></td><td>Systems without ufw or with custom rule chains</td></tr><tr><td><code>docker-compose</code></td><td>Container setups that publish ports</td></tr><tr><td>Config values</td><td>The matching <code>web.port</code> and <code>webrtc.port</code> lines</td></tr></tbody></table>
-<p>Only TCP is needed for the game and the web/signalling port; voice needs <strong>UDP</strong> on the web port. Without that UDP rule the browser connects but no audio arrives - the most common mistake. The WebRTC port is only needed when you enable it in the plugin.</p>
+<p><a href="https://SimpleVCWeb.github.io/tools/#/ports">Ports &amp; firewall</a> turns your ports into copy-paste snippets:</p>
+<table><thead><tr><th>Output</th><th>Use</th></tr></thead><tbody><tr><td><code>iptables</code></td><td>Systems without ufw or with custom rule chains</td></tr><tr><td><code>docker-compose</code></td><td>Container setups that publish ports</td></tr><tr><td>Config values</td><td>The matching <code>web.port</code> line</td></tr></tbody></table>
+<p>The game needs TCP on 25565; the web port needs <strong>TCP</strong> for signaling and <strong>UDP</strong> for voice. Without that UDP rule the browser connects but no audio arrives - the most common mistake.</p>
+<p>The plugin has no inbound WebRTC port. Older versions wrote <code>webrtc.port</code>; it is ignored and removed by the config editor.</p>
 
 </section>
 <section class="doc-section">

@@ -4,70 +4,61 @@ description: Vollständige Referenz aller Konfigurationsoptionen für Plugin und
 lead: Alle Schalter an einem Ort - mit echten Defaults aus dem Code, nicht geraten.
 ---
 
-## Plugin Config (`config.yml`)
+## Plugin-Config (`config.yml`)
 
-Datei: `plugins/SimpleVoiceChatWeb/config.yml` (HOCON). Fehlt sie, wird sie mit
-Defaults angelegt. Umgebungsvariablen mit Prefix `SVCWEB_` überschreiben
-Dateiwerte, z. B. `SVCWEB_WEB_PORT=24455` → `web.port`. Neustart nach Änderungen
-nötig - Hot-Reload gibt es nicht.
+Datei: `plugins/SimpleVoiceChatWeb/config.yml` (HOCON). Fehlt sie, wird sie mit Defaults angelegt. Umgebungsvariablen mit Präfix `SVCWEB_` überschreiben Dateiwerte, z. B. `SVCWEB_WEB_PORT=24455` → `web.port`. Nach Änderungen neu starten - kein Hot-Reload.
 
-### Web, Auth und PeerJS
+Hier stehen nur Optionen, die das Plugin tatsächlich liest. Alles andere in einer älteren Datei wird ignoriert.
+
+### Allgemein
 
 | Option | Default | Beschreibung |
 |--------|---------|--------------|
-| `web.enabled` | `true` | Web-Modul aktivieren |
+| `debug` | `false` | Ausführliches WebRTC-Logging |
+| `configDir` | `"."` | Basisverzeichnis für die Keystore-Suche |
+| `development` | `true` | Selbstsigniertes Zertifikat erlauben, wenn kein Keystore existiert |
+
+### Web und TLS
+
+| Option | Default | Beschreibung |
+|--------|---------|--------------|
 | `web.host` | `"0.0.0.0"` | Bind-Adresse des Signaling-Servers |
-| `web.port` | `24454` | Signaling-Port (TCP, `wss://`) |
-| `web.corsAllowedOrigins` | Pages + `localhost:3000` | Erlaubte Origins, darf nicht leer sein |
-| `web.portShareWithSvc` | `true` | Port mit SVC teilen |
-| `web.tlsTerminatedExternally` | `false` | `true` = Reverse Proxy handhabt TLS |
-| `web.maxParticipants` | `50` | Max Teilnehmer |
-| `web.staticDir` | `"web"` | Statische Dateien |
-| `auth.codeTtlSeconds` | `300` | Link-Code-Gültigkeit (Sekunden) |
-| `auth.jwtTtlSeconds` | `86400` | JWT-Gültigkeit (Sekunden) |
-| `auth.jwtSecret` | `""` | HS256-Secret - leer = wird beim Start auto-generiert |
-| `auth.joinLinkBaseUrl` | Pages-URL | Basis für Invite-Links (`?code=...`) |
-| `peerjs.enabled` | `false` | Ausgehenden PeerJS-Client einschalten (Invite-Pfad) |
-| `peerjs.scheme/host/port/path/key` | `wss` / `0.peerjs.com` / `443` / `/` / `peerjs` | PeerServer-Anschluss |
+| `web.port` | `24454` | TCP-Signaling und UDP-Sprache |
+| `web.tlsTerminatedExternally` | `false` | `true` = Reverse Proxy beendet TLS |
+| `tls.keystorePassword` | `""` | Keystore-Passwort - besser `SVCWEB_TLS_KEYSTORE_PASSWORD` |
+
+### Auth
+
+| Option | Default | Beschreibung |
+|--------|---------|--------------|
+| `auth.codeTtlSeconds` | `300` | Gültigkeit des Einladungscodes (Sekunden) |
+| `auth.jwtTtlSeconds` | `86400` | Gültigkeit des JWT (Sekunden) |
+| `auth.jwtSecret` | `""` | HS256-Secret - fester Wert erhält Sitzungen über Neustarts |
+
+### PeerJS
+
+| Option | Default | Beschreibung |
+|--------|---------|--------------|
+| `peerjs.enabled` | `false` | Ausgehenden PeerJS-Client aktivieren (Invite-Pfad) |
+| `peerjs.scheme` | `"wss"` | `wss` oder `ws` |
+| `peerjs.host` | `"0.peerjs.com"` | PeerServer-Host |
+| `peerjs.port` | `443` | PeerServer-Port |
+| `peerjs.path` | `"/"` | PeerServer-Pfad |
+| `peerjs.key` | `"peerjs"` | PeerServer-Key |
 | `peerjs.token` | `""` | Leer = zufälliges Signaling-Token |
 
-### SVC, Audio, TURN
+### TURN
 
 | Option | Default | Beschreibung |
 |--------|---------|--------------|
-| `svc.enabled` | `true` | SVC-Integration |
-| `svc.mirrorGroups` | `true` | Gruppen mit SVC spiegeln |
-| `svc.positionalAudio` | `true` | Positions-Audio |
-| `svc.showWebPlayersInSvc` | `true` | Browser in Mod-Listen zeigen |
-| `svc.simulateMicrophone` | `false` | Nur für Tests |
-| `audio.minDistance` | `1.0` | Volle Lautstärke bis Distanz (Blöcke) |
-| `audio.maxDistance` | `50.0` | Stumm ab Distanz (Blöcke) |
-| `turn.enabled` | `false` | TURN-Relay (siehe [PeerJS & TURN](peerjs.html)) |
-| `turn.urls` / `turn.username` / `turn.credential` | leer | Pflicht, wenn `turn.enabled` |
+| `turn.enabled` | `false` | TURN-Relay für restriktive Netze |
+| `turn.urls` | leer | TURN-Server-URLs, z. B. `turn:turn.example.org:3478` |
+| `turn.username` | `""` | TURN-Benutzername |
+| `turn.credential` | `""` | TURN-Passwort |
 
-### Betrieb
+Ältere Versionen schrieben Optionen wie `web.corsAllowedOrigins`, `webrtc.port`, `svc.*`, `audio.*`, `mode`, `webhooks.*`, `logging.*` und `resourcePack*`. Das Plugin ignoriert sie heute; der [Config-Editor](tools.html) entfernt sie beim Laden.
 
-| Option | Default | Beschreibung |
-|--------|---------|--------------|
-| `mode` | `"PUBLIC"` | `PUBLIC` oder `PRIVATE` |
-| `private.enabled` | `false` | Privater Modus |
-| `logging.level` | `"INFO"` | `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR` |
-| `logging.logSvcPackets` | `false` | SVC-Pakete mitschneiden (laut!) |
-| `logging.logWebsocketMessages` | `false` | WebSocket-Nachrichten mitschneiden (laut!) |
-| `webhooks.enabled/url/events/secret` | aus | Webhook-Benachrichtigungen |
-| `distribution.bundleWebClient` | `false` | Web-Client mit ausliefern |
-| `development` | `true` | Self-Signed-Zertifikate erlauben |
-| `tls.keystorePassword` | `""` | Keystore-Passwort (besser per Env) |
-| `debug` | `false` | Debug-Modus |
-| `language` | `"de_DE"` | Sprache |
-
-> **Hinweis:** `webrtc.port` (Default `24455`) steht in der Config, wird aber
-> derzeit nicht benutzt - ein Überbleibsel. Der PeerJS-Medienpfad braucht
-> keinen eingehenden Port.
-
-Secrets gehören in die Umgebung, nicht in die Datei. `auth.jwtSecret` darf
-leer bleiben (Auto-Generierung), für `tls.keystorePassword` die Env-Variante
-nutzen.
+Secrets gehören in die Umgebung, nicht in die Datei. Für `tls.keystorePassword` die Env-Variante nutzen; `auth.jwtSecret` darf leer bleiben und wird beim Start erzeugt.
 
 ## Webend Build-Variablen
 

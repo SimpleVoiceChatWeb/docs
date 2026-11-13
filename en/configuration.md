@@ -6,66 +6,59 @@ lead: Every switch in one place - with real defaults from the code, not guessed.
 
 ## Plugin config (`config.yml`)
 
-File: `plugins/SimpleVoiceChatWeb/config.yml` (HOCON). If missing, it is
-created with defaults. Environment variables with the `SVCWEB_` prefix
-override file values, e.g. `SVCWEB_WEB_PORT=24455` → `web.port`. Restart after
-changes - there is no hot-reload.
+File: `plugins/SimpleVoiceChatWeb/config.yml` (HOCON). If missing, it is created with defaults. Environment variables with the `SVCWEB_` prefix override file values, e.g. `SVCWEB_WEB_PORT=24455` → `web.port`. Restart after changes - there is no hot-reload.
 
-### Web, auth and PeerJS
+Only options that the plugin actually reads are listed here. Anything else in an older file is ignored.
+
+### General
 
 | Option | Default | Description |
 |--------|---------|--------------|
-| `web.enabled` | `true` | Enable web module |
+| `debug` | `false` | Verbose WebRTC logging |
+| `configDir` | `"."` | Base directory for the TLS keystore lookup |
+| `development` | `true` | Allow a self-signed certificate when no keystore exists |
+
+### Web and TLS
+
+| Option | Default | Description |
+|--------|---------|--------------|
 | `web.host` | `"0.0.0.0"` | Signaling server bind address |
-| `web.port` | `24454` | Signaling port (TCP, `wss://`) |
-| `web.corsAllowedOrigins` | Pages + `localhost:3000` | Allowed origins, must not be empty |
-| `web.portShareWithSvc` | `true` | Share port with SVC |
+| `web.port` | `24454` | TCP signaling and UDP voice |
 | `web.tlsTerminatedExternally` | `false` | `true` = reverse proxy handles TLS |
-| `web.maxParticipants` | `50` | Max participants |
-| `web.staticDir` | `"web"` | Static files |
-| `auth.codeTtlSeconds` | `300` | Link code validity (seconds) |
+| `tls.keystorePassword` | `""` | Keystore password - prefer `SVCWEB_TLS_KEYSTORE_PASSWORD` |
+
+### Auth
+
+| Option | Default | Description |
+|--------|---------|--------------|
+| `auth.codeTtlSeconds` | `300` | Invite code validity (seconds) |
 | `auth.jwtTtlSeconds` | `86400` | JWT validity (seconds) |
-| `auth.jwtSecret` | `""` | HS256 secret - empty = auto-generated on startup |
-| `auth.joinLinkBaseUrl` | Pages URL | Base for invite links (`?code=...`) |
-| `peerjs.enabled` | `false` | Enable outbound PeerJS client (invite path) |
-| `peerjs.scheme/host/port/path/key` | `wss` / `0.peerjs.com` / `443` / `/` / `peerjs` | PeerServer connection |
+| `auth.jwtSecret` | `""` | HS256 secret - set a fixed value to keep sessions across restarts |
+
+### PeerJS
+
+| Option | Default | Description |
+|--------|---------|--------------|
+| `peerjs.enabled` | `false` | Enable the outbound PeerJS client (invite path) |
+| `peerjs.scheme` | `"wss"` | `wss` or `ws` |
+| `peerjs.host` | `"0.peerjs.com"` | PeerServer host |
+| `peerjs.port` | `443` | PeerServer port |
+| `peerjs.path` | `"/"` | PeerServer path |
+| `peerjs.key` | `"peerjs"` | PeerServer key |
 | `peerjs.token` | `""` | Empty = random signaling token |
 
-### SVC, audio, TURN
+### TURN
 
 | Option | Default | Description |
 |--------|---------|--------------|
-| `svc.enabled` | `true` | SVC integration |
-| `svc.mirrorGroups` | `true` | Mirror groups with SVC |
-| `svc.positionalAudio` | `true` | Positional audio |
-| `svc.showWebPlayersInSvc` | `true` | Show browser in mod lists |
-| `svc.simulateMicrophone` | `false` | Tests only |
-| `audio.minDistance` | `1.0` | Full volume up to distance (blocks) |
-| `audio.maxDistance` | `50.0` | Silent beyond distance (blocks) |
-| `turn.enabled` | `false` | TURN relay (see [PeerJS & TURN](peerjs.html)) |
-| `turn.urls` / `turn.username` / `turn.credential` | empty | Required when `turn.enabled` |
+| `turn.enabled` | `false` | TURN relay for restrictive networks |
+| `turn.urls` | empty | TURN server URLs, e.g. `turn:turn.example.org:3478` |
+| `turn.username` | `""` | TURN username |
+| `turn.credential` | `""` | TURN password |
 
-### Operations
+Older releases wrote options such as `web.corsAllowedOrigins`, `webrtc.port`, `svc.*`, `audio.*`, `mode`, `webhooks.*`, `logging.*` and `resourcePack*`. The plugin ignores them today, and the [config editor](tools.html) removes them on load.
 
-| Option | Default | Description |
-|--------|---------|--------------|
-| `mode` | `"PUBLIC"` | `PUBLIC` or `PRIVATE` |
-| `private.enabled` | `false` | Private mode |
-| `logging.level` | `"INFO"` | `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR` |
-| `logging.logSvcPackets` | `false` | Capture SVC packets (loud!) |
-| `logging.logWebsocketMessages` | `false` | Capture WebSocket messages (loud!) |
-| `webhooks.enabled/url/events/secret` | off | Webhook notifications |
-| `distribution.bundleWebClient` | `false` | Ship web client along |
-| `development` | `true` | Allow self-signed certificates |
-| `tls.keystorePassword` | `""` | Keystore password (prefer env) |
-| `debug` | `false` | Debug mode |
-| `language` | `"de_DE"` | Language |
-
-> **Note:** `webrtc.port` (default `24455`) is in the config but currently
-> unused - a leftover. The PeerJS media path needs no inbound port.
-
-Keep secrets in the environment, not in the file. `auth.jwtSecret` may stay
-empty (auto-generation); use the env variant for `tls.keystorePassword`.
+Keep secrets in the environment, not in the file. Use the env variant for `tls.keystorePassword`; `auth.jwtSecret` may stay empty and is generated at startup.
 
 ## Webend build variables
 

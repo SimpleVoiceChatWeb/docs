@@ -32,7 +32,10 @@ ufw enable
 
 ## Umgebungsvariablen
 
+Jede Option lässt sich mit Präfix `SVCWEB_` und dem Großbuchstaben-Pfad überschreiben (Punkte werden zu Unterstrichen):
+
 | Variable | Beschreibung |
 |----------|--------------|
-| `SVCWEB_WEB_PORT` | Beispiel: Dateiwerte per Env überschreiben (`SVCWEB_` + Pfad mit Punkten) |
-| `JWT_SECRET` | Falls `auth.jwtSecret` nicht leer verwaltet wird (auto-generiert sonst) |
+| `SVCWEB_WEB_PORT` | Beispiel: `web.port` |
+| `SVCWEB_AUTH_JWT_SECRET` | Festes JWT-Secret statt Auto-Erzeugung |
+| `SVCWEB_TLS_KEYSTORE_PASSWORD` | Keystore-Passwort, hat Vorrang vor der Datei |

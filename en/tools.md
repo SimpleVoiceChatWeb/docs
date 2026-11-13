@@ -6,29 +6,30 @@ lead: Two small utilities for server owners: a config editor and a port/firewall
 
 ## Config editor
 
-Open [Tools → Config editor](https://SimpleVCWeb.github.io/tools/#/config) and load your `config.yml`. Every key the plugin knows becomes a form field, grouped like the file itself: web, WebRTC, PeerJS, authentication, TURN and so on.
+Open [Tools → Config editor](https://SimpleVCWeb.github.io/tools/#/config) and load your `config.yml`. Every option the plugin actually reads becomes a form field, grouped like the file itself: general, web/TLS, PeerJS, authentication and TURN.
 
+- **Only active options are shown.** Keys from older releases (for example `webrtc.port`, `web.corsAllowedOrigins` or `svc.*`) are removed on load and listed separately.
 - **Unknown keys are kept.** If your file has options the editor does not know (a newer release, a fork), they stay in the output unchanged and are listed separately.
-- **Comments are kept** as long as the edit only changes values. Adding a missing key rewrites the file, and the editor tells you that comments are lost.
-- **Validation runs live:** port ranges, required origins, TURN credentials and audio distances are checked before you download.
+- **Comments are kept** as long as the edit only changes values. Adding a missing key or removing an obsolete one rewrites the file, and the editor tells you that comments are lost.
+- **Validation runs live:** the web port, the PeerJS host/port and the TURN credentials are checked before you download.
 - **Only changed values** hides everything you did not touch; **Add missing keys** fills the whole schema with defaults.
 
 Although the file is called `config.yml`, the plugin writes JSON and reads it through Typesafe Config. The editor accepts JSON and YAML 1.2 and always downloads valid JSON (four-space indent), which Typesafe Config reads without surprises.
 
-The editor also normalises allowed origins: paths, queries and trailing slashes are dropped, so `https://example.org/app/?code=1` becomes `https://example.org`.
-
 ## Ports & firewall
 
-[Ports & firewall](https://SimpleVCWeb.github.io/tools/#/ports) turns your three ports into copy-paste snippets:
+[Ports & firewall](https://SimpleVCWeb.github.io/tools/#/ports) turns your ports into copy-paste snippets:
 
 | Output | Use |
 |--------|-----|
 | `ufw` | Debian/Ubuntu hosts with ufw |
 | `iptables` | Systems without ufw or with custom rule chains |
 | `docker-compose` | Container setups that publish ports |
-| Config values | The matching `web.port` and `webrtc.port` lines |
+| Config values | The matching `web.port` line |
 
-Only TCP is needed for the game and the web/signalling port; voice needs **UDP** on the web port. Without that UDP rule the browser connects but no audio arrives - the most common mistake. The WebRTC port is only needed when you enable it in the plugin.
+The game needs TCP on 25565; the web port needs **TCP** for signaling and **UDP** for voice. Without that UDP rule the browser connects but no audio arrives - the most common mistake.
+
+The plugin has no inbound WebRTC port. Older versions wrote `webrtc.port`; it is ignored and removed by the config editor.
 
 ## Nothing leaves the browser
 
