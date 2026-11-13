@@ -68,8 +68,7 @@ Browser-Mute wird serverseitig erzwungen, Deafen zeigt Mod-Spielern das Vollmute
 SimpleVoiceChatWeb/
 ├── plugin/           # Paper-Plugin (Kotlin): svc/, peerjs/, signaling/, qr/, config/
 ├── webend/           # Vue-3-Frontend: voice/, signaling/, stores/, webrtc/, audio/
-├── webend/docs/      # Diese Doku: *.ai.md-Quellen, Build per node scripts/build.js
-└── TestMCServer/     # Lokaler Paper-Testserver (Ports 25565/24454)
+└── webend/docs/      # Diese Doku: *.ai.md-Quellen, Build per node scripts/build.js
 ```
 
 ## Schnellzugriff

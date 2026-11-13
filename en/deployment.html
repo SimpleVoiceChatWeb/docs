@@ -60,7 +60,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/3838e63" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 3838e63">3838e63</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/23a36f5" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 23a36f5">23a36f5</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -108,82 +108,13 @@
             <header class="article-header">
                 <p class="eyebrow">Operate</p>
                 <h1>Deployment</h1>
-                <p class="lead">Build the plugin, start the server, web app and docs arrive via workflow.</p>
+                <p class="lead">Build the plugin, start the server, open the ports - step by step for your own server.</p>
             </header>
             <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
 <section class="doc-section">
-<h2 id="plugin-paper-server">Plugin (Paper server)</h2>
-<pre data-lang="bash"><code class="language-bash">cd plugin
-JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew fatJar --no-daemon --console=plain
-cp build/libs/SimpleVoiceChatWebPlugin-1.0.0-SNAPSHOT-fat.jar /paper-server/plugins/</code></pre>
-<p>Building fails on Java 25 with <code>JavaVersion.parse</code> (old Kotlin version) -</p>
-<p>hence Java 21 via <code>JAVA_HOME</code>. The fat JAR is <strong>platform-bound</strong> (native</p>
-<p>artifact of the build host): build on Linux for Linux servers. It also needs</p>
-<p><code>ProtocolLib.jar</code> and <code>voicechat-bukkit-2.6.21.jar</code> (or newer) in <code>plugins/</code>.</p>
-<p>Old fat JARs go to <code>jar-backups/</code> - <strong>never</strong> into <code>plugins/</code>, or Paper loads</p>
-<p>them as plugins.</p>
-<h3 id="test-server-recipe">Test server recipe</h3>
-<pre data-lang="bash"><code class="language-bash">tmux new-session -d -s testmc -c /path/to/TestMCServer \
-  &quot;java -Xms1G -Xmx2G -jar paper-26.2-112.jar nogui&quot;</code></pre>
-<p>It is called <code>paper-26.2-112.jar</code>, not <code>paper.jar</code>. About 40 seconds to <code>Done</code>.</p>
-<p>Stop with <code>tmux send-keys -t testmc &quot;stop&quot; Enter</code>. Ports: 25565 (MC) and</p>
-<p>24454 (signaling + SVC voice).</p>
-
-</section>
-<section class="doc-section">
-<h2 id="webend-github-pages">Webend (GitHub Pages)</h2>
-<p>The <code>Deploy Webend to GitHub Pages</code> workflow builds the Vue app on every</p>
-<p>change under <code>src/<strong></code> (plus <code>public/</strong></code>, <code>index.html</code>, <code>package.json</code>,</p>
-<p><code>vite.config.ts</code>) on <code>main</code> - or manually via Actions → Run workflow. It</p>
-<p>pushes <code>dist/</code> into the root of <code>main</code> in <code>SimpleVoiceChatWeb/app</code>:</p>
-<ul>
-<li><strong>Source:</strong> Deploy from a branch, <strong>Branch:</strong> main / root</li>
-<li><strong>Live:</strong> <code>https://SimpleVCWeb.github.io/app/</code> (hash routing:</li>
-</ul>
-<p><code>/app/#/login</code>, <code>/app/#/call</code>, <code>/app/#/settings</code>)</p>
-<ul>
-<li>Auth via SSH deploy key: public part as deploy key with write access in the</li>
-</ul>
-<p><code>app</code> repo, private part as <code>APP_DEPLOY_KEY</code> Actions secret in the webend</p>
-<p>repo (use only for this repo).</p>
-<ul>
-<li>PeerJS values as Actions variables (<code>VITE_PEERJS_HOST</code>, <code>VITE_PEERJS_PORT</code>,</li>
-</ul>
-<p><code>VITE_PEERJS_PATH</code>, <code>VITE_PEERJS_SECURE</code>, <code>VITE_PEERJS_KEY</code>), otherwise</p>
-<p>PeerJS cloud defaults.</p>
-<blockquote><p><strong>Trap:</strong> The workflow triggers on <code>paths: src/<strong></code> and <code>public/</strong></code>. A push<br>without those changes (e.g. docs only) triggers <strong>no</strong> deploy. Status:<br><code>gh run list --repo SimpleVoiceChatWeb/webend</code>.</p></blockquote>
-
-</section>
-<section class="doc-section">
-<h2 id="landing-github-pages">Landing (GitHub Pages)</h2>
-<p>The project page at <code>/</code> is static HTML in <code>landing/</code>. The workflow</p>
-<p><code>Deploy Landing to GitHub Pages</code> pushes it into the root of</p>
-<p><code>SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io</code> on changes under</p>
-<p><code>landing/**</code> or manually via Actions → Run workflow.</p>
-<ul>
-<li><strong>Source:</strong> <code>landing/</code> (no build step, copied as-is)</li>
-<li><strong>Live:</strong> <code>https://SimpleVCWeb.github.io/</code></li>
-<li><strong>Pages:</strong> Deploy from a branch, <code>main</code> / root</li>
-<li><strong>Auth:</strong> <code>PAGES_DEPLOY_KEY</code> Actions secret in the webend repo, public</li>
-</ul>
-<p>part as deploy key with write access in the target repo</p>
-<ul>
-<li><strong>Old links:</strong> <code>/?code=...</code> and <code>/#/...</code> redirect to <code>/app/</code> via</li>
-</ul>
-<p>JavaScript, keeping query and hash</p>
-<blockquote><p><strong>Trap:</strong> The workflow triggers on <code>paths: landing/**</code>. A push without<br>changes in <code>landing/</code> triggers <strong>no</strong> deploy.</p></blockquote>
-
-</section>
-<section class="doc-section">
-<h2 id="docs-docs">Docs (<code>/docs</code>)</h2>
-<p>These pages live as Markdown under <code>webend/docs/*.ai.md</code> (German) and</p>
-<p><code>*.en.ai.md</code> (English), built with <code>node scripts/build.js</code> into</p>
-<p><code>webend/docs/dist/</code> (<code>.html</code> plus the <code>.ai.md</code> sources for agents). Check</p>
-<p>locally with <code>npx serve dist -l 3001</code>. The <code>Deploy Docs to docs repository</code></p>
-<p>workflow pushes <code>dist/</code> via SSH deploy key (<code>DOCS_DEPLOY_KEY</code>) to</p>
-<p><code>SimpleVoiceChatWeb/docs</code> (branch <code>main</code>, root) - live at</p>
-<p><code>https://SimpleVCWeb.github.io/docs</code>. The picker at the top right</p>
-<p>switches languages.</p>
+<h2 id="self-hosting">Self-hosting</h2>
+<p>This page describes how to run SimpleVoiceChatWeb on your own server: build the plugin, open the ports, serve the web client. The web client is a static site and works behind any web server.</p>
+<p>The public instance of the project runs on GitHub Pages: the landing page at <code>/</code>, the web client at <code>/app/</code>, and these docs at <code>/docs/</code>.</p>
 
 </section>
 <section class="doc-section">

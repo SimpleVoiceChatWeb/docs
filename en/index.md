@@ -69,8 +69,7 @@ Browser mute is enforced server-side, deafen shows mod players the full-mute sym
 SimpleVoiceChatWeb/
 ├── plugin/           # Paper plugin (Kotlin): svc/, peerjs/, signaling/, qr/, config/
 ├── webend/           # Vue 3 frontend: voice/, signaling/, stores/, webrtc/, audio/
-├── webend/docs/      # These docs: *.ai.md sources, build with node scripts/build.js
-└── TestMCServer/     # Local Paper test server (ports 25565/24454)
+└── webend/docs/      # These docs: *.ai.md sources, build with node scripts/build.js
 ```
 
 ## Quick access
