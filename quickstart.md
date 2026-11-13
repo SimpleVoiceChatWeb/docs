@@ -12,7 +12,7 @@ lead: Vom leeren Server zum ersten Browser-Anruf in 5 Minuten.
 | Simple Voice Chat | `voicechat-bukkit-2.6.21.jar` (oder neuer) im `plugins/`-Ordner |
 | ProtocolLib | `ProtocolLib.jar` im `plugins/`-Ordner (harte Abhängigkeit) |
 | Java | 21 zum Bauen, 25 zum Laufen |
-| Ports | 25565 (TCP), 24454 (TCP+UDP) |
+| Ports | 25565 (TCP), 24454 (TCP; UDP nur mit Mod-Spielern) |
 
 ## 1. Plugin bauen
 
@@ -70,7 +70,9 @@ einen mit Mod und einen über den Browser.
 |------|-----------|-------|
 | 25565 | TCP | Minecraft Game |
 | 24454 | TCP | WebSocket-Signaling (`wss://`) |
-| 24454 | UDP | SVC Voice (Minecraft-Spieler) |
+| 24454 | UDP | SVC-Sprache (nur Spieler mit dem Mod) |
+
+TCP auf dem Web-Port ist Pflicht, sobald Browser mitsprechen. Die UDP-Regel braucht nur, wer Spieler mit dem SVC-Mod erwartet: Browser-Audio läuft als WebRTC über kurzlebige UDP-Ports und braucht keine eingehende Freigabe.
 
 Für den PeerJS-Pfad brauchen Browser **und** Plugin nur **ausgehende**
 Verbindungen zu `0.peerjs.com:443`. Siehe [PeerJS & TURN](peerjs.html).
@@ -80,7 +82,7 @@ Verbindungen zu `0.peerjs.com:443`. Siehe [PeerJS & TURN](peerjs.html).
 ```bash
 nc -zv DEINE_OEFFENTLICHE_IP 25565
 nc -zv DEINE_OEFFENTLICHE_IP 24454
-nc -zuv DEINE_OEFFENTLICHE_IP 24454
+nc -zuv DEINE_OEFFENTLICHE_IP 24454   # nur für Mod-Spieler
 ```
 
 > **Wichtig:** Immer von einem externen Netzwerk testen (Handy-Hotspot).

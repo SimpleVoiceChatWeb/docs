@@ -104,5 +104,8 @@ auf 16 Zeichen. Die Webend-Liste pollt alle 5 Sekunden.
 |------|-----------|-------|
 | 25565 | TCP | Minecraft Game |
 | 24454 | TCP | WebSocket-Signaling (`wss://`) |
-| 24454 | UDP | SVC Voice |
+| 24454 | UDP | SVC-Sprache (nur Mod-Spieler) |
+| kurzlebige UDP-Ports | UDP (ausgehend) | Browser-Audio über WebRTC |
 | 443 | TCP (ausgehend) | PeerJS-Signalisierung (`0.peerjs.com`) |
+
+Der Browser spricht mit dem Plugin nur über TCP (Signaling) und danach per WebRTC direkt. Die Sprachpakete laufen über Ports, die libwebrtc aushandelt; nach außen ist dafür keine eingehende Regel nötig, solange der Rückweg über conntrack offen bleibt.

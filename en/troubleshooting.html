@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=956ad7f">
+    <link rel="stylesheet" href="../assets/css/main.css?v=091aade">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/956ad7f" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 956ad7f">956ad7f</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/091aade" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 091aade">091aade</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -115,7 +115,7 @@
             <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
 <section class="doc-section">
 <h2 id="quick-reference">Quick reference</h2>
-<table><thead><tr><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><code>ALREADY_LINKED</code></td><td>Old session holds the slot</td><td>Second code closes the old session automatically</td></tr><tr><td>&quot;No connection&quot;</td><td>Ports/signaling unreachable</td><td>Test ports externally, check server log</td></tr><tr><td>&quot;No audio&quot;</td><td>Mute gate, group or firewall</td><td>Check mute status, group room, UDP</td></tr><tr><td>&quot;LAN only works&quot;</td><td>No port forwarding</td><td>Set up router forwarding for 24454</td></tr><tr><td>&quot;WebRTC stuck at signaling connected&quot;</td><td>Symmetric NAT/firewall</td><td>Set up TURN (<a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td>Group shows &quot;0 people&quot;</td><td>Wrong room or no answer</td><td>Reload page, check console for real error</td></tr><tr><td>Group creation times out</td><td>Answer without <code>requestId</code> or channel still closed</td><td>Hard-reload page, then read console</td></tr></tbody></table>
+<table><thead><tr><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><code>ALREADY_LINKED</code></td><td>Old session holds the slot</td><td>Second code closes the old session automatically</td></tr><tr><td>&quot;No connection&quot;</td><td>Ports/signaling unreachable</td><td>Test ports externally, check server log</td></tr><tr><td>&quot;No audio&quot;</td><td>Mute gate, group or no direct WebRTC path</td><td>Check mute status and group room; set up TURN behind NAT/firewall</td></tr><tr><td>&quot;LAN only works&quot;</td><td>No port forwarding</td><td>Set up router forwarding for 24454/TCP (UDP only for mod players)</td></tr><tr><td>&quot;WebRTC stuck at signaling connected&quot;</td><td>Symmetric NAT/firewall</td><td>Set up TURN (<a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td>Group shows &quot;0 people&quot;</td><td>Wrong room or no answer</td><td>Reload page, check console for real error</td></tr><tr><td>Group creation times out</td><td>Answer without <code>requestId</code> or channel still closed</td><td>Hard-reload page, then read console</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
@@ -227,6 +227,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=956ad7f"></script>
+    <script src="../assets/js/main.js?v=091aade"></script>
 </body>
 </html>

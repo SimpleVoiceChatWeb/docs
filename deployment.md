@@ -22,13 +22,14 @@ Die öffentliche Instanz des Projekts läuft auf GitHub Pages: Landing unter `/`
 ```bash
 # UFW Beispiel
 ufw allow 25565/tcp   # Minecraft
-ufw allow 24454/tcp   # WebSocket Signaling
-ufw allow 24454/udp   # SVC Voice
+ufw allow 24454/tcp   # WebSocket-Signaling (Browser)
+ufw allow 24454/udp   # SVC-Sprache (nur Mod-Spieler)
 ufw enable
 ```
 
 > **Tipp:** Ports immer von einem **externen Netzwerk** testen
-> (Handy-Hotspot), nicht vom Server selbst!
+> (Handy-Hotspot), nicht vom Server selbst! `24454/tcp` ist Pflicht, sobald
+> Browser mitsprechen; die UDP-Regel nur, wenn Mod-Spieler dabei sind.
 
 ## Umgebungsvariablen
 

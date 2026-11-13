@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=956ad7f">
+    <link rel="stylesheet" href="assets/css/main.css?v=091aade">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/956ad7f" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 956ad7f">956ad7f</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/091aade" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 091aade">091aade</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -115,7 +115,7 @@
             <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>Diese Dokumentation und das gesamte System befinden sich in aktiver Entwicklung - Verhalten kann sich ändern.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
 <section class="doc-section">
 <h2 id="voraussetzungen">Voraussetzungen</h2>
-<table><thead><tr><th>Komponente</th><th>Anforderung</th></tr></thead><tbody><tr><td>Simple Voice Chat</td><td><code>voicechat-bukkit-2.6.21.jar</code> (oder neuer) im <code>plugins/</code>-Ordner</td></tr><tr><td>ProtocolLib</td><td><code>ProtocolLib.jar</code> im <code>plugins/</code>-Ordner (harte Abhängigkeit)</td></tr><tr><td>Java</td><td>21 zum Bauen, 25 zum Laufen</td></tr><tr><td>Ports</td><td>25565 (TCP), 24454 (TCP+UDP)</td></tr></tbody></table>
+<table><thead><tr><th>Komponente</th><th>Anforderung</th></tr></thead><tbody><tr><td>Simple Voice Chat</td><td><code>voicechat-bukkit-2.6.21.jar</code> (oder neuer) im <code>plugins/</code>-Ordner</td></tr><tr><td>ProtocolLib</td><td><code>ProtocolLib.jar</code> im <code>plugins/</code>-Ordner (harte Abhängigkeit)</td></tr><tr><td>Java</td><td>21 zum Bauen, 25 zum Laufen</td></tr><tr><td>Ports</td><td>25565 (TCP), 24454 (TCP; UDP nur mit Mod-Spielern)</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
@@ -156,13 +156,14 @@ JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew fatJar --no-daemon --cons
 </section>
 <section class="doc-section">
 <h2 id="port-anforderungen">Port-Anforderungen</h2>
-<table><thead><tr><th>Port</th><th>Protokoll</th><th>Zweck</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket-Signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC Voice (Minecraft-Spieler)</td></tr></tbody></table>
+<table><thead><tr><th>Port</th><th>Protokoll</th><th>Zweck</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket-Signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC-Sprache (nur Spieler mit dem Mod)</td></tr></tbody></table>
+<p>TCP auf dem Web-Port ist Pflicht, sobald Browser mitsprechen. Die UDP-Regel braucht nur, wer Spieler mit dem SVC-Mod erwartet: Browser-Audio läuft als WebRTC über kurzlebige UDP-Ports und braucht keine eingehende Freigabe.</p>
 <p>Für den PeerJS-Pfad brauchen Browser <strong>und</strong> Plugin nur <strong>ausgehende</strong></p>
 <p>Verbindungen zu <code>0.peerjs.com:443</code>. Siehe <a href="peerjs.html">PeerJS &amp; TURN</a>.</p>
 <h3 id="ports-von-externem-netzwerk-testen">Ports von externem Netzwerk testen</h3>
 <pre data-lang="bash"><code class="language-bash">nc -zv DEINE_OEFFENTLICHE_IP 25565
 nc -zv DEINE_OEFFENTLICHE_IP 24454
-nc -zuv DEINE_OEFFENTLICHE_IP 24454</code></pre>
+nc -zuv DEINE_OEFFENTLICHE_IP 24454   # nur für Mod-Spieler</code></pre>
 <blockquote><p><strong>Wichtig:</strong> Immer von einem externen Netzwerk testen (Handy-Hotspot).<br>Localhost-Tests zeigen nicht, ob Port-Forwarding funktioniert.</p></blockquote>
 
 </section>
@@ -200,6 +201,6 @@ nc -zuv DEINE_OEFFENTLICHE_IP 24454</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="assets/js/main.js?v=956ad7f"></script>
+    <script src="assets/js/main.js?v=091aade"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ lead: From empty server to first browser call in 5 minutes.
 | Simple Voice Chat | `voicechat-bukkit-2.6.21.jar` (or newer) in `plugins/` |
 | ProtocolLib | `ProtocolLib.jar` in `plugins/` (hard dependency) |
 | Java | 21 to build, 25 to run |
-| Ports | 25565 (TCP), 24454 (TCP+UDP) |
+| Ports | 25565 (TCP), 24454 (TCP; UDP only with mod players) |
 
 ## 1. Build the plugin
 
@@ -70,7 +70,9 @@ and one via browser.
 |------|-----------|-------|
 | 25565 | TCP | Minecraft game |
 | 24454 | TCP | WebSocket signaling (`wss://`) |
-| 24454 | UDP | SVC voice (Minecraft players) |
+| 24454 | UDP | SVC voice (mod players only) |
+
+TCP on the web port is mandatory as soon as browsers join. The UDP rule is only needed when players use the SVC mod: browser audio runs as WebRTC over short-lived UDP ports and needs no inbound rule.
 
 For the PeerJS path, browser **and** plugin only need **outbound**
 connections to `0.peerjs.com:443`. See [PeerJS & TURN](peerjs.html).
@@ -80,7 +82,7 @@ connections to `0.peerjs.com:443`. See [PeerJS & TURN](peerjs.html).
 ```bash
 nc -zv YOUR_PUBLIC_IP 25565
 nc -zv YOUR_PUBLIC_IP 24454
-nc -zuv YOUR_PUBLIC_IP 24454
+nc -zuv YOUR_PUBLIC_IP 24454   # only for mod players
 ```
 
 > **Important:** Always test from an external network (phone hotspot).

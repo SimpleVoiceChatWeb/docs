@@ -23,7 +23,7 @@ Hier stehen nur Optionen, die das Plugin tatsächlich liest. Alles andere in ein
 | Option | Default | Beschreibung |
 |--------|---------|--------------|
 | `web.host` | `"0.0.0.0"` | Bind-Adresse des Signaling-Servers |
-| `web.port` | `24454` | TCP-Signaling und UDP-Sprache |
+| `web.port` | `24454` | TCP-Signaling (Browser); der UDP-Sprachport gehört SVC |
 | `web.tlsTerminatedExternally` | `false` | `true` = Reverse Proxy beendet TLS |
 | `tls.keystorePassword` | `""` | Keystore-Passwort - besser `SVCWEB_TLS_KEYSTORE_PASSWORD` |
 

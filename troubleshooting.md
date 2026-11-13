@@ -11,8 +11,8 @@ lead: Erst messen, dann raten - die meisten Geister sind Verdrahtung, nicht Logi
 | "Code ungültig" | Code abgelaufen (5 Min) oder verbraucht | `/voice link` neu ausführen (jeder Code einmalig) |
 | `ALREADY_LINKED` | Alte Sitzung belegt den Slot | Zweiter Code schließt die alte Sitzung automatisch |
 | "Keine Verbindung" | Ports/Signaling nicht erreichbar | Ports von extern testen, Serverlog prüfen |
-| "Kein Audio" | Mute-Gate, Gruppe oder Firewall | Mute-Status, Gruppenraum, UDP prüfen |
-| "Nur LAN funktioniert" | Kein Port-Forwarding | Router-Forwarding für 24454 einrichten |
+| "Kein Audio" | Mute-Gate, Gruppe oder kein direkter WebRTC-Pfad | Mute-Status und Gruppenraum prüfen; bei NAT/Firewall TURN einrichten |
+| "Nur LAN funktioniert" | Kein Port-Forwarding | Router-Forwarding für 24454/TCP (UDP nur für Mod-Spieler) |
 | "WebRTC bleibt bei signaling connected stehen" | Symmetrisches NAT/Firewall | TURN einrichten ([PeerJS & TURN](peerjs.html)) |
 | Gruppe zeigt "0 Personen" | Falscher Raum oder keine Antwort | Seite neu laden, Konsole auf echte Fehlermeldung prüfen |
 | Gruppen-Erstellung läuft in Timeout | Antwort ohne `requestId` oder Kanal noch zu | Seite hart neu laden, dann Konsole lesen |

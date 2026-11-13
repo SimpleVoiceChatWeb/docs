@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=956ad7f">
+    <link rel="stylesheet" href="../assets/css/main.css?v=091aade">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/956ad7f" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 956ad7f">956ad7f</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/091aade" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 091aade">091aade</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -115,7 +115,7 @@
             <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
 <section class="doc-section">
 <h2 id="requirements">Requirements</h2>
-<table><thead><tr><th>Component</th><th>Requirement</th></tr></thead><tbody><tr><td>Simple Voice Chat</td><td><code>voicechat-bukkit-2.6.21.jar</code> (or newer) in <code>plugins/</code></td></tr><tr><td>ProtocolLib</td><td><code>ProtocolLib.jar</code> in <code>plugins/</code> (hard dependency)</td></tr><tr><td>Java</td><td>21 to build, 25 to run</td></tr><tr><td>Ports</td><td>25565 (TCP), 24454 (TCP+UDP)</td></tr></tbody></table>
+<table><thead><tr><th>Component</th><th>Requirement</th></tr></thead><tbody><tr><td>Simple Voice Chat</td><td><code>voicechat-bukkit-2.6.21.jar</code> (or newer) in <code>plugins/</code></td></tr><tr><td>ProtocolLib</td><td><code>ProtocolLib.jar</code> in <code>plugins/</code> (hard dependency)</td></tr><tr><td>Java</td><td>21 to build, 25 to run</td></tr><tr><td>Ports</td><td>25565 (TCP), 24454 (TCP; UDP only with mod players)</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
@@ -156,13 +156,14 @@ JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew fatJar --no-daemon --cons
 </section>
 <section class="doc-section">
 <h2 id="port-requirements">Port requirements</h2>
-<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice (Minecraft players)</td></tr></tbody></table>
+<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice (mod players only)</td></tr></tbody></table>
+<p>TCP on the web port is mandatory as soon as browsers join. The UDP rule is only needed when players use the SVC mod: browser audio runs as WebRTC over short-lived UDP ports and needs no inbound rule.</p>
 <p>For the PeerJS path, browser <strong>and</strong> plugin only need <strong>outbound</strong></p>
 <p>connections to <code>0.peerjs.com:443</code>. See <a href="peerjs.html">PeerJS &amp; TURN</a>.</p>
 <h3 id="test-ports-from-an-external-network">Test ports from an external network</h3>
 <pre data-lang="bash"><code class="language-bash">nc -zv YOUR_PUBLIC_IP 25565
 nc -zv YOUR_PUBLIC_IP 24454
-nc -zuv YOUR_PUBLIC_IP 24454</code></pre>
+nc -zuv YOUR_PUBLIC_IP 24454   # only for mod players</code></pre>
 <blockquote><p><strong>Important:</strong> Always test from an external network (phone hotspot).<br>Localhost tests don't prove port forwarding works.</p></blockquote>
 
 </section>
@@ -200,6 +201,6 @@ nc -zuv YOUR_PUBLIC_IP 24454</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=956ad7f"></script>
+    <script src="../assets/js/main.js?v=091aade"></script>
 </body>
 </html>

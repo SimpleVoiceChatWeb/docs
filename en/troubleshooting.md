@@ -11,8 +11,8 @@ lead: Measure first, guess later - most ghosts are wiring, not logic.
 | "Code invalid" | Code expired (5 min) or spent | Run `/voice link` again (every code single-use) |
 | `ALREADY_LINKED` | Old session holds the slot | Second code closes the old session automatically |
 | "No connection" | Ports/signaling unreachable | Test ports externally, check server log |
-| "No audio" | Mute gate, group or firewall | Check mute status, group room, UDP |
-| "LAN only works" | No port forwarding | Set up router forwarding for 24454 |
+| "No audio" | Mute gate, group or no direct WebRTC path | Check mute status and group room; set up TURN behind NAT/firewall |
+| "LAN only works" | No port forwarding | Set up router forwarding for 24454/TCP (UDP only for mod players) |
 | "WebRTC stuck at signaling connected" | Symmetric NAT/firewall | Set up TURN ([PeerJS & TURN](peerjs.html)) |
 | Group shows "0 people" | Wrong room or no answer | Reload page, check console for real error |
 | Group creation times out | Answer without `requestId` or channel still closed | Hard-reload page, then read console |

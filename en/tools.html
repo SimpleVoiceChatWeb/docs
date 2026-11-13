@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=956ad7f">
+    <link rel="stylesheet" href="../assets/css/main.css?v=091aade">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/956ad7f" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 956ad7f">956ad7f</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/091aade" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 091aade">091aade</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -130,7 +130,7 @@
 <h2 id="ports-firewall">Ports &amp; firewall</h2>
 <p><a href="https://SimpleVCWeb.github.io/tools/#/ports">Ports &amp; firewall</a> turns your ports into copy-paste snippets:</p>
 <table><thead><tr><th>Output</th><th>Use</th></tr></thead><tbody><tr><td><code>iptables</code></td><td>Systems without ufw or with custom rule chains</td></tr><tr><td><code>docker-compose</code></td><td>Container setups that publish ports</td></tr><tr><td>Config values</td><td>The matching <code>web.port</code> line</td></tr></tbody></table>
-<p>The game needs TCP on 25565; the web port needs <strong>TCP</strong> for signaling and <strong>UDP</strong> for voice. Without that UDP rule the browser connects but no audio arrives - the most common mistake.</p>
+<p>The game needs TCP on 25565, the browser needs <strong>TCP</strong> on the web port for signaling. UDP on the same number is the Simple Voice Chat voice port and is only required when players use the <strong>mod</strong> - <code>web.port</code> does not control it. Browser audio runs as WebRTC over short-lived UDP ports between browser and plugin and needs no inbound rule. If a browser stays silent, it is usually mute/group state or a symmetric NAT (then TURN helps).</p>
 <p>The plugin has no inbound WebRTC port. Older versions wrote <code>webrtc.port</code>; it is ignored and removed by the config editor.</p>
 
 </section>
@@ -161,6 +161,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=956ad7f"></script>
+    <script src="../assets/js/main.js?v=091aade"></script>
 </body>
 </html>

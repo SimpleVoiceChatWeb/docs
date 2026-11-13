@@ -104,5 +104,8 @@ list polls every 5 seconds.
 |------|-----------|-------|
 | 25565 | TCP | Minecraft game |
 | 24454 | TCP | WebSocket signaling (`wss://`) |
-| 24454 | UDP | SVC voice |
+| 24454 | UDP | SVC voice (mod players only) |
+| short-lived UDP ports | UDP (outbound) | browser audio over WebRTC |
 | 443 | TCP (outbound) | PeerJS signaling (`0.peerjs.com`) |
+
+The browser only talks to the plugin over TCP (signaling) and then directly via WebRTC. Voice packets use ports negotiated by libwebrtc; no inbound rule is needed for them as long as the return path stays open through conntrack.

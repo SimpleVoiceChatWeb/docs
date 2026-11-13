@@ -27,7 +27,7 @@ Die Datei heißt `config.yml`, das Plugin schreibt aber JSON und liest sie über
 | `docker-compose` | Container-Setups mit veröffentlichten Ports |
 | Config-Werte | Die passende Zeile für `web.port` |
 
-Das Spiel braucht TCP auf 25565; der Web-Port braucht **TCP** für Signaling und **UDP** für Sprache. Ohne diese UDP-Regel verbindet der Browser, aber es kommt kein Ton an – der häufigste Fehler.
+Das Spiel braucht TCP auf 25565, der Browser **TCP** auf dem Web-Port fürs Signaling. UDP auf derselben Nummer ist der Sprachport von Simple Voice Chat und nur nötig, wenn Spieler mit dem **Mod** mitsprechen – `web.port` steuert ihn nicht. Browser-Audio läuft als WebRTC über kurzlebige UDP-Ports zwischen Browser und Plugin und braucht keine eingehende Freigabe. Kommt im Browser kein Ton an, liegt es meist an Mute/Gruppe oder an einem symmetrischen NAT (dann hilft TURN).
 
 Das Plugin hat keinen eingehenden WebRTC-Port. Ältere Versionen schrieben `webrtc.port`; er wird ignoriert und vom Config-Editor entfernt.
 
