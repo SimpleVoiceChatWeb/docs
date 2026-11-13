@@ -1,29 +1,29 @@
-/* SimpleVoiceChatWeb Docs - emerald voice theme, dark-first with light mode. */
+/* SimpleVoiceChatWeb Docs - blue theme shared with landing and web client, dark-first with light mode. */
 
 :root {
   color-scheme: dark;
-  --color-bg: #0d1411;
-  --color-bg-alt: #141c17;
-  --color-bg-code: #090e0b;
-  --color-border: #26332b;
-  --color-border-light: #33463a;
-  --color-text: #e8f1ea;
-  --color-text-muted: #9db3a4;
-  --color-text-light: #6f8577;
-  --color-primary: #34d399;
-  --color-primary-hover: #6ee7b7;
-  --color-primary-light: rgba(52, 211, 153, 0.12);
-  --color-accent: #34d399;
-  --color-accent-light: rgba(52, 211, 153, 0.1);
-  --color-link: #4ade80;
-  --color-link-soft: #a7f3d0;
-  --color-code: #b8e6c9;
-  --color-success: #4ade80;
-  --color-success-light: rgba(74, 222, 128, 0.1);
-  --color-warning: #e6c15c;
-  --color-warning-light: rgba(230, 193, 92, 0.1);
-  --color-error: #f87171;
-  --color-error-light: rgba(248, 113, 113, 0.1);
+  --color-bg: #0e0e0e;
+  --color-bg-alt: #1c1a17;
+  --color-bg-code: #080808;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-light: rgba(255, 255, 255, 0.16);
+  --color-text: #e8e8e8;
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-text-light: rgba(255, 255, 255, 0.5);
+  --color-primary: #42a5f5;
+  --color-primary-hover: #64b5f6;
+  --color-primary-light: rgba(66, 165, 245, 0.14);
+  --color-accent: #42a5f5;
+  --color-accent-light: rgba(66, 165, 245, 0.1);
+  --color-link: #64b5f6;
+  --color-link-soft: #90caf9;
+  --color-code: #bbdefb;
+  --color-success: #4caf50;
+  --color-success-light: rgba(76, 175, 80, 0.12);
+  --color-warning: #ffb300;
+  --color-warning-light: rgba(255, 179, 0, 0.12);
+  --color-error: #f44336;
+  --color-error-light: rgba(244, 67, 54, 0.12);
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --radius-sm: 4px;
@@ -35,25 +35,25 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --color-bg: #f6faf7;
+  --color-bg: #f5f8fc;
   --color-bg-alt: #ffffff;
-  --color-bg-code: #eef4ef;
-  --color-border: #d8e4dc;
-  --color-border-light: #c2d4c9;
-  --color-text: #15211a;
-  --color-text-muted: #4b6156;
-  --color-text-light: #7b8f83;
-  --color-primary: #047857;
-  --color-primary-hover: #065f46;
-  --color-primary-light: rgba(4, 120, 87, 0.1);
-  --color-accent: #047857;
-  --color-accent-light: rgba(4, 120, 87, 0.08);
-  --color-link: #047857;
-  --color-link-soft: #065f46;
-  --color-code: #065f46;
-  --color-success: #16a34a;
-  --color-warning: #92690e;
-  --color-error: #dc2626;
+  --color-bg-code: #eaf2fb;
+  --color-border: #d7e3f0;
+  --color-border-light: #c2d4e6;
+  --color-text: #101c28;
+  --color-text-muted: #48586a;
+  --color-text-light: #78889a;
+  --color-primary: #1565c0;
+  --color-primary-hover: #0d47a1;
+  --color-primary-light: rgba(21, 101, 192, 0.1);
+  --color-accent: #1565c0;
+  --color-accent-light: rgba(21, 101, 192, 0.08);
+  --color-link: #1565c0;
+  --color-link-soft: #0d47a1;
+  --color-code: #0d47a1;
+  --color-success: #2e7d32;
+  --color-warning: #9a6400;
+  --color-error: #c62828;
 }
 
 * { box-sizing: border-box; }
@@ -102,7 +102,7 @@ a[target="_blank"]::after {
   z-index: 20;
   padding: 8px 12px;
   background: var(--color-primary);
-  color: #06281c;
+  color: #0a1a26;
   border-radius: var(--radius-sm);
 }
 .skip-link:focus { top: 12px; }
