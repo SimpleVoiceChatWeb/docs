@@ -50,7 +50,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/16bfa33" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 16bfa33">16bfa33</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/4b93c34" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 4b93c34">4b93c34</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -74,7 +74,7 @@
 </div>
             </nav>
             <div class="sidebar-footer">
-                <a href="https://SimpleVCWeb.github.io/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://SimpleVCWeb.github.io/app/#/" target="_blank" rel="noopener">Web-App</a>
                 <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
                 <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
                 <button class="theme-toggle" type="button" aria-label="Thema umschalten"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -123,23 +123,25 @@ cp build/libs/SimpleVoiceChatWebPlugin-1.0.0-SNAPSHOT-fat.jar /paper-server/plug
 <section class="doc-section">
 <h2 id="webend-github-pages">Webend (GitHub Pages)</h2>
 <p>Der Workflow <code>Deploy Webend to GitHub Pages</code> baut die Vue-App bei jeder</p>
-<p>Änderung unter <code>src/**</code> (plus <code>index.html</code>, <code>package.json</code>,</p>
+<p>Änderung unter <code>src/<strong></code> (plus <code>public/</strong></code>, <code>index.html</code>, <code>package.json</code>,</p>
 <p><code>vite.config.ts</code>) auf <code>main</code> - oder manuell über Actions → Run workflow. Er</p>
-<p>pusht <code>dist/</code> ins Root des <code>main</code>-Branches von</p>
-<p><code>SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io</code>:</p>
+<p>pusht <code>dist/</code> ins Root des <code>main</code>-Branches von <code>SimpleVoiceChatWeb/app</code>:</p>
 <ul>
 <li><strong>Source:</strong> Deploy from a branch, <strong>Branch:</strong> main / root</li>
-<li><strong>Live:</strong> <code>https://SimpleVCWeb.github.io</code> (Hash-Routing: <code>/#/login</code>, <code>/#/voice</code>, <code>/#/settings</code>)</li>
+<li><strong>Live:</strong> <code>https://SimpleVCWeb.github.io/app/</code> (Hash-Routing:</li>
+</ul>
+<p><code>/app/#/login</code>, <code>/app/#/call</code>, <code>/app/#/settings</code>)</p>
+<ul>
 <li>Auth per SSH-Deploy-Key: Öffentlicher Teil als Deploy Key mit Write-Access</li>
 </ul>
-<p>im Pages-Repo, privater Teil als Actions-Secret <code>PAGES_DEPLOY_KEY</code> im</p>
-<p>Webend-Repo (nur für dieses Pages-Repo verwenden).</p>
+<p>im <code>app</code>-Repo, privater Teil als Actions-Secret <code>APP_DEPLOY_KEY</code> im</p>
+<p>Webend-Repo (nur für dieses Repo verwenden).</p>
 <ul>
 <li>PeerJS-Werte als Actions-Variables (<code>VITE_PEERJS_HOST</code>, <code>VITE_PEERJS_PORT</code>,</li>
 </ul>
 <p><code>VITE_PEERJS_PATH</code>, <code>VITE_PEERJS_SECURE</code>, <code>VITE_PEERJS_KEY</code>), sonst</p>
 <p>PeerJS-Cloud-Defaults.</p>
-<blockquote><p><strong>Falle:</strong> Der Workflow triggert auf <code>paths: src/**</code>. Ein Push ohne<br><code>src</code>-Änderung (z. B. nur Docs) löst <strong>keinen</strong> Deploy aus. Status:<br><code>gh run list --repo SimpleVoiceChatWeb/webend</code>.</p></blockquote>
+<blockquote><p><strong>Falle:</strong> Der Workflow triggert auf <code>paths: src/<strong></code> und <code>public/</strong></code>. Ein<br>Push ohne diese Änderungen (z. B. nur Docs) löst <strong>keinen</strong> Deploy aus.<br>Status: <code>gh run list --repo SimpleVoiceChatWeb/webend</code>.</p></blockquote>
 
 </section>
 <section class="doc-section">

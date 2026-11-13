@@ -33,23 +33,23 @@ Stoppen mit `tmux send-keys -t testmc "stop" Enter`. Ports: 25565 (MC) und
 ## Webend (GitHub Pages)
 
 Der Workflow `Deploy Webend to GitHub Pages` baut die Vue-App bei jeder
-Änderung unter `src/**` (plus `index.html`, `package.json`,
+Änderung unter `src/**` (plus `public/**`, `index.html`, `package.json`,
 `vite.config.ts`) auf `main` - oder manuell über Actions → Run workflow. Er
-pusht `dist/` ins Root des `main`-Branches von
-`SimpleVoiceChatWeb/SimpleVoiceChatWeb.github.io`:
+pusht `dist/` ins Root des `main`-Branches von `SimpleVoiceChatWeb/app`:
 
 - **Source:** Deploy from a branch, **Branch:** main / root
-- **Live:** `https://SimpleVCWeb.github.io` (Hash-Routing: `/#/login`, `/#/voice`, `/#/settings`)
+- **Live:** `https://SimpleVCWeb.github.io/app/` (Hash-Routing:
+  `/app/#/login`, `/app/#/call`, `/app/#/settings`)
 - Auth per SSH-Deploy-Key: Öffentlicher Teil als Deploy Key mit Write-Access
-  im Pages-Repo, privater Teil als Actions-Secret `PAGES_DEPLOY_KEY` im
-  Webend-Repo (nur für dieses Pages-Repo verwenden).
+  im `app`-Repo, privater Teil als Actions-Secret `APP_DEPLOY_KEY` im
+  Webend-Repo (nur für dieses Repo verwenden).
 - PeerJS-Werte als Actions-Variables (`VITE_PEERJS_HOST`, `VITE_PEERJS_PORT`,
   `VITE_PEERJS_PATH`, `VITE_PEERJS_SECURE`, `VITE_PEERJS_KEY`), sonst
   PeerJS-Cloud-Defaults.
 
-> **Falle:** Der Workflow triggert auf `paths: src/**`. Ein Push ohne
-> `src`-Änderung (z. B. nur Docs) löst **keinen** Deploy aus. Status:
-> `gh run list --repo SimpleVoiceChatWeb/webend`.
+> **Falle:** Der Workflow triggert auf `paths: src/**` und `public/**`. Ein
+> Push ohne diese Änderungen (z. B. nur Docs) löst **keinen** Deploy aus.
+> Status: `gh run list --repo SimpleVoiceChatWeb/webend`.
 
 ## Docs (`/docs`)
 
