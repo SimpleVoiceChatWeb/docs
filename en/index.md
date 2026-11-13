@@ -103,6 +103,7 @@ All `config.yml` options with real defaults plus build variables.
 ## Links & resources
 
 - [Open the web app](https://SimpleVCWeb.github.io/app/) (new tab)
+- [Browser tools](https://SimpleVCWeb.github.io/tools/) (config editor, firewall rules)
 - [GitHub organization](https://github.com/SimpleVoiceChatWeb)
 - [Main repository](https://github.com/SimpleVoiceChatWeb/SimpleVoiceChatWeb)
 - [Issues & support](https://github.com/SimpleVoiceChatWeb/issues)

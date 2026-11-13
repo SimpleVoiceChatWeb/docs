@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="config.yml im Formular bearbeiten und Firewall-Regeln erzeugen – alles läuft im Browser.">
+    <title>Werkzeuge - SimpleVoiceChatWeb</title>
+    <link rel="canonical" href="https://SimpleVoiceChatWeb.github.io/docs/tools.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="SimpleVoiceChatWeb">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:title" content="Werkzeuge - SimpleVoiceChatWeb">
+    <meta property="og:description" content="config.yml im Formular bearbeiten und Firewall-Regeln erzeugen – alles läuft im Browser.">
+    <meta property="og:url" content="https://SimpleVoiceChatWeb.github.io/docs/tools.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Werkzeuge - SimpleVoiceChatWeb">
+    <meta name="twitter:description" content="config.yml im Formular bearbeiten und Firewall-Regeln erzeugen – alles läuft im Browser.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <details class="language-picker">
+<summary><span>Deutsch</span></summary>
+<div class="language-picker-body">
+<a href="tools.html" aria-current="true">Deutsch</a>
+<a href="en/tools.html">English</a>
+</div>
+</details>
+            <button class="theme-toggle" type="button" aria-label="Thema umschalten"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menü</button>
+        </div>
+    </div>
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="Auf dieser Seite">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb Dokumentation - Startseite"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/64388d4" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 64388d4">64388d4</a></p>
+            <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
+<p class="nav-label">Übersicht</p>
+<div class="side-nav">
+<a href="index.html">Start</a>
+<a href="quickstart.html">Schnellstart</a>
+<a href="tools.html" class="active">Werkzeuge</a>
+</div>
+<p class="nav-label">Verstehen</p>
+<div class="side-nav">
+<a href="architecture.html">Architektur</a>
+<a href="peerjs.html">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Betreiben</p>
+<div class="side-nav">
+<a href="deployment.html">Deployment</a>
+<a href="configuration.html">Konfiguration</a>
+<a href="troubleshooting.html">Troubleshooting</a>
+</div>
+<p class="nav-label">Referenz</p>
+<div class="side-nav">
+<a href="api.html">API Referenz</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://SimpleVCWeb.github.io/app/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Thema umschalten"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>Werkzeuge</strong></nav>
+            <header class="article-header">
+                <p class="eyebrow">Übersicht</p>
+                <h1>Werkzeuge</h1>
+                <p class="lead">Zwei kleine Helfer für Serverbetreiber: ein Config-Editor und ein Port-/Firewall-Generator. Keine Installation, kein Login, kein Upload.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>Diese Dokumentation und das gesamte System befinden sich in aktiver Entwicklung - Verhalten kann sich ändern.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
+<section class="doc-section">
+<h2 id="config-editor">Config-Editor</h2>
+<p>Öffne <a href="https://SimpleVCWeb.github.io/tools/#/config">Werkzeuge → Config-Editor</a> und lade deine <code>config.yml</code>. Jeder Schlüssel, den das Plugin kennt, wird zu einem Formularfeld – gruppiert wie die Datei selbst: Web, WebRTC, PeerJS, Authentifizierung, TURN und so weiter.</p>
+<ul>
+<li><strong>Unbekannte Schlüssel bleiben erhalten.</strong> Optionen, die der Editor nicht kennt (neuere Version, Fork), stehen unverändert in der Ausgabe und werden separat aufgelistet.</li>
+<li><strong>Kommentare bleiben erhalten</strong>, solange nur Werte geändert werden. Das Hinzufügen eines fehlenden Schlüssels schreibt die Datei neu; der Editor sagt dir vorher, dass Kommentare dabei verloren gehen.</li>
+<li><strong>Die Prüfung läuft live:</strong> Portbereiche, Pflicht-Origins, TURN-Zugangsdaten und Audio-Abstände werden vor dem Download geprüft.</li>
+<li><strong>Nur geänderte Werte</strong> blendet alles aus, was du nicht angefasst hast; <strong>Fehlende Schlüssel ergänzen</strong> füllt das gesamte Schema mit Standardwerten.</li>
+</ul>
+<p>Die Datei heißt <code>config.yml</code>, das Plugin schreibt aber JSON und liest sie über Typesafe Config. Der Editor akzeptiert JSON und YAML 1.2 und lädt immer gültiges JSON herunter (vier Leerzeichen Einrückung), das Typesafe Config ohne Überraschungen liest.</p>
+<p>Erlaubte Origins werden normalisiert: Pfad, Query und abschließender Schrägstrich fallen weg, aus <code>https://example.org/app/?code=1</code> wird <code>https://example.org</code>.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="ports-firewall">Ports &amp; Firewall</h2>
+<p><a href="https://SimpleVCWeb.github.io/tools/#/ports">Ports &amp; Firewall</a> macht aus deinen drei Ports fertige Snippets:</p>
+<table><thead><tr><th>Ausgabe</th><th>Verwendung</th></tr></thead><tbody><tr><td><code>iptables</code></td><td>Systeme ohne ufw oder mit eigenen Regeln</td></tr><tr><td><code>docker-compose</code></td><td>Container-Setups mit veröffentlichten Ports</td></tr><tr><td>Config-Werte</td><td>Die passenden Zeilen für <code>web.port</code> und <code>webrtc.port</code></td></tr></tbody></table>
+<p>Für das Spiel und den Web-/Signaling-Port reicht TCP; Sprache braucht <strong>UDP</strong> auf dem Web-Port. Ohne diese UDP-Regel verbindet der Browser, aber es kommt kein Ton an – der häufigste Fehler. Der WebRTC-Port ist nur nötig, wenn du ihn im Plugin aktivierst.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="nichts-verlsst-den-browser">Nichts verlässt den Browser</h2>
+<p>Beide Werkzeuge sind statische Dateien. Die geöffnete Config liest der Browser über die File-API, verarbeitet sie lokal und lädt sie nirgendwo hoch. Es gibt kein Konto, keine Analyse und keine Speicherung über die Seite hinaus.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="grenzen">Grenzen</h2>
+<p>Das Schema bildet die Optionen der aktuellen Plugin-Version ab. Kommt ein Schlüssel hinzu, bleibt er erhalten, wird aber erst nach einem Schema-Update beschriftet. Die erzeugten Firewall-Regeln sind ein Ausgangspunkt – prüfe sie gegen dein eigenes Firewall-Setup, bevor du sie anwendest.</p>
+</section>
+<nav class="pager" aria-label="Weiterblättern">
+<a class="pager-prev" href="quickstart.html"><span>← Zurück</span><strong>Schnellstart</strong></a>
+<a class="pager-next" href="architecture.html"><span>Weiter →</span><strong>Architektur</strong></a>
+</nav>
+            <footer class="article-footer"><span>Open Source unter MIT Lizenz.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown-Quellen für Agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="Auf dieser Seite">
+            <details class="language-picker">
+<summary><span>Deutsch</span></summary>
+<div class="language-picker-body">
+<a href="tools.html" aria-current="true">Deutsch</a>
+<a href="en/tools.html">English</a>
+</div>
+</details>
+            <p class="toc-title">Auf dieser Seite</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

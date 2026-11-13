@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Edit config.yml in a form and generate firewall rules - everything runs in the browser.">
+    <title>Tools - SimpleVoiceChatWeb</title>
+    <link rel="canonical" href="https://SimpleVoiceChatWeb.github.io/docs/en/tools.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="SimpleVoiceChatWeb">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Tools - SimpleVoiceChatWeb">
+    <meta property="og:description" content="Edit config.yml in a form and generate firewall rules - everything runs in the browser.">
+    <meta property="og:url" content="https://SimpleVoiceChatWeb.github.io/docs/en/tools.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Tools - SimpleVoiceChatWeb">
+    <meta name="twitter:description" content="Edit config.yml in a form and generate firewall rules - everything runs in the browser.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="mobile-header">
+        <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+        <div class="mobile-actions">
+            <details class="language-picker">
+<summary><span>English</span></summary>
+<div class="language-picker-body">
+<a href="../tools.html">Deutsch</a>
+<a href="tools.html" aria-current="true">English</a>
+</div>
+</details>
+            <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+        </div>
+    </div>
+    <div class="docs-layout">
+        <aside class="sidebar" id="sidebar" aria-label="On this page">
+            <a href="index.html" class="brand" aria-label="SimpleVoiceChatWeb documentation - home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+<line x1="12" y1="19" x2="12" y2="22"/>
+</svg><span>SimpleVoiceChatWeb</span></a>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/64388d4" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 64388d4">64388d4</a></p>
+            <nav class="side-nav-wrap" aria-label="On this page">
+<p class="nav-label">Guide</p>
+<div class="side-nav">
+<a href="index.html">Home</a>
+<a href="quickstart.html">Quickstart</a>
+<a href="tools.html" class="active">Tools</a>
+</div>
+<p class="nav-label">Understand</p>
+<div class="side-nav">
+<a href="architecture.html">Architecture</a>
+<a href="peerjs.html">PeerJS & TURN</a>
+</div>
+<p class="nav-label">Operate</p>
+<div class="side-nav">
+<a href="deployment.html">Deployment</a>
+<a href="configuration.html">Configuration</a>
+<a href="troubleshooting.html">Troubleshooting</a>
+</div>
+<p class="nav-label">Reference</p>
+<div class="side-nav">
+<a href="api.html">API Reference</a>
+</div>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="https://SimpleVCWeb.github.io/app/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle theme"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg></button>
+            </div>
+        </aside>
+        <article class="article content" role="main" id="main-content">
+            <nav class="breadcrumbs" aria-label="Docs"><a href="index.html">Docs</a><span aria-hidden="true">/</span><strong>Tools</strong></nav>
+            <header class="article-header">
+                <p class="eyebrow">Guide</p>
+                <h1>Tools</h1>
+                <p class="lead">Two small utilities for server owners: a config editor and a port/firewall helper. No install, no login, no upload.</p>
+            </header>
+            <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
+<section class="doc-section">
+<h2 id="config-editor">Config editor</h2>
+<p>Open <a href="https://SimpleVCWeb.github.io/tools/#/config">Tools → Config editor</a> and load your <code>config.yml</code>. Every key the plugin knows becomes a form field, grouped like the file itself: web, WebRTC, PeerJS, authentication, TURN and so on.</p>
+<ul>
+<li><strong>Unknown keys are kept.</strong> If your file has options the editor does not know (a newer release, a fork), they stay in the output unchanged and are listed separately.</li>
+<li><strong>Comments are kept</strong> as long as the edit only changes values. Adding a missing key rewrites the file, and the editor tells you that comments are lost.</li>
+<li><strong>Validation runs live:</strong> port ranges, required origins, TURN credentials and audio distances are checked before you download.</li>
+<li><strong>Only changed values</strong> hides everything you did not touch; <strong>Add missing keys</strong> fills the whole schema with defaults.</li>
+</ul>
+<p>Although the file is called <code>config.yml</code>, the plugin writes JSON and reads it through Typesafe Config. The editor accepts JSON and YAML 1.2 and always downloads valid JSON (four-space indent), which Typesafe Config reads without surprises.</p>
+<p>The editor also normalises allowed origins: paths, queries and trailing slashes are dropped, so <code>https://example.org/app/?code=1</code> becomes <code>https://example.org</code>.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="ports-firewall">Ports &amp; firewall</h2>
+<p><a href="https://SimpleVCWeb.github.io/tools/#/ports">Ports &amp; firewall</a> turns your three ports into copy-paste snippets:</p>
+<table><thead><tr><th>Output</th><th>Use</th></tr></thead><tbody><tr><td><code>iptables</code></td><td>Systems without ufw or with custom rule chains</td></tr><tr><td><code>docker-compose</code></td><td>Container setups that publish ports</td></tr><tr><td>Config values</td><td>The matching <code>web.port</code> and <code>webrtc.port</code> lines</td></tr></tbody></table>
+<p>Only TCP is needed for the game and the web/signalling port; voice needs <strong>UDP</strong> on the web port. Without that UDP rule the browser connects but no audio arrives - the most common mistake. The WebRTC port is only needed when you enable it in the plugin.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="nothing-leaves-the-browser">Nothing leaves the browser</h2>
+<p>Both tools are static files. The config file you open is read with the browser's File API, processed locally and never uploaded. There is no account, no analytics and no storage beyond the page itself.</p>
+
+</section>
+<section class="doc-section">
+<h2 id="limits">Limits</h2>
+<p>The schema mirrors the options of the current plugin release. If a release adds a key, the editor keeps it but cannot label it until the schema is updated. The generated firewall rules are a starting point - review them against your own firewall setup before applying them.</p>
+</section>
+<nav class="pager" aria-label="Keep reading">
+<a class="pager-prev" href="quickstart.html"><span>← Back</span><strong>Quickstart</strong></a>
+<a class="pager-next" href="architecture.html"><span>Next →</span><strong>Architecture</strong></a>
+</nav>
+            <footer class="article-footer"><span>Open source under MIT license.</span><a href="https://github.com/SimpleVoiceChatWeb/webend/tree/main/docs" target="_blank" rel="noopener">Markdown sources for agents</a></footer>
+        </article>
+        <nav class="toc" aria-label="On this page">
+            <details class="language-picker">
+<summary><span>English</span></summary>
+<div class="language-picker-body">
+<a href="../tools.html">Deutsch</a>
+<a href="tools.html" aria-current="true">English</a>
+</div>
+</details>
+            <p class="toc-title">On this page</p>
+            <ul id="toc"></ul>
+        </nav>
+    </div>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
