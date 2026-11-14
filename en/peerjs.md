@@ -11,7 +11,7 @@ PeerJS relays **no audio**.
 
 ## Plugin
 
-Enable the outbound PeerJS client in `config.yml`:
+The outbound PeerJS client is enabled by default (`peerjs.enabled = true`); its settings in `config.yml`:
 
 ```hocon
 peerjs {

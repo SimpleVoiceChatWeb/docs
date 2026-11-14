@@ -25,6 +25,8 @@ Only options that the plugin actually reads are listed here. Anything else in an
 | `web.host` | `"0.0.0.0"` | Signaling server bind address |
 | `web.port` | `24454` | TCP signaling (browser); the UDP voice port belongs to SVC |
 | `web.tlsTerminatedExternally` | `false` | `true` = reverse proxy handles TLS |
+| `web.clientUrl` | `"https://SimpleVCWeb.github.io/app/"` | Base URL of the web client for invite links and QR codes; no query or fragment |
+| `web.signalingUrl` | `""` | Full WebSocket URL for direct mode (e.g. `wss://voice.example.com/signaling`); empty = invites without a `ws` parameter |
 | `tls.keystorePassword` | `""` | Keystore password - prefer `SVCWEB_TLS_KEYSTORE_PASSWORD` |
 
 ### Auth
@@ -39,13 +41,15 @@ Only options that the plugin actually reads are listed here. Anything else in an
 
 | Option | Default | Description |
 |--------|---------|--------------|
-| `peerjs.enabled` | `false` | Enable the outbound PeerJS client (invite path) |
+| `peerjs.enabled` | `true` | Enabled by default; `false` turns off the PeerJS invite path |
 | `peerjs.scheme` | `"wss"` | `wss` or `ws` |
 | `peerjs.host` | `"0.peerjs.com"` | PeerServer host |
 | `peerjs.port` | `443` | PeerServer port |
 | `peerjs.path` | `"/"` | PeerServer path |
 | `peerjs.key` | `"peerjs"` | PeerServer key |
 | `peerjs.token` | `""` | Empty = random signaling token |
+
+With `peerjs.enabled=true`, invite codes are brokered through the configured PeerServer (default `0.peerjs.com`); to avoid that, set `peerjs.enabled=false` and use direct mode via `web.signalingUrl`.
 
 ### TURN
 

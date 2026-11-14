@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=091aade">
+    <link rel="stylesheet" href="assets/css/main.css?v=f6bb9cf">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/091aade" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 091aade">091aade</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/f6bb9cf" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: f6bb9cf">f6bb9cf</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -120,11 +120,12 @@
 <h3 id="allgemein">Allgemein</h3>
 <table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>configDir</code></td><td><code>&quot;.&quot;</code></td><td>Basisverzeichnis für die Keystore-Suche</td></tr><tr><td><code>development</code></td><td><code>true</code></td><td>Selbstsigniertes Zertifikat erlauben, wenn kein Keystore existiert</td></tr></tbody></table>
 <h3 id="web-und-tls">Web und TLS</h3>
-<table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>web.port</code></td><td><code>24454</code></td><td>TCP-Signaling (Browser); der UDP-Sprachport gehört SVC</td></tr><tr><td><code>web.tlsTerminatedExternally</code></td><td><code>false</code></td><td><code>true</code> = Reverse Proxy beendet TLS</td></tr><tr><td><code>tls.keystorePassword</code></td><td><code>&quot;&quot;</code></td><td>Keystore-Passwort - besser <code>SVCWEB_TLS_KEYSTORE_PASSWORD</code></td></tr></tbody></table>
+<table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>web.port</code></td><td><code>24454</code></td><td>TCP-Signaling (Browser); der UDP-Sprachport gehört SVC</td></tr><tr><td><code>web.tlsTerminatedExternally</code></td><td><code>false</code></td><td><code>true</code> = Reverse Proxy beendet TLS</td></tr><tr><td><code>web.clientUrl</code></td><td><code>&quot;https://SimpleVCWeb.github.io/app/&quot;</code></td><td>Basis-URL des Web-Clients für Einladungslinks und QR-Codes; ohne Query und Fragment</td></tr><tr><td><code>web.signalingUrl</code></td><td><code>&quot;&quot;</code></td><td>Vollständige WebSocket-URL für den Direktmodus (z. B. <code>wss://voice.example.com/signaling</code>); leer = Einladungen ohne <code>ws</code>-Parameter</td></tr><tr><td><code>tls.keystorePassword</code></td><td><code>&quot;&quot;</code></td><td>Keystore-Passwort - besser <code>SVCWEB_TLS_KEYSTORE_PASSWORD</code></td></tr></tbody></table>
 <h3 id="auth">Auth</h3>
 <table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>auth.jwtTtlSeconds</code></td><td><code>86400</code></td><td>Gültigkeit des JWT (Sekunden)</td></tr><tr><td><code>auth.jwtSecret</code></td><td><code>&quot;&quot;</code></td><td>HS256-Secret - fester Wert erhält Sitzungen über Neustarts</td></tr></tbody></table>
 <h3 id="peerjs">PeerJS</h3>
 <table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>peerjs.scheme</code></td><td><code>&quot;wss&quot;</code></td><td><code>wss</code> oder <code>ws</code></td></tr><tr><td><code>peerjs.host</code></td><td><code>&quot;0.peerjs.com&quot;</code></td><td>PeerServer-Host</td></tr><tr><td><code>peerjs.port</code></td><td><code>443</code></td><td>PeerServer-Port</td></tr><tr><td><code>peerjs.path</code></td><td><code>&quot;/&quot;</code></td><td>PeerServer-Pfad</td></tr><tr><td><code>peerjs.key</code></td><td><code>&quot;peerjs&quot;</code></td><td>PeerServer-Key</td></tr><tr><td><code>peerjs.token</code></td><td><code>&quot;&quot;</code></td><td>Leer = zufälliges Signaling-Token</td></tr></tbody></table>
+<p>Mit <code>peerjs.enabled=true</code> werden Einladungscodes über den konfigurierten PeerServer vermittelt (Default <code>0.peerjs.com</code>); wer das nicht will, setzt <code>peerjs.enabled=false</code> und nutzt den Direktmodus über <code>web.signalingUrl</code>.</p>
 <h3 id="turn">TURN</h3>
 <table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>turn.urls</code></td><td>leer</td><td>TURN-Server-URLs, z. B. <code>turn:turn.example.org:3478</code></td></tr><tr><td><code>turn.username</code></td><td><code>&quot;&quot;</code></td><td>TURN-Benutzername</td></tr><tr><td><code>turn.credential</code></td><td><code>&quot;&quot;</code></td><td>TURN-Passwort</td></tr></tbody></table>
 <p>Ältere Versionen schrieben Optionen wie <code>web.corsAllowedOrigins</code>, <code>webrtc.port</code>, <code>svc.<em></code>, <code>audio.</em></code>, <code>mode</code>, <code>webhooks.<em></code>, <code>logging.</em></code> und <code>resourcePack*</code>. Das Plugin ignoriert sie heute; der <a href="tools.html">Config-Editor</a> entfernt sie beim Laden.</p>
@@ -174,6 +175,6 @@ VITE_PEERJS_KEY=peerjs</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="assets/js/main.js?v=091aade"></script>
+    <script src="assets/js/main.js?v=f6bb9cf"></script>
 </body>
 </html>

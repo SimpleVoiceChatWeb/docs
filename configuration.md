@@ -25,6 +25,8 @@ Hier stehen nur Optionen, die das Plugin tatsächlich liest. Alles andere in ein
 | `web.host` | `"0.0.0.0"` | Bind-Adresse des Signaling-Servers |
 | `web.port` | `24454` | TCP-Signaling (Browser); der UDP-Sprachport gehört SVC |
 | `web.tlsTerminatedExternally` | `false` | `true` = Reverse Proxy beendet TLS |
+| `web.clientUrl` | `"https://SimpleVCWeb.github.io/app/"` | Basis-URL des Web-Clients für Einladungslinks und QR-Codes; ohne Query und Fragment |
+| `web.signalingUrl` | `""` | Vollständige WebSocket-URL für den Direktmodus (z. B. `wss://voice.example.com/signaling`); leer = Einladungen ohne `ws`-Parameter |
 | `tls.keystorePassword` | `""` | Keystore-Passwort - besser `SVCWEB_TLS_KEYSTORE_PASSWORD` |
 
 ### Auth
@@ -39,13 +41,15 @@ Hier stehen nur Optionen, die das Plugin tatsächlich liest. Alles andere in ein
 
 | Option | Default | Beschreibung |
 |--------|---------|--------------|
-| `peerjs.enabled` | `false` | Ausgehenden PeerJS-Client aktivieren (Invite-Pfad) |
+| `peerjs.enabled` | `true` | Standardmäßig aktiv; `false` schaltet den PeerJS-Invite-Pfad ab |
 | `peerjs.scheme` | `"wss"` | `wss` oder `ws` |
 | `peerjs.host` | `"0.peerjs.com"` | PeerServer-Host |
 | `peerjs.port` | `443` | PeerServer-Port |
 | `peerjs.path` | `"/"` | PeerServer-Pfad |
 | `peerjs.key` | `"peerjs"` | PeerServer-Key |
 | `peerjs.token` | `""` | Leer = zufälliges Signaling-Token |
+
+Mit `peerjs.enabled=true` werden Einladungscodes über den konfigurierten PeerServer vermittelt (Default `0.peerjs.com`); wer das nicht will, setzt `peerjs.enabled=false` und nutzt den Direktmodus über `web.signalingUrl`.
 
 ### TURN
 

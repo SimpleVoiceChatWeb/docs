@@ -11,7 +11,7 @@ Verbindung zwischen Browser und Plugin. PeerJS relayt **kein Audio**.
 
 ## Plugin
 
-Den ausgehenden PeerJS-Client in `config.yml` einschalten:
+Der ausgehende PeerJS-Client ist standardmäßig aktiv (`peerjs.enabled = true`); die zugehörigen Werte in `config.yml`:
 
 ```hocon
 peerjs {
