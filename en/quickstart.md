@@ -56,7 +56,7 @@ moves, stows it, or the browser connects.
 
 ### Step 2: Open the code in the browser
 
-1. Open `https://SimpleVCWeb.github.io/app/` (or directly with code: `https://SimpleVCWeb.github.io/app/?code=...`)
+1. Open `/app/` (or directly with code: `/app/?code=...`)
 2. Enter the code, click **Connect**
 3. Allow microphone access
 4. **Talk!**

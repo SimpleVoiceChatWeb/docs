@@ -6,7 +6,7 @@ lead: Two small utilities for server owners: a config editor and a port/firewall
 
 ## Config editor
 
-Open [Tools → Config editor](https://SimpleVCWeb.github.io/tools/#/config) and load your `config.yml`. Every option the plugin actually reads becomes a form field, grouped like the file itself: general, web/TLS, PeerJS, authentication and TURN.
+Open [Tools → Config editor](/tools/#/config) and load your `config.yml`. Every option the plugin actually reads becomes a form field, grouped like the file itself: general, web/TLS, PeerJS, authentication and TURN.
 
 - **Only active options are shown.** Keys from older releases (for example `webrtc.port`, `web.corsAllowedOrigins` or `svc.*`) are removed on load and listed separately.
 - **Unknown keys are kept.** If your file has options the editor does not know (a newer release, a fork), they stay in the output unchanged and are listed separately.
@@ -18,7 +18,7 @@ Although the file is called `config.yml`, the plugin writes JSON and reads it th
 
 ## Ports & firewall
 
-[Ports & firewall](https://SimpleVCWeb.github.io/tools/#/ports) turns your ports into copy-paste snippets:
+[Ports & firewall](/tools/#/ports) turns your ports into copy-paste snippets:
 
 | Output | Use |
 |--------|-----|

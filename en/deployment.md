@@ -10,6 +10,10 @@ This page describes how to run SimpleVoiceChatWeb on your own server: build the 
 
 The public instance of the project runs on GitHub Pages: the landing page at `/`, the web client at `/app/`, and these docs at `/docs/`.
 
+The web client and these docs assume they live in the **root path** of the domain (`/`, `/app/`, `/docs/`, `/tools/`). Running under a subpath such as `/voice/` is not supported.
+
+For the front-end module there is a site bundle that ships the landing page, app, docs and tools in one directory; without a configured site URL, canonical and OG tags are omitted.
+
 ## Ports and firewall
 
 | Port | Protocol | Purpose |

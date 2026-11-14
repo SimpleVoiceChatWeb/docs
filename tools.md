@@ -6,7 +6,7 @@ lead: Zwei kleine Helfer für Serverbetreiber: ein Config-Editor und ein Port-/F
 
 ## Config-Editor
 
-Öffne [Werkzeuge → Config-Editor](https://SimpleVCWeb.github.io/tools/#/config) und lade deine `config.yml`. Jede Option, die das Plugin tatsächlich liest, wird zu einem Formularfeld – gruppiert wie die Datei selbst: Allgemein, Web/TLS, PeerJS, Authentifizierung und TURN.
+Öffne [Werkzeuge → Config-Editor](/tools/#/config) und lade deine `config.yml`. Jede Option, die das Plugin tatsächlich liest, wird zu einem Formularfeld – gruppiert wie die Datei selbst: Allgemein, Web/TLS, PeerJS, Authentifizierung und TURN.
 
 - **Angezeigt werden nur aktive Optionen.** Schlüssel aus älteren Versionen (zum Beispiel `webrtc.port`, `web.corsAllowedOrigins` oder `svc.*`) werden beim Laden entfernt und separat aufgelistet.
 - **Unbekannte Schlüssel bleiben erhalten.** Optionen, die der Editor nicht kennt (neuere Version, Fork), stehen unverändert in der Ausgabe und werden separat aufgelistet.
@@ -18,7 +18,7 @@ Die Datei heißt `config.yml`, das Plugin schreibt aber JSON und liest sie über
 
 ## Ports & Firewall
 
-[Ports & Firewall](https://SimpleVCWeb.github.io/tools/#/ports) macht aus deinen Ports fertige Snippets:
+[Ports & Firewall](/tools/#/ports) macht aus deinen Ports fertige Snippets:
 
 | Ausgabe | Verwendung |
 |---------|------------|

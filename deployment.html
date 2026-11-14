@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=7e126cb">
+    <link rel="stylesheet" href="assets/css/main.css?v=769521c">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/7e126cb" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 7e126cb">7e126cb</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/769521c" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 769521c">769521c</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -86,7 +86,7 @@
 </div>
             </nav>
             <div class="sidebar-footer">
-                <a href="https://SimpleVCWeb.github.io/app/#/" target="_blank" rel="noopener">Web-App</a>
+                <a href="/app/#/" target="_blank" rel="noopener">Web-App</a>
                 <a href="https://github.com/SimpleVoiceChatWeb" target="_blank" rel="noopener">GitHub</a>
                 <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a>
                 <button class="theme-toggle" type="button" aria-label="Thema umschalten"><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -117,6 +117,8 @@
 <h2 id="self-hosting">Self-Hosting</h2>
 <p>Diese Seite beschreibt, wie du SimpleVoiceChatWeb auf deinem eigenen Server betreibst: Plugin bauen, Ports freigeben, Web-Client ausliefern. Der Web-Client ist eine statische Seite und läuft hinter jedem beliebigen Webserver.</p>
 <p>Die öffentliche Instanz des Projekts läuft auf GitHub Pages: Landing unter <code>/</code>, Web-Client unter <code>/app/</code> und diese Doku unter <code>/docs/</code>.</p>
+<p>Der Web-Client und diese Doku setzen voraus, dass sie im <strong>Wurzelpfad</strong> der Domain liegen (<code>/</code>, <code>/app/</code>, <code>/docs/</code>, <code>/tools/</code>). Ein Betrieb unter einem Unterpfad wie <code>/voice/</code> wird nicht unterstützt.</p>
+<p>Für das Front-Modul gibt es ein Site-Bundle, das Landing, App, Doku und Tools in einem Verzeichnis bündelt; ohne gesetzte Site-URL entfallen Canonical- und OG-Tags.</p>
 
 </section>
 <section class="doc-section">
@@ -159,6 +161,6 @@ ufw enable</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="assets/js/main.js?v=7e126cb"></script>
+    <script src="assets/js/main.js?v=769521c"></script>
 </body>
 </html>

@@ -56,7 +56,7 @@ sobald der Spieler sich bewegt, sie wegsteckt oder der Browser verbunden ist.
 
 ### Schritt 2: Code im Browser öffnen
 
-1. `https://SimpleVCWeb.github.io/app/` öffnen (oder direkt mit Code: `https://SimpleVCWeb.github.io/app/?code=...`)
+1. `/app/` öffnen (oder direkt mit Code: `/app/?code=...`)
 2. Code eingeben, auf **Verbinden** klicken
 3. Mikrofonzugriff erlauben
 4. **Sprechen!**

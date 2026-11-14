@@ -10,6 +10,10 @@ Diese Seite beschreibt, wie du SimpleVoiceChatWeb auf deinem eigenen Server betr
 
 Die öffentliche Instanz des Projekts läuft auf GitHub Pages: Landing unter `/`, Web-Client unter `/app/` und diese Doku unter `/docs/`.
 
+Der Web-Client und diese Doku setzen voraus, dass sie im **Wurzelpfad** der Domain liegen (`/`, `/app/`, `/docs/`, `/tools/`). Ein Betrieb unter einem Unterpfad wie `/voice/` wird nicht unterstützt.
+
+Für das Front-Modul gibt es ein Site-Bundle, das Landing, App, Doku und Tools in einem Verzeichnis bündelt; ohne gesetzte Site-URL entfallen Canonical- und OG-Tags.
+
 ## Ports und Firewall
 
 | Port | Protokoll | Zweck |
