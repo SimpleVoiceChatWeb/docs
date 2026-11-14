@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=769521c">
+    <link rel="stylesheet" href="../assets/css/main.css?v=b174c70">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/769521c" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 769521c">769521c</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/b174c70" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: b174c70">b174c70</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -124,7 +124,7 @@
 </section>
 <section class="doc-section">
 <h2 id="two-transports">Two transports</h2>
-<table><thead><tr><th>Transport</th><th>Path</th><th>For</th></tr></thead><tbody><tr><td>PeerJS</td><td>Browser + plugin dial out to <code>0.peerjs.com:443</code></td><td>Invite path (<code>/voice link</code>) without <code>ws</code>: only outbound connections needed, ideal behind NAT</td></tr></tbody></table>
+<table><thead><tr><th>Transport</th><th>Path</th><th>For</th></tr></thead><tbody><tr><td>Direct WebSocket</td><td>Browser ↔ own <code>wss://…/signaling</code> endpoint from <code>web.signalingUrl</code></td><td>Direct mode: signaling + WebRTC with the plugin; set in the invite via <code>?ws=</code></td></tr><tr><td>PeerJS</td><td>Browser + plugin dial out to <code>0.peerjs.com:443</code></td><td>Invite path (<code>/voice link</code>) without <code>ws</code>: only outbound connections needed, ideal behind NAT</td></tr></tbody></table>
 <p>Both transports speak the same message protocol (including <code>requestId</code></p>
 <p>correlation IDs and group messages). Both may be active at the same time. The</p>
 <p>invite link decides which one is used: a valid <code>ws</code> parameter takes precedence</p>
@@ -135,7 +135,7 @@
 </section>
 <section class="doc-section">
 <h2 id="components">Components</h2>
-<table><thead><tr><th>Component</th><th>Tech</th><th>Purpose</th></tr></thead><tbody><tr><td><code>BrowserPresenceBridge</code></td><td>SVC <code>PlayerStateManager</code></td><td>Register browser as voicechat connection, broadcast mute symbols</td></tr><tr><td><code>SvcGroupService</code></td><td>Real SVC group API</td><td>Real SVC groups (normal/open/isolated), counts from SVC connections</td></tr><tr><td><code>PeerJsVoiceRuntime</code> + <code>PeerJsWebRtcBridge</code></td><td>PeerJS, WebRTC engine</td><td>Invite sessions, groups over data channel</td></tr><tr><td><code>SignalingHandler</code> (Netty)</td><td>WebSocket <code>wss://</code></td><td>Direct path: signaling, WebRTC, groups</td></tr><tr><td><code>SingleSessionGuard</code></td><td>Per player UUID</td><td>Exactly one bridge session per player</td></tr><tr><td><code>InviteMapService</code> + ZXing</td><td>Minecraft maps</td><td>QR invite as map in hand</td></tr><tr><td><code>WebVoicechatCommand</code></td><td>Bukkit commands</td><td><code>/voicechat</code> for browser players, mod fallback for mod players</td></tr><tr><td>Webend</td><td>Vue 3 + Vite + TypeScript</td><td>Browser client (voice, channel and settings UI)</td></tr></tbody></table>
+<table><thead><tr><th>Component</th><th>Tech</th><th>Purpose</th></tr></thead><tbody><tr><td><code>SvcBridge</code></td><td>Kotlin, SVC API</td><td>Opus translation WebRTC ↔ SVC, mute gate, latency measurement</td></tr><tr><td><code>BrowserPresenceBridge</code></td><td>SVC <code>PlayerStateManager</code></td><td>Register browser as voicechat connection, broadcast mute symbols</td></tr><tr><td><code>SvcGroupService</code></td><td>Real SVC group API</td><td>Real SVC groups (normal/open/isolated), counts from SVC connections</td></tr><tr><td><code>PeerJsVoiceRuntime</code> + <code>PeerJsWebRtcBridge</code></td><td>PeerJS, WebRTC engine</td><td>Invite sessions, groups over data channel</td></tr><tr><td><code>SignalingHandler</code> (Netty)</td><td>WebSocket <code>wss://</code></td><td>Direct path: signaling, WebRTC, groups</td></tr><tr><td><code>SingleSessionGuard</code></td><td>Per player UUID</td><td>Exactly one bridge session per player</td></tr><tr><td><code>InviteMapService</code> + ZXing</td><td>Minecraft maps</td><td>QR invite as map in hand</td></tr><tr><td><code>WebVoicechatCommand</code></td><td>Bukkit commands</td><td><code>/voicechat</code> for browser players, mod fallback for mod players</td></tr><tr><td>Webend</td><td>Vue 3 + Vite + TypeScript</td><td>Browser client (voice, channel and settings UI)</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
@@ -215,12 +215,12 @@
 </section>
 <section class="doc-section">
 <h2 id="audio-specs">Audio specs</h2>
-<table><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Sample rate</td><td>48 kHz</td></tr><tr><td>Channels</td><td>1 (mono)</td></tr><tr><td>Frame</td><td>20 ms (960 samples)</td></tr><tr><td>Bitrate</td><td>~64 kbps (<code>maxaveragebitrate=64000</code>, FEC, DTX)</td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Codec</td><td>Opus</td></tr><tr><td>Sample rate</td><td>48 kHz</td></tr><tr><td>Channels</td><td>1 (mono)</td></tr><tr><td>Frame</td><td>20 ms (960 samples)</td></tr><tr><td>Bitrate</td><td>~64 kbps (<code>maxaveragebitrate=64000</code>, FEC, DTX)</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
 <h2 id="network-ports">Network ports</h2>
-<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice (mod players only)</td></tr><tr><td>short-lived UDP ports</td><td>UDP (outbound)</td><td>browser audio over WebRTC</td></tr><tr><td>443</td><td>TCP (outbound)</td><td>PeerJS signaling (<code>0.peerjs.com</code>)</td></tr></tbody></table>
+<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>25565</td><td>TCP</td><td>Minecraft game</td></tr><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice (mod players only)</td></tr><tr><td>short-lived UDP ports</td><td>UDP (outbound)</td><td>browser audio over WebRTC</td></tr><tr><td>443</td><td>TCP (outbound)</td><td>PeerJS signaling (<code>0.peerjs.com</code>)</td></tr></tbody></table>
 <p>The browser only talks to the plugin over TCP (signaling) and then directly via WebRTC. Voice packets use ports negotiated by libwebrtc; no inbound rule is needed for them as long as the return path stays open through conntrack.</p>
 </section>
 <nav class="pager" aria-label="Keep reading">
@@ -241,6 +241,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=769521c"></script>
+    <script src="../assets/js/main.js?v=b174c70"></script>
 </body>
 </html>

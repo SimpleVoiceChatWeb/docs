@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=769521c">
+    <link rel="stylesheet" href="../assets/css/main.css?v=b174c70">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/769521c" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 769521c">769521c</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/b174c70" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: b174c70">b174c70</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -115,7 +115,7 @@
             <div class="notice notice-alpha" role="note"><strong>Alpha</strong><span>This documentation and the whole system are in active development - behavior may change.</span> <a href="https://github.com/SimpleVoiceChatWeb/issues" target="_blank" rel="noopener">Issues</a></div>
 <section class="doc-section">
 <h2 id="quick-reference">Quick reference</h2>
-<table><thead><tr><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><code>ALREADY_LINKED</code></td><td>Old session holds the slot</td><td>Second code closes the old session automatically</td></tr><tr><td>&quot;No connection&quot;</td><td>Ports/signaling unreachable</td><td>Test ports externally, check server log</td></tr><tr><td>&quot;No audio&quot;</td><td>Mute gate, group or no direct WebRTC path</td><td>Check mute status and group room; set up TURN behind NAT/firewall</td></tr><tr><td>&quot;LAN only works&quot;</td><td>No port forwarding</td><td>Set up router forwarding for 24454/TCP (UDP only for mod players)</td></tr><tr><td>&quot;WebRTC stuck at signaling connected&quot;</td><td>Symmetric NAT/firewall</td><td>Set up TURN (<a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td>Group shows &quot;0 people&quot;</td><td>Wrong room or no answer</td><td>Reload page, check console for real error</td></tr><tr><td>Group creation times out</td><td>Answer without <code>requestId</code> or channel still closed</td><td>Hard-reload page, then read console</td></tr><tr><td>&quot;Too many attempts&quot;</td><td><code>verify</code> rate limit reached (10/minute/IP)</td><td>Wait briefly, then retry (<code>1029</code>)</td></tr><tr><td>&quot;Direct link won't connect&quot;</td><td>Wrong scheme, port or proxy</td><td>On an HTTPS page only <code>wss</code> works; check port and reverse proxy</td></tr></tbody></table>
+<table><thead><tr><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td>&quot;Code invalid&quot;</td><td>Code expired (5 min) or spent</td><td>Run <code>/voice link</code> again (every code single-use)</td></tr><tr><td><code>ALREADY_LINKED</code></td><td>Old session holds the slot</td><td>Second code closes the old session automatically</td></tr><tr><td>&quot;No connection&quot;</td><td>Ports/signaling unreachable</td><td>Test ports externally, check server log</td></tr><tr><td>&quot;No audio&quot;</td><td>Mute gate, group or no direct WebRTC path</td><td>Check mute status and group room; set up TURN behind NAT/firewall</td></tr><tr><td>&quot;LAN only works&quot;</td><td>No port forwarding</td><td>Set up router forwarding for 24454/TCP (UDP only for mod players)</td></tr><tr><td>&quot;WebRTC stuck at signaling connected&quot;</td><td>Symmetric NAT/firewall</td><td>Set up TURN (<a href="peerjs.html">PeerJS &amp; TURN</a>)</td></tr><tr><td>Group shows &quot;0 people&quot;</td><td>Wrong room or no answer</td><td>Reload page, check console for real error</td></tr><tr><td>Group creation times out</td><td>Answer without <code>requestId</code> or channel still closed</td><td>Hard-reload page, then read console</td></tr><tr><td>&quot;Too many attempts&quot;</td><td><code>verify</code> rate limit reached (10/minute/IP)</td><td>Wait briefly, then retry (<code>1029</code>)</td></tr><tr><td>&quot;Direct link won't connect&quot;</td><td>Wrong scheme, port or proxy</td><td>On an HTTPS page only <code>wss</code> works; check port and reverse proxy</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
@@ -172,7 +172,7 @@
 </section>
 <section class="doc-section">
 <h2 id="build-problems">Build problems</h2>
-<table><thead><tr><th>Symptom</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><code>de.maxhenkel</code> unresolvable (CI)</td><td>SVC API only local</td><td>Build fetches from Modrinth (local → Latest → 2.6.21); version field is <code>bukkit-2.6.21</code></td></tr><tr><td><code>spotlessCheck</code> red</td><td>Never green</td><td>Keep disabled or run <code>spotlessApply</code> once</td></tr><tr><td><code>vue-tsc</code> breaks</td><td><code>&lt;!-- --&gt;</code> in <code>src/main.ts</code></td><td>Only <code>//</code> comments there</td></tr><tr><td>No Pages deploy</td><td>Push without <code>src</code> changes</td><td>Workflow only triggers on <code>src/**</code></td></tr></tbody></table>
+<table><thead><tr><th>Symptom</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><code>JavaVersion.parse(&quot;25...&quot;)</code></td><td>Gradle on Java 25</td><td>Set <code>JAVA_HOME</code> to Java 21</td></tr><tr><td><code>de.maxhenkel</code> unresolvable (CI)</td><td>SVC API only local</td><td>Build fetches from Modrinth (local → Latest → 2.6.21); version field is <code>bukkit-2.6.21</code></td></tr><tr><td><code>spotlessCheck</code> red</td><td>Never green</td><td>Keep disabled or run <code>spotlessApply</code> once</td></tr><tr><td><code>vue-tsc</code> breaks</td><td><code>&lt;!-- --&gt;</code> in <code>src/main.ts</code></td><td>Only <code>//</code> comments there</td></tr><tr><td>No Pages deploy</td><td>Push without <code>src</code> changes</td><td>Workflow only triggers on <code>src/**</code></td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
@@ -227,6 +227,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=769521c"></script>
+    <script src="../assets/js/main.js?v=b174c70"></script>
 </body>
 </html>

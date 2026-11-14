@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=769521c">
+    <link rel="stylesheet" href="assets/css/main.css?v=b174c70">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/769521c" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 769521c">769521c</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/b174c70" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: b174c70">b174c70</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -124,7 +124,7 @@
 </section>
 <section class="doc-section">
 <h2 id="zwei-transporte">Zwei Transporte</h2>
-<table><thead><tr><th>Transport</th><th>Weg</th><th>Wofür</th></tr></thead><tbody><tr><td>PeerJS</td><td>Browser + Plugin wählen sich bei <code>0.peerjs.com:443</code> ein</td><td>Invite-Pfad (<code>/voice link</code>) ohne <code>ws</code>: Nur ausgehende Verbindungen nötig, ideal hinter NAT</td></tr></tbody></table>
+<table><thead><tr><th>Transport</th><th>Weg</th><th>Wofür</th></tr></thead><tbody><tr><td>WebSocket direkt</td><td>Browser ↔ eigener <code>wss://…/signaling</code>-Endpunkt aus <code>web.signalingUrl</code></td><td>Direktmodus: Signaling + WebRTC mit dem Plugin; im Invite per <code>?ws=</code> gesetzt</td></tr><tr><td>PeerJS</td><td>Browser + Plugin wählen sich bei <code>0.peerjs.com:443</code> ein</td><td>Invite-Pfad (<code>/voice link</code>) ohne <code>ws</code>: Nur ausgehende Verbindungen nötig, ideal hinter NAT</td></tr></tbody></table>
 <p>Beide Transporte sprechen dasselbe Nachrichtenprotokoll (inklusive</p>
 <p><code>requestId</code>-Korrelations-IDs und Gruppen-Nachrichten). Sie dürfen gleichzeitig</p>
 <p>aktiv sein. Welcher greift, entscheidet der Einladungslink: ein gültiger</p>
@@ -136,7 +136,7 @@
 </section>
 <section class="doc-section">
 <h2 id="komponenten">Komponenten</h2>
-<table><thead><tr><th>Komponente</th><th>Technik</th><th>Zweck</th></tr></thead><tbody><tr><td><code>BrowserPresenceBridge</code></td><td>SVC <code>PlayerStateManager</code></td><td>Browser als VoicechatConnection registrieren, Mute-Symbole broadcasten</td></tr><tr><td><code>SvcGroupService</code></td><td>echte SVC Gruppen-API</td><td>Echte SVC-Gruppen (normal/open/isolated), Zählung aus SVC-Verbindungen</td></tr><tr><td><code>PeerJsVoiceRuntime</code> + <code>PeerJsWebRtcBridge</code></td><td>PeerJS, WebRTC-Engine</td><td>Invite-Sitzungen, Gruppen über Datenkanal</td></tr><tr><td><code>SignalingHandler</code> (Netty)</td><td>WebSocket <code>wss://</code></td><td>Direkter Pfad: Signaling, WebRTC, Gruppen</td></tr><tr><td><code>SingleSessionGuard</code></td><td>pro Spieler-UUID</td><td>Genau eine Brücken-Sitzung je Spieler</td></tr><tr><td><code>InviteMapService</code> + ZXing</td><td>Minecraft-Maps</td><td>QR-Einladung als Karte in die Hand</td></tr><tr><td><code>WebVoicechatCommand</code></td><td>Bukkit-Commands</td><td><code>/voicechat</code> für Browser-Spieler, Mod-Fallback für Mod-Spieler</td></tr><tr><td>Webend</td><td>Vue 3 + Vite + TypeScript</td><td>Browser-Client (Voice-, Kanal- und Einstellungs-UI)</td></tr></tbody></table>
+<table><thead><tr><th>Komponente</th><th>Technik</th><th>Zweck</th></tr></thead><tbody><tr><td><code>SvcBridge</code></td><td>Kotlin, SVC-API</td><td>Opus-Übersetzung WebRTC ↔ SVC, Mute-Gate, Latenzmessung</td></tr><tr><td><code>BrowserPresenceBridge</code></td><td>SVC <code>PlayerStateManager</code></td><td>Browser als VoicechatConnection registrieren, Mute-Symbole broadcasten</td></tr><tr><td><code>SvcGroupService</code></td><td>echte SVC Gruppen-API</td><td>Echte SVC-Gruppen (normal/open/isolated), Zählung aus SVC-Verbindungen</td></tr><tr><td><code>PeerJsVoiceRuntime</code> + <code>PeerJsWebRtcBridge</code></td><td>PeerJS, WebRTC-Engine</td><td>Invite-Sitzungen, Gruppen über Datenkanal</td></tr><tr><td><code>SignalingHandler</code> (Netty)</td><td>WebSocket <code>wss://</code></td><td>Direkter Pfad: Signaling, WebRTC, Gruppen</td></tr><tr><td><code>SingleSessionGuard</code></td><td>pro Spieler-UUID</td><td>Genau eine Brücken-Sitzung je Spieler</td></tr><tr><td><code>InviteMapService</code> + ZXing</td><td>Minecraft-Maps</td><td>QR-Einladung als Karte in die Hand</td></tr><tr><td><code>WebVoicechatCommand</code></td><td>Bukkit-Commands</td><td><code>/voicechat</code> für Browser-Spieler, Mod-Fallback für Mod-Spieler</td></tr><tr><td>Webend</td><td>Vue 3 + Vite + TypeScript</td><td>Browser-Client (Voice-, Kanal- und Einstellungs-UI)</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
@@ -216,12 +216,12 @@
 </section>
 <section class="doc-section">
 <h2 id="audio-spezifikationen">Audio-Spezifikationen</h2>
-<table><thead><tr><th>Parameter</th><th>Wert</th></tr></thead><tbody><tr><td>Sample Rate</td><td>48 kHz</td></tr><tr><td>Channels</td><td>1 (Mono)</td></tr><tr><td>Frame</td><td>20 ms (960 Samples)</td></tr><tr><td>Bitrate</td><td>~64 kbps (<code>maxaveragebitrate=64000</code>, FEC, DTX)</td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Wert</th></tr></thead><tbody><tr><td>Codec</td><td>Opus</td></tr><tr><td>Sample Rate</td><td>48 kHz</td></tr><tr><td>Channels</td><td>1 (Mono)</td></tr><tr><td>Frame</td><td>20 ms (960 Samples)</td></tr><tr><td>Bitrate</td><td>~64 kbps (<code>maxaveragebitrate=64000</code>, FEC, DTX)</td></tr></tbody></table>
 
 </section>
 <section class="doc-section">
 <h2 id="netzwerk-ports">Netzwerk-Ports</h2>
-<table><thead><tr><th>Port</th><th>Protokoll</th><th>Zweck</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket-Signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC-Sprache (nur Mod-Spieler)</td></tr><tr><td>kurzlebige UDP-Ports</td><td>UDP (ausgehend)</td><td>Browser-Audio über WebRTC</td></tr><tr><td>443</td><td>TCP (ausgehend)</td><td>PeerJS-Signalisierung (<code>0.peerjs.com</code>)</td></tr></tbody></table>
+<table><thead><tr><th>Port</th><th>Protokoll</th><th>Zweck</th></tr></thead><tbody><tr><td>25565</td><td>TCP</td><td>Minecraft Game</td></tr><tr><td>24454</td><td>TCP</td><td>WebSocket-Signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC-Sprache (nur Mod-Spieler)</td></tr><tr><td>kurzlebige UDP-Ports</td><td>UDP (ausgehend)</td><td>Browser-Audio über WebRTC</td></tr><tr><td>443</td><td>TCP (ausgehend)</td><td>PeerJS-Signalisierung (<code>0.peerjs.com</code>)</td></tr></tbody></table>
 <p>Der Browser spricht mit dem Plugin nur über TCP (Signaling) und danach per WebRTC direkt. Die Sprachpakete laufen über Ports, die libwebrtc aushandelt; nach außen ist dafür keine eingehende Regel nötig, solange der Rückweg über conntrack offen bleibt.</p>
 </section>
 <nav class="pager" aria-label="Weiterblättern">
@@ -242,6 +242,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="assets/js/main.js?v=769521c"></script>
+    <script src="assets/js/main.js?v=b174c70"></script>
 </body>
 </html>

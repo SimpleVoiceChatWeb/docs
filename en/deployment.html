@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=769521c">
+    <link rel="stylesheet" href="../assets/css/main.css?v=b174c70">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/769521c" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 769521c">769521c</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/b174c70" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: b174c70">b174c70</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -123,7 +123,7 @@
 </section>
 <section class="doc-section">
 <h2 id="ports-and-firewall">Ports and firewall</h2>
-<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice</td></tr><tr><td>443</td><td>TCP (outbound)</td><td>PeerJS signaling</td></tr></tbody></table>
+<table><thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>25565</td><td>TCP</td><td>Minecraft game</td></tr><tr><td>24454</td><td>TCP</td><td>WebSocket signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC voice</td></tr><tr><td>443</td><td>TCP (outbound)</td><td>PeerJS signaling</td></tr></tbody></table>
 <pre data-lang="bash"><code class="language-bash"># UFW example
 ufw allow 25565/tcp   # Minecraft
 ufw allow 24454/tcp   # WebSocket signaling (browser)
@@ -141,7 +141,7 @@ ufw enable</code></pre>
 <section class="doc-section">
 <h2 id="environment-variables">Environment variables</h2>
 <p>Every option can be overridden with the <code>SVCWEB_</code> prefix plus the dotted path in upper case, with dots replaced by underscores:</p>
-<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code>SVCWEB_AUTH_JWT_SECRET</code></td><td>Fixed JWT secret instead of auto-generation</td></tr><tr><td><code>SVCWEB_TLS_KEYSTORE_PASSWORD</code></td><td>Keystore password, preferred over the file</td></tr></tbody></table>
+<table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td><code>SVCWEB_WEB_PORT</code></td><td>Example: <code>web.port</code></td></tr><tr><td><code>SVCWEB_AUTH_JWT_SECRET</code></td><td>Fixed JWT secret instead of auto-generation</td></tr><tr><td><code>SVCWEB_TLS_KEYSTORE_PASSWORD</code></td><td>Keystore password, preferred over the file</td></tr></tbody></table>
 </section>
 <nav class="pager" aria-label="Keep reading">
 <a class="pager-prev" href="peerjs.html"><span>← Back</span><strong>PeerJS & TURN</strong></a>
@@ -161,6 +161,6 @@ ufw enable</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=769521c"></script>
+    <script src="../assets/js/main.js?v=b174c70"></script>
 </body>
 </html>

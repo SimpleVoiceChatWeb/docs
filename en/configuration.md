@@ -39,6 +39,14 @@ Invite links have the form `<web.clientUrl>?code=<10 characters>`; when `web.sig
 | `auth.jwtTtlSeconds` | `86400` | JWT validity (seconds) |
 | `auth.jwtSecret` | `""` | HS256 secret - set a fixed value to keep sessions across restarts |
 
+### Modules
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `modules.enabled` | `[]` | Modules that may be enabled; currently only front. An unknown name is only logged. |
+
+The module jars must be placed in `plugins/` manually for now; automatic loading/downloading will follow later.
+
 ### PeerJS
 
 | Option | Default | Description |

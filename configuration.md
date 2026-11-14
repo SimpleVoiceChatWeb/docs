@@ -39,6 +39,14 @@ Einladungslinks haben die Form `<web.clientUrl>?code=<10 Zeichen>`; ist `web.sig
 | `auth.jwtTtlSeconds` | `86400` | Gültigkeit des JWT (Sekunden) |
 | `auth.jwtSecret` | `""` | HS256-Secret - fester Wert erhält Sitzungen über Neustarts |
 
+### Module
+
+| Option | Default | Beschreibung |
+|--------|---------|--------------|
+| `modules.enabled` | `[]` | Module, die aktiviert werden dürfen; derzeit nur front. Ein unbekannter Name wird nur geloggt. |
+
+Die Modul-Jars müssen vorerst manuell nach `plugins/` gelegt werden; automatisches Laden/Herunterladen folgt später.
+
 ### PeerJS
 
 | Option | Default | Beschreibung |

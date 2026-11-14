@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=769521c">
+    <link rel="stylesheet" href="assets/css/main.css?v=b174c70">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/769521c" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 769521c">769521c</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/b174c70" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: b174c70">b174c70</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -129,7 +129,7 @@
 <section class="doc-section">
 <h2 id="ports-firewall">Ports &amp; Firewall</h2>
 <p><a href="/tools/#/ports">Ports &amp; Firewall</a> macht aus deinen Ports fertige Snippets:</p>
-<table><thead><tr><th>Ausgabe</th><th>Verwendung</th></tr></thead><tbody><tr><td><code>iptables</code></td><td>Systeme ohne ufw oder mit eigenen Regeln</td></tr><tr><td><code>docker-compose</code></td><td>Container-Setups mit veröffentlichten Ports</td></tr><tr><td>Config-Werte</td><td>Die passende Zeile für <code>web.port</code></td></tr></tbody></table>
+<table><thead><tr><th>Ausgabe</th><th>Verwendung</th></tr></thead><tbody><tr><td><code>ufw</code></td><td>Debian-/Ubuntu-Hosts mit ufw</td></tr><tr><td><code>iptables</code></td><td>Systeme ohne ufw oder mit eigenen Regeln</td></tr><tr><td><code>docker-compose</code></td><td>Container-Setups mit veröffentlichten Ports</td></tr><tr><td>Config-Werte</td><td>Die passende Zeile für <code>web.port</code></td></tr></tbody></table>
 <p>Das Spiel braucht TCP auf 25565, der Browser <strong>TCP</strong> auf dem Web-Port fürs Signaling. UDP auf derselben Nummer ist der Sprachport von Simple Voice Chat und nur nötig, wenn Spieler mit dem <strong>Mod</strong> mitsprechen – <code>web.port</code> steuert ihn nicht. Browser-Audio läuft als WebRTC über kurzlebige UDP-Ports zwischen Browser und Plugin und braucht keine eingehende Freigabe. Kommt im Browser kein Ton an, liegt es meist an Mute/Gruppe oder an einem symmetrischen NAT (dann hilft TURN).</p>
 <p>Das Plugin hat keinen eingehenden WebRTC-Port. Ältere Versionen schrieben <code>webrtc.port</code>; er wird ignoriert und vom Config-Editor entfernt.</p>
 
@@ -161,6 +161,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="assets/js/main.js?v=769521c"></script>
+    <script src="assets/js/main.js?v=b174c70"></script>
 </body>
 </html>
