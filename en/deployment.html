@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=f6bb9cf">
+    <link rel="stylesheet" href="../assets/css/main.css?v=7e126cb">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/f6bb9cf" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: f6bb9cf">f6bb9cf</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/7e126cb" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 7e126cb">7e126cb</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -128,6 +128,12 @@ ufw allow 24454/tcp   # WebSocket signaling (browser)
 ufw allow 24454/udp   # SVC voice (mod players only)
 ufw enable</code></pre>
 <blockquote><p><strong>Tip:</strong> Always test ports from an <strong>external network</strong><br>(phone hotspot), not from the server itself! <code>24454/tcp</code> is mandatory as<br>soon as browsers join; the UDP rule only when mod players are present.</p></blockquote>
+<h3 id="direct-mode-behind-a-reverse-proxy">Direct mode behind a reverse proxy</h3>
+<p>When a reverse proxy terminates TLS, set <code>web.tlsTerminatedExternally=true</code></p>
+<p>and use <code>wss://…</code> in the link (<code>web.signalingUrl</code>) so an HTTPS page can reach</p>
+<p>the endpoint. The proxy must set <code>X-Forwarded-For</code> and run on the same machine</p>
+<p>(loopback connection) - otherwise the <code>verify</code> rate limit applies per proxy IP</p>
+<p>instead of per client.</p>
 
 </section>
 <section class="doc-section">
@@ -153,6 +159,6 @@ ufw enable</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=f6bb9cf"></script>
+    <script src="../assets/js/main.js?v=7e126cb"></script>
 </body>
 </html>

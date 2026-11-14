@@ -16,6 +16,8 @@ timeout after 8 seconds.
 | Type | Direction | Purpose |
 |-----|----------|-------|
 | `join` / `joined` | both | Join + confirmation with peer info |
+| `verify` (`{code}`) | Client → Server | Exchange an invite code for a session token |
+| `token` (`{token, expiresAt}`) | Server → Client | Answer to `verify`; `expiresAt` as Unix seconds |
 | `offer` / `answer` / `ice-candidate` | both | WebRTC signaling |
 | `mute` (`{muted}`) | both | Microphone state, enforced server-side |
 | `deafen` (`{deafened}`) | both | Full-mute symbol for mod players |
@@ -31,13 +33,43 @@ timeout after 8 seconds.
 
 | Code | Meaning |
 |------|-----------|
-| `1000` | Generic (format, unknown type, WebRTC not ready) |
+| `1000` | Generic (format, unknown type, WebRTC not ready); also `verify` after a successful join |
 | `1001` | Not authenticated |
 | `1004` | No player on this connection / unknown group |
 | `1005` | Group needs a password (open dialog) |
 | `1006` | Wrong password (keep dialog open) |
-| `1009` | Token invalid or expired |
+| `1009` | Token invalid/expired - or code invalid, expired, spent or the 60 s join window passed (deliberately indistinguishable) |
 | `1010` | Token without `voice` scope |
+| `1029` | Rate limit reached (10 `verify` per minute and IP) |
+
+### Direct mode (verify → join)
+
+In direct mode the client obtains the session token over the signaling
+WebSocket; `join` then uses that token.
+
+```json
+// Client → Server
+{ "type": "verify", "payload": { "code": "K7P4QX9LM2" } }
+
+// Server → Client
+{ "type": "token", "payload": { "token": "<jwt>", "expiresAt": 1763200000 } }
+```
+
+- `verify` does **not** spend the code; the token also carries `code` and
+  `codeIssuedAt`.
+- The **first** `join` with this token spends the code and must happen within
+  **60 seconds** of issue - otherwise `1009`.
+- After that, the same token (same `jti`) may `join` again as often as needed
+  for reconnects, until it expires.
+- Token TTL: `auth.jwtTtlSeconds` (default 86400 s). A second token for the
+  same code can no longer use it once another one has spent it.
+- The client keeps the token in `sessionStorage` and discards it after `exp`;
+  a browser restart needs a new code.
+
+Rate limit: 10 `verify` per minute per client IP, including invalid codes
+(`1029`). The effective address is the TCP remote address; `X-Forwarded-For`
+is only honoured when the TCP peer is loopback (local reverse proxy) - on
+direct connections the header is ignored.
 
 ### Group payloads
 

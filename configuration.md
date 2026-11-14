@@ -29,6 +29,8 @@ Hier stehen nur Optionen, die das Plugin tatsächlich liest. Alles andere in ein
 | `web.signalingUrl` | `""` | Vollständige WebSocket-URL für den Direktmodus (z. B. `wss://voice.example.com/signaling`); leer = Einladungen ohne `ws`-Parameter |
 | `tls.keystorePassword` | `""` | Keystore-Passwort - besser `SVCWEB_TLS_KEYSTORE_PASSWORD` |
 
+Einladungslinks haben die Form `<web.clientUrl>?code=<10 Zeichen>`; ist `web.signalingUrl` gesetzt, hängt das Plugin `&ws=<URL-kodierte WebSocket-URL>` an.
+
 ### Auth
 
 | Option | Default | Beschreibung |

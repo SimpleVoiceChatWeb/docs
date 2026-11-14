@@ -16,6 +16,8 @@ laufen nach 8 Sekunden in einen sichtbaren Timeout.
 | Typ | Richtung | Zweck |
 |-----|----------|-------|
 | `join` / `joined` | beide | Beitritt + Bestätigung mit Peer-Info |
+| `verify` (`{code}`) | Client → Server | Einladungscode gegen ein Session-Token tauschen |
+| `token` (`{token, expiresAt}`) | Server → Client | Antwort auf `verify`; `expiresAt` als Unix-Sekunden |
 | `offer` / `answer` / `ice-candidate` | beide | WebRTC-Signaling |
 | `mute` (`{muted}`) | beide | Mikrofon-Status, serverseitig erzwungen |
 | `deafen` (`{deafened}`) | beide | Vollmute-Symbol für Mod-Spieler |
@@ -31,13 +33,44 @@ laufen nach 8 Sekunden in einen sichtbaren Timeout.
 
 | Code | Bedeutung |
 |------|-----------|
-| `1000` | Generisch (Format, unbekannter Typ, WebRTC nicht bereit) |
+| `1000` | Generisch (Format, unbekannter Typ, WebRTC nicht bereit); auch `verify` nach erfolgreichem Join |
 | `1001` | Nicht authentifiziert |
 | `1004` | Kein Spieler zu dieser Verbindung / unbekannte Gruppe |
 | `1005` | Gruppe braucht ein Passwort (Dialog öffnen) |
 | `1006` | Passwort falsch (Dialog offen lassen) |
-| `1009` | Token ungültig oder abgelaufen |
+| `1009` | Token ungültig/abgelaufen - oder Code ungültig, abgelaufen, verbraucht bzw. 60-s-Join-Fenster vorbei (bewusst nicht unterscheidbar) |
 | `1010` | Token ohne `voice`-Scope |
+| `1029` | Rate-Limit erreicht (10 `verify` pro Minute und IP) |
+
+### Direktmodus (verify → join)
+
+Im Direktmodus holt der Client das Session-Token über die
+Signaling-WebSocket; `join` folgt mit diesem Token.
+
+```json
+// Client → Server
+{ "type": "verify", "payload": { "code": "K7P4QX9LM2" } }
+
+// Server → Client
+{ "type": "token", "payload": { "token": "<jwt>", "expiresAt": 1763200000 } }
+```
+
+- `verify` verbraucht den Code **nicht**; der Token enthält zusätzlich `code`
+  und `codeIssuedAt`.
+- Der **erste** `join` mit diesem Token verbraucht den Code und muss innerhalb
+  von **60 Sekunden** nach Ausstellung erfolgen - sonst `1009`.
+- Danach darf derselbe Token (gleiche `jti`) beliebig oft für Reconnects
+  `join`en, bis er abläuft.
+- Token-TTL: `auth.jwtTtlSeconds` (Default 86400 s). Ein zweiter Token für
+  denselben Code kann ihn nicht mehr nutzen, sobald ein anderer ihn verbraucht
+  hat.
+- Der Client hält den Token in `sessionStorage` und verwirft ihn nach `exp`;
+  ein Browser-Neustart braucht einen neuen Code.
+
+Rate-Limit: 10 `verify` pro Minute pro Client-IP, auch für ungültige Codes
+(`1029`). Maßgeblich ist die TCP-Remote-Adresse; `X-Forwarded-For` zählt nur,
+wenn der TCP-Peer Loopback ist (lokaler Reverse Proxy) - bei direkter
+Verbindung wird der Header ignoriert.
 
 ### Gruppen-Payloads
 

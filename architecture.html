@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=f6bb9cf">
+    <link rel="stylesheet" href="assets/css/main.css?v=7e126cb">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/f6bb9cf" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: f6bb9cf">f6bb9cf</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/7e126cb" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: 7e126cb">7e126cb</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -124,10 +124,14 @@
 </section>
 <section class="doc-section">
 <h2 id="zwei-transporte">Zwei Transporte</h2>
-<table><thead><tr><th>Transport</th><th>Weg</th><th>Wofür</th></tr></thead><tbody><tr><td>PeerJS</td><td>Browser + Plugin wählen sich bei <code>0.peerjs.com:443</code> ein</td><td>Invite-Pfad (<code>/voice link</code>): Nur ausgehende Verbindungen nötig, ideal hinter NAT</td></tr></tbody></table>
+<table><thead><tr><th>Transport</th><th>Weg</th><th>Wofür</th></tr></thead><tbody><tr><td>PeerJS</td><td>Browser + Plugin wählen sich bei <code>0.peerjs.com:443</code> ein</td><td>Invite-Pfad (<code>/voice link</code>) ohne <code>ws</code>: Nur ausgehende Verbindungen nötig, ideal hinter NAT</td></tr></tbody></table>
 <p>Beide Transporte sprechen dasselbe Nachrichtenprotokoll (inklusive</p>
-<p><code>requestId</code>-Korrelations-IDs und Gruppen-Nachrichten). Siehe</p>
-<p><a href="api.html">API Referenz</a> und <a href="peerjs.html">PeerJS &amp; TURN</a>.</p>
+<p><code>requestId</code>-Korrelations-IDs und Gruppen-Nachrichten). Sie dürfen gleichzeitig</p>
+<p>aktiv sein. Welcher greift, entscheidet der Einladungslink: ein gültiger</p>
+<p><code>ws</code>-Parameter hat Vorrang vor PeerJS; fehlt er oder ist er ungültig, nutzt</p>
+<p>der Client bei gültigem 10-Zeichen-Code PeerJS. Den Zielhost zeigt der Client</p>
+<p>an, bevor er verbindet. Siehe <a href="api.html">API Referenz</a> und</p>
+<p><a href="peerjs.html">PeerJS &amp; TURN</a>.</p>
 
 </section>
 <section class="doc-section">
@@ -184,6 +188,10 @@
 <h2 id="sitzungen-und-sicherheit">Sitzungen und Sicherheit</h2>
 <ul>
 <li>Ein Code = eine Sitzung (<code>/voice link</code>-Codes sind einmalig, 5 Minuten TTL).</li>
+</ul>
+<p>Im Direktmodus verbraucht erst der erste <code>join</code> den Code - innerhalb von</p>
+<p>60 Sekunden nach <code>verify</code>.</p>
+<ul>
 <li>Eine Brücke je Spieler (<code>SingleSessionGuard</code>); ein zweiter Code schließt die</li>
 </ul>
 <p>alte Sitzung statt zu scheitern. Quit gibt sofort frei.</p>
@@ -192,12 +200,18 @@
 </ul>
 <p>force` schaltet einmalig frei.</p>
 <ul>
-<li>JWT (HS256) mit <code>voice</code>-Scope für den WebSocket-Pfad; leeres</li>
+<li>JWT (HS256) mit <code>voice</code>-Scope für den WebSocket-Pfad; <code>verify</code> liefert ein</li>
 </ul>
-<p><code>auth.jwtSecret</code> wird beim Start auto-generiert.</p>
+<p>Session-Token mit TTL <code>auth.jwtTtlSeconds</code> (Default 24 h). Reconnects mit</p>
+<p>demselben Token sind erlaubt, bis es abläuft.</p>
 <ul>
-<li>Rate-Limit: 5 Codes/Minute/Spieler.</li>
+<li>Rate-Limit: 5 Codes/Minute/Spieler für <code>/voice link</code>; das <code>verify</code>-Limit im</li>
 </ul>
+<p>Direktmodus liegt separat bei 10/Minute pro Client-IP.</p>
+<ul>
+<li>Leeres <code>auth.jwtSecret</code> wird pro Start <strong>flüchtig</strong> erzeugt - ein Neustart</li>
+</ul>
+<p>beendet alle Sitzungen. Für Persistenz einen festen Wert setzen.</p>
 
 </section>
 <section class="doc-section">
@@ -228,6 +242,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="assets/js/main.js?v=f6bb9cf"></script>
+    <script src="assets/js/main.js?v=7e126cb"></script>
 </body>
 </html>

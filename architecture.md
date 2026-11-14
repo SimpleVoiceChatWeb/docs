@@ -19,12 +19,16 @@ WebRTC-Audio und Simple Voice Chat. Alles, was Simple Voice Chat kann
 
 | Transport | Weg | Wofür |
 |-----------|-----|-------|
-| WebSocket direkt | Browser ↔ `wss://<host>:24454/signaling` | Standard: Signaling + WebRTC mit dem Plugin |
-| PeerJS | Browser + Plugin wählen sich bei `0.peerjs.com:443` ein | Invite-Pfad (`/voice link`): Nur ausgehende Verbindungen nötig, ideal hinter NAT |
+| WebSocket direkt | Browser ↔ eigener `wss://…/signaling`-Endpunkt aus `web.signalingUrl` | Direktmodus: Signaling + WebRTC mit dem Plugin; im Invite per `?ws=` gesetzt |
+| PeerJS | Browser + Plugin wählen sich bei `0.peerjs.com:443` ein | Invite-Pfad (`/voice link`) ohne `ws`: Nur ausgehende Verbindungen nötig, ideal hinter NAT |
 
 Beide Transporte sprechen dasselbe Nachrichtenprotokoll (inklusive
-`requestId`-Korrelations-IDs und Gruppen-Nachrichten). Siehe
-[API Referenz](api.html) und [PeerJS & TURN](peerjs.html).
+`requestId`-Korrelations-IDs und Gruppen-Nachrichten). Sie dürfen gleichzeitig
+aktiv sein. Welcher greift, entscheidet der Einladungslink: ein gültiger
+`ws`-Parameter hat Vorrang vor PeerJS; fehlt er oder ist er ungültig, nutzt
+der Client bei gültigem 10-Zeichen-Code PeerJS. Den Zielhost zeigt der Client
+an, bevor er verbindet. Siehe [API Referenz](api.html) und
+[PeerJS & TURN](peerjs.html).
 
 ## Komponenten
 
@@ -80,13 +84,19 @@ auf 16 Zeichen. Die Webend-Liste pollt alle 5 Sekunden.
 ## Sitzungen und Sicherheit
 
 - Ein Code = eine Sitzung (`/voice link`-Codes sind einmalig, 5 Minuten TTL).
+  Im Direktmodus verbraucht erst der erste `join` den Code - innerhalb von
+  60 Sekunden nach `verify`.
 - Eine Brücke je Spieler (`SingleSessionGuard`); ein zweiter Code schließt die
   alte Sitzung statt zu scheitern. Quit gibt sofort frei.
 - OP-Gate: Ohne OP kein `/voice link` (Hinweis auf die Mod), `/voice link
   force` schaltet einmalig frei.
-- JWT (HS256) mit `voice`-Scope für den WebSocket-Pfad; leeres
-  `auth.jwtSecret` wird beim Start auto-generiert.
-- Rate-Limit: 5 Codes/Minute/Spieler.
+- JWT (HS256) mit `voice`-Scope für den WebSocket-Pfad; `verify` liefert ein
+  Session-Token mit TTL `auth.jwtTtlSeconds` (Default 24 h). Reconnects mit
+  demselben Token sind erlaubt, bis es abläuft.
+- Rate-Limit: 5 Codes/Minute/Spieler für `/voice link`; das `verify`-Limit im
+  Direktmodus liegt separat bei 10/Minute pro Client-IP.
+- Leeres `auth.jwtSecret` wird pro Start **flüchtig** erzeugt - ein Neustart
+  beendet alle Sitzungen. Für Persistenz einen festen Wert setzen.
 
 ## Audio-Spezifikationen
 

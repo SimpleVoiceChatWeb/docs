@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=f6bb9cf">
+    <link rel="stylesheet" href="../assets/css/main.css?v=7e126cb">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/f6bb9cf" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: f6bb9cf">f6bb9cf</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/7e126cb" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 7e126cb">7e126cb</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -121,6 +121,7 @@
 <table><thead><tr><th>Option</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>configDir</code></td><td><code>&quot;.&quot;</code></td><td>Base directory for the TLS keystore lookup</td></tr><tr><td><code>development</code></td><td><code>true</code></td><td>Allow a self-signed certificate when no keystore exists</td></tr></tbody></table>
 <h3 id="web-and-tls">Web and TLS</h3>
 <table><thead><tr><th>Option</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>web.port</code></td><td><code>24454</code></td><td>TCP signaling (browser); the UDP voice port belongs to SVC</td></tr><tr><td><code>web.tlsTerminatedExternally</code></td><td><code>false</code></td><td><code>true</code> = reverse proxy handles TLS</td></tr><tr><td><code>web.clientUrl</code></td><td><code>&quot;https://SimpleVCWeb.github.io/app/&quot;</code></td><td>Base URL of the web client for invite links and QR codes; no query or fragment</td></tr><tr><td><code>web.signalingUrl</code></td><td><code>&quot;&quot;</code></td><td>Full WebSocket URL for direct mode (e.g. <code>wss://voice.example.com/signaling</code>); empty = invites without a <code>ws</code> parameter</td></tr><tr><td><code>tls.keystorePassword</code></td><td><code>&quot;&quot;</code></td><td>Keystore password - prefer <code>SVCWEB_TLS_KEYSTORE_PASSWORD</code></td></tr></tbody></table>
+<p>Invite links have the form <code>&lt;web.clientUrl&gt;?code=&lt;10 characters&gt;</code>; when <code>web.signalingUrl</code> is set, the plugin appends <code>&amp;ws=&lt;URL-encoded WebSocket URL&gt;</code>.</p>
 <h3 id="auth">Auth</h3>
 <table><thead><tr><th>Option</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.jwtTtlSeconds</code></td><td><code>86400</code></td><td>JWT validity (seconds)</td></tr><tr><td><code>auth.jwtSecret</code></td><td><code>&quot;&quot;</code></td><td>HS256 secret - set a fixed value to keep sessions across restarts</td></tr></tbody></table>
 <h3 id="peerjs">PeerJS</h3>
@@ -174,6 +175,6 @@ VITE_PEERJS_KEY=peerjs</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=f6bb9cf"></script>
+    <script src="../assets/js/main.js?v=7e126cb"></script>
 </body>
 </html>

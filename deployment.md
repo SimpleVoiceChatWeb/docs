@@ -31,6 +31,14 @@ ufw enable
 > (Handy-Hotspot), nicht vom Server selbst! `24454/tcp` ist Pflicht, sobald
 > Browser mitsprechen; die UDP-Regel nur, wenn Mod-Spieler dabei sind.
 
+### Direktmodus hinter Reverse Proxy
+
+Beendet ein Reverse Proxy TLS, `web.tlsTerminatedExternally=true` setzen und
+im Link `wss://…` verwenden (`web.signalingUrl`), damit eine HTTPS-Seite den
+Endpunkt erreicht. Der Proxy muss `X-Forwarded-For` setzen und auf derselben
+Maschine laufen (Verbindung über Loopback) - sonst greift das
+`verify`-Rate-Limit pro Proxy-IP statt pro Client.
+
 ## Umgebungsvariablen
 
 Jede Option lässt sich mit Präfix `SVCWEB_` und dem Großbuchstaben-Pfad überschreiben (Punkte werden zu Unterstrichen):

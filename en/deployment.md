@@ -31,6 +31,14 @@ ufw enable
 > (phone hotspot), not from the server itself! `24454/tcp` is mandatory as
 > soon as browsers join; the UDP rule only when mod players are present.
 
+### Direct mode behind a reverse proxy
+
+When a reverse proxy terminates TLS, set `web.tlsTerminatedExternally=true`
+and use `wss://…` in the link (`web.signalingUrl`) so an HTTPS page can reach
+the endpoint. The proxy must set `X-Forwarded-For` and run on the same machine
+(loopback connection) - otherwise the `verify` rate limit applies per proxy IP
+instead of per client.
+
 ## Environment variables
 
 Every option can be overridden with the `SVCWEB_` prefix plus the dotted path in upper case, with dots replaced by underscores:

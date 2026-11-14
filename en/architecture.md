@@ -19,11 +19,14 @@ WebRTC audio and Simple Voice Chat. Everything Simple Voice Chat can do
 
 | Transport | Path | For |
 |-----------|-----|-------|
-| Direct WebSocket | Browser ↔ `wss://<host>:24454/signaling` | Default: signaling + WebRTC with the plugin |
-| PeerJS | Browser + plugin dial out to `0.peerjs.com:443` | Invite path (`/voice link`): only outbound connections needed, ideal behind NAT |
+| Direct WebSocket | Browser ↔ own `wss://…/signaling` endpoint from `web.signalingUrl` | Direct mode: signaling + WebRTC with the plugin; set in the invite via `?ws=` |
+| PeerJS | Browser + plugin dial out to `0.peerjs.com:443` | Invite path (`/voice link`) without `ws`: only outbound connections needed, ideal behind NAT |
 
 Both transports speak the same message protocol (including `requestId`
-correlation IDs and group messages). See [API Reference](api.html) and
+correlation IDs and group messages). Both may be active at the same time. The
+invite link decides which one is used: a valid `ws` parameter takes precedence
+over PeerJS; if it is missing or invalid, the client uses PeerJS with a valid
+10-character code. The client shows the target host before it connects. See [API Reference](api.html) and
 [PeerJS & TURN](peerjs.html).
 
 ## Components
@@ -80,13 +83,19 @@ list polls every 5 seconds.
 ## Sessions and security
 
 - One code = one session (`/voice link` codes are single-use, 5 minute TTL).
+  In direct mode the first `join` spends the code - within 60 seconds of
+  `verify`.
 - One bridge per player (`SingleSessionGuard`); a second code closes the old
   session instead of failing. Quit frees immediately.
 - OP gate: no `/voice link` without OP (hint at the mod), `/voice link
   force` unlocks once.
-- JWT (HS256) with `voice` scope for the WebSocket path; empty
-  `auth.jwtSecret` is auto-generated on startup.
-- Rate limit: 5 codes/minute/player.
+- JWT (HS256) with `voice` scope for the WebSocket path; `verify` returns a
+  session token with TTL `auth.jwtTtlSeconds` (default 24 h). Reconnects with
+  the same token are allowed until it expires.
+- Rate limit: 5 codes/minute/player for `/voice link`; the `verify` limit in
+  direct mode is separate at 10/minute per client IP.
+- An empty `auth.jwtSecret` is generated **ephemerally** per start - a restart
+  ends all sessions. Set a fixed value for persistence.
 
 ## Audio specs
 

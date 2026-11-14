@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=f6bb9cf">
+    <link rel="stylesheet" href="../assets/css/main.css?v=7e126cb">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/f6bb9cf" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: f6bb9cf">f6bb9cf</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/7e126cb" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 7e126cb">7e126cb</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -120,9 +120,41 @@
 <p>the server echoes it on both transports. Group requests run into a visible</p>
 <p>timeout after 8 seconds.</p>
 <h3 id="message-types">Message types</h3>
-<table><thead><tr><th>Type</th><th>Direction</th><th>Purpose</th></tr></thead><tbody><tr><td><code>offer</code> / <code>answer</code> / <code>ice-candidate</code></td><td>both</td><td>WebRTC signaling</td></tr><tr><td><code>mute</code> (<code>{muted}</code>)</td><td>both</td><td>Microphone state, enforced server-side</td></tr><tr><td><code>deafen</code> (<code>{deafened}</code>)</td><td>both</td><td>Full-mute symbol for mod players</td></tr><tr><td><code>volume</code></td><td>both</td><td>Volume</td></tr><tr><td><code>position</code> (<code>x/y/z/yaw/pitch</code>)</td><td>both</td><td>3D position for spatial audio</td></tr><tr><td><code>group-list</code> / <code>group-create</code> / <code>group-delete</code> / <code>group-join</code> / <code>group-leave</code></td><td>Client → Server</td><td>Group operations</td></tr><tr><td><code>group-created</code> / <code>group-joined</code> / <code>group-left</code> / <code>group-list</code></td><td>Server → Client</td><td>Answers (always with <code>requestId</code>)</td></tr><tr><td><code>leave</code></td><td>both</td><td>Leave connection/group</td></tr><tr><td><code>ping</code> / <code>pong</code></td><td>both</td><td>Keepalive (PeerJS additionally <code>HEARTBEAT</code> every 5 s)</td></tr><tr><td><code>error</code> (<code>code</code>, <code>message</code>)</td><td>Server → Client</td><td>Real reason instead of timeout</td></tr></tbody></table>
+<table><thead><tr><th>Type</th><th>Direction</th><th>Purpose</th></tr></thead><tbody><tr><td><code>verify</code> (<code>{code}</code>)</td><td>Client → Server</td><td>Exchange an invite code for a session token</td></tr><tr><td><code>token</code> (<code>{token, expiresAt}</code>)</td><td>Server → Client</td><td>Answer to <code>verify</code>; <code>expiresAt</code> as Unix seconds</td></tr><tr><td><code>offer</code> / <code>answer</code> / <code>ice-candidate</code></td><td>both</td><td>WebRTC signaling</td></tr><tr><td><code>mute</code> (<code>{muted}</code>)</td><td>both</td><td>Microphone state, enforced server-side</td></tr><tr><td><code>deafen</code> (<code>{deafened}</code>)</td><td>both</td><td>Full-mute symbol for mod players</td></tr><tr><td><code>volume</code></td><td>both</td><td>Volume</td></tr><tr><td><code>position</code> (<code>x/y/z/yaw/pitch</code>)</td><td>both</td><td>3D position for spatial audio</td></tr><tr><td><code>group-list</code> / <code>group-create</code> / <code>group-delete</code> / <code>group-join</code> / <code>group-leave</code></td><td>Client → Server</td><td>Group operations</td></tr><tr><td><code>group-created</code> / <code>group-joined</code> / <code>group-left</code> / <code>group-list</code></td><td>Server → Client</td><td>Answers (always with <code>requestId</code>)</td></tr><tr><td><code>leave</code></td><td>both</td><td>Leave connection/group</td></tr><tr><td><code>ping</code> / <code>pong</code></td><td>both</td><td>Keepalive (PeerJS additionally <code>HEARTBEAT</code> every 5 s)</td></tr><tr><td><code>error</code> (<code>code</code>, <code>message</code>)</td><td>Server → Client</td><td>Real reason instead of timeout</td></tr></tbody></table>
 <h3 id="error-codes">Error codes</h3>
-<table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>1001</code></td><td>Not authenticated</td></tr><tr><td><code>1004</code></td><td>No player on this connection / unknown group</td></tr><tr><td><code>1005</code></td><td>Group needs a password (open dialog)</td></tr><tr><td><code>1006</code></td><td>Wrong password (keep dialog open)</td></tr><tr><td><code>1009</code></td><td>Token invalid or expired</td></tr><tr><td><code>1010</code></td><td>Token without <code>voice</code> scope</td></tr></tbody></table>
+<table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>1001</code></td><td>Not authenticated</td></tr><tr><td><code>1004</code></td><td>No player on this connection / unknown group</td></tr><tr><td><code>1005</code></td><td>Group needs a password (open dialog)</td></tr><tr><td><code>1006</code></td><td>Wrong password (keep dialog open)</td></tr><tr><td><code>1009</code></td><td>Token invalid/expired - or code invalid, expired, spent or the 60 s join window passed (deliberately indistinguishable)</td></tr><tr><td><code>1010</code></td><td>Token without <code>voice</code> scope</td></tr><tr><td><code>1029</code></td><td>Rate limit reached (10 <code>verify</code> per minute and IP)</td></tr></tbody></table>
+<h3 id="direct-mode-verify-join">Direct mode (verify → join)</h3>
+<p>In direct mode the client obtains the session token over the signaling</p>
+<p>WebSocket; <code>join</code> then uses that token.</p>
+<pre data-lang="json"><code class="language-json">// Client → Server
+{ &quot;type&quot;: &quot;verify&quot;, &quot;payload&quot;: { &quot;code&quot;: &quot;K7P4QX9LM2&quot; } }
+
+// Server → Client
+{ &quot;type&quot;: &quot;token&quot;, &quot;payload&quot;: { &quot;token&quot;: &quot;&lt;jwt&gt;&quot;, &quot;expiresAt&quot;: 1763200000 } }</code></pre>
+<ul>
+<li><code>verify</code> does <strong>not</strong> spend the code; the token also carries <code>code</code> and</li>
+</ul>
+<p><code>codeIssuedAt</code>.</p>
+<ul>
+<li>The <strong>first</strong> <code>join</code> with this token spends the code and must happen within</li>
+</ul>
+<p><strong>60 seconds</strong> of issue - otherwise <code>1009</code>.</p>
+<ul>
+<li>After that, the same token (same <code>jti</code>) may <code>join</code> again as often as needed</li>
+</ul>
+<p>for reconnects, until it expires.</p>
+<ul>
+<li>Token TTL: <code>auth.jwtTtlSeconds</code> (default 86400 s). A second token for the</li>
+</ul>
+<p>same code can no longer use it once another one has spent it.</p>
+<ul>
+<li>The client keeps the token in <code>sessionStorage</code> and discards it after <code>exp</code>;</li>
+</ul>
+<p>a browser restart needs a new code.</p>
+<p>Rate limit: 10 <code>verify</code> per minute per client IP, including invalid codes</p>
+<p>(<code>1029</code>). The effective address is the TCP remote address; <code>X-Forwarded-For</code></p>
+<p>is only honoured when the TCP peer is loopback (local reverse proxy) - on</p>
+<p>direct connections the header is ignored.</p>
 <h3 id="group-payloads">Group payloads</h3>
 <pre data-lang="json"><code class="language-json">// Join, only send password when there is one
 { &quot;type&quot;: &quot;group-join&quot;, &quot;payload&quot;: { &quot;id&quot;: &quot;&lt;uuid&gt;&quot; } }
@@ -209,6 +241,6 @@ interface PositionPayload {
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=f6bb9cf"></script>
+    <script src="../assets/js/main.js?v=7e126cb"></script>
 </body>
 </html>

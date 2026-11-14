@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=f6bb9cf">
+    <link rel="stylesheet" href="../assets/css/main.css?v=7e126cb">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/f6bb9cf" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: f6bb9cf">f6bb9cf</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/7e126cb" target="_blank" rel="noopener" title="SimpleVoiceChatWeb documentation - home: 7e126cb">7e126cb</a></p>
             <nav class="side-nav-wrap" aria-label="On this page">
 <p class="nav-label">Guide</p>
 <div class="side-nav">
@@ -124,9 +124,12 @@
 </section>
 <section class="doc-section">
 <h2 id="two-transports">Two transports</h2>
-<table><thead><tr><th>Transport</th><th>Path</th><th>For</th></tr></thead><tbody><tr><td>PeerJS</td><td>Browser + plugin dial out to <code>0.peerjs.com:443</code></td><td>Invite path (<code>/voice link</code>): only outbound connections needed, ideal behind NAT</td></tr></tbody></table>
+<table><thead><tr><th>Transport</th><th>Path</th><th>For</th></tr></thead><tbody><tr><td>PeerJS</td><td>Browser + plugin dial out to <code>0.peerjs.com:443</code></td><td>Invite path (<code>/voice link</code>) without <code>ws</code>: only outbound connections needed, ideal behind NAT</td></tr></tbody></table>
 <p>Both transports speak the same message protocol (including <code>requestId</code></p>
-<p>correlation IDs and group messages). See <a href="api.html">API Reference</a> and</p>
+<p>correlation IDs and group messages). Both may be active at the same time. The</p>
+<p>invite link decides which one is used: a valid <code>ws</code> parameter takes precedence</p>
+<p>over PeerJS; if it is missing or invalid, the client uses PeerJS with a valid</p>
+<p>10-character code. The client shows the target host before it connects. See <a href="api.html">API Reference</a> and</p>
 <p><a href="peerjs.html">PeerJS &amp; TURN</a>.</p>
 
 </section>
@@ -184,6 +187,10 @@
 <h2 id="sessions-and-security">Sessions and security</h2>
 <ul>
 <li>One code = one session (<code>/voice link</code> codes are single-use, 5 minute TTL).</li>
+</ul>
+<p>In direct mode the first <code>join</code> spends the code - within 60 seconds of</p>
+<p><code>verify</code>.</p>
+<ul>
 <li>One bridge per player (<code>SingleSessionGuard</code>); a second code closes the old</li>
 </ul>
 <p>session instead of failing. Quit frees immediately.</p>
@@ -192,12 +199,18 @@
 </ul>
 <p>force` unlocks once.</p>
 <ul>
-<li>JWT (HS256) with <code>voice</code> scope for the WebSocket path; empty</li>
+<li>JWT (HS256) with <code>voice</code> scope for the WebSocket path; <code>verify</code> returns a</li>
 </ul>
-<p><code>auth.jwtSecret</code> is auto-generated on startup.</p>
+<p>session token with TTL <code>auth.jwtTtlSeconds</code> (default 24 h). Reconnects with</p>
+<p>the same token are allowed until it expires.</p>
 <ul>
-<li>Rate limit: 5 codes/minute/player.</li>
+<li>Rate limit: 5 codes/minute/player for <code>/voice link</code>; the <code>verify</code> limit in</li>
 </ul>
+<p>direct mode is separate at 10/minute per client IP.</p>
+<ul>
+<li>An empty <code>auth.jwtSecret</code> is generated <strong>ephemerally</strong> per start - a restart</li>
+</ul>
+<p>ends all sessions. Set a fixed value for persistence.</p>
 
 </section>
 <section class="doc-section">
@@ -228,6 +241,6 @@
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="../assets/js/main.js?v=f6bb9cf"></script>
+    <script src="../assets/js/main.js?v=7e126cb"></script>
 </body>
 </html>

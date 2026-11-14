@@ -16,6 +16,8 @@ lead: Measure first, guess later - most ghosts are wiring, not logic.
 | "WebRTC stuck at signaling connected" | Symmetric NAT/firewall | Set up TURN ([PeerJS & TURN](peerjs.html)) |
 | Group shows "0 people" | Wrong room or no answer | Reload page, check console for real error |
 | Group creation times out | Answer without `requestId` or channel still closed | Hard-reload page, then read console |
+| "Too many attempts" | `verify` rate limit reached (10/minute/IP) | Wait briefly, then retry (`1029`) |
+| "Direct link won't connect" | Wrong scheme, port or proxy | On an HTTPS page only `wss` works; check port and reverse proxy |
 
 ## The most important method
 

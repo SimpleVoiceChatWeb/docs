@@ -16,6 +16,8 @@ lead: Erst messen, dann raten - die meisten Geister sind Verdrahtung, nicht Logi
 | "WebRTC bleibt bei signaling connected stehen" | Symmetrisches NAT/Firewall | TURN einrichten ([PeerJS & TURN](peerjs.html)) |
 | Gruppe zeigt "0 Personen" | Falscher Raum oder keine Antwort | Seite neu laden, Konsole auf echte Fehlermeldung prüfen |
 | Gruppen-Erstellung läuft in Timeout | Antwort ohne `requestId` oder Kanal noch zu | Seite hart neu laden, dann Konsole lesen |
+| "Zu viele Versuche" | `verify`-Rate-Limit (10/Minute/IP) erreicht | Kurz warten, dann erneut verbinden (`1029`) |
+| "Direktlink verbindet nicht" | Falsches Schema, Port oder Proxy | Auf einer HTTPS-Seite ist nur `wss` erlaubt; Port und Reverse Proxy prüfen |
 
 ## Die wichtigste Methode
 
