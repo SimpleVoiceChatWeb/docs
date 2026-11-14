@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=b174c70">
+    <link rel="stylesheet" href="assets/css/main.css?v=c5d1f25">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -61,7 +61,7 @@
 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
 <line x1="12" y1="19" x2="12" y2="22"/>
 </svg><span>SimpleVoiceChatWeb</span></a>
-            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/b174c70" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: b174c70">b174c70</a></p>
+            <p class="sidebar-version">Alpha · <a class="commit-badge" href="https://github.com/SimpleVoiceChatWeb/webend/commit/c5d1f25" target="_blank" rel="noopener" title="SimpleVoiceChatWeb Dokumentation - Startseite: c5d1f25">c5d1f25</a></p>
             <nav class="side-nav-wrap" aria-label="Auf dieser Seite">
 <p class="nav-label">Übersicht</p>
 <div class="side-nav">
@@ -122,6 +122,39 @@
 
 </section>
 <section class="doc-section">
+<h2 id="front-modul">Front-Modul</h2>
+<p><code>SimpleVoiceChatWebFront</code> ist ein optionales Paper-Plugin, das das Site-Bundle selbst ausliefert und TLS beendet. Es ist ein eigenes Jar, damit der Core klein bleibt und ohne das Modul läuft.</p>
+<h3 id="installation">Installation</h3>
+<ol>
+<li><code>SimpleVoiceChatWebFront-&lt;version&gt;.jar</code> nach <code>plugins/</code> kopieren.</li>
+<li>In <code>plugins/SimpleVoiceChatWeb/config.yml</code> den Namen <code>front</code> zu <code>modules.enabled</code> hinzufügen:</li>
+</ol>
+<pre data-lang="yaml"><code class="language-yaml">modules {
+  enabled = [&quot;front&quot;]
+}</code></pre>
+<ol>
+<li>Server neu starten. Beim ersten Start legt das Modul <code>plugins/SimpleVoiceChatWebFront/config.yml</code> mit Defaults an.</li>
+</ol>
+<p>Zum Deaktivieren <code>front</code> aus <code>modules.enabled</code> entfernen und neu starten. Das Jar darf in <code>plugins/</code> bleiben: Das Plugin wird geladen, bindet aber keine Ports. Erst das Löschen des Jars entfernt es vollständig.</p>
+<h3 id="site-bundle">Site-Bundle</h3>
+<p>Das Modul liefert das Site-Bundle aus dem Jar: Landing unter <code>/</code>, Web-Client unter <code>/app/</code>, Doku unter <code>/docs/</code>, Tools unter <code>/tools/</code>. Das Bundle wird beim Build mit <code>SVCWEB_WEB_ASSETS_ZIP=&lt;Pfad&gt;</code> (oder <code>-PwebAssetsZip=&lt;Pfad&gt;</code>) eingebettet. Ohne eingebettete Assets antwortet das Modul mit <code>503</code>; alternativ ein entpacktes Bundle nach <code>plugins/SimpleVoiceChatWebFront/web/</code> legen und <code>static.bundle</code> auf dieses Verzeichnis setzen.</p>
+<p>Das Bundle setzt den Wurzelpfad der Domain voraus (<code>/</code>, <code>/app/</code>, <code>/docs/</code>, <code>/tools/</code>). Ein Unterpfad wie <code>/voice/</code> wird nicht unterstützt.</p>
+<h3 id="tls">TLS</h3>
+<p>Browser geben das Mikrofon nur in einem Secure Context frei; selbstsignierte Zertifikate reichen nicht. Verwende ein Zertifikat einer öffentlichen CA, zum Beispiel von deinem Hosting-Anbieter.</p>
+<ul>
+<li>Keystore: PKCS12 unter <code>plugins/SimpleVoiceChatWebFront/tls/keystore.p12</code> (oder <code>https.keystore</code>, relativ zum Datenordner des Moduls).</li>
+<li>Passwort: <code>SVCWEB_FRONT_KEYSTORE_PASSWORD</code> hat Vorrang vor <code>https.keystorePassword</code>.</li>
+<li>Erneuerung: Keystore-Datei ersetzen. Das Modul lädt sie beim nächsten Handshake neu, ohne Neustart.</li>
+<li>Ports: <code>https.port</code> (Default <code>443</code>) und, mit <code>https.redirectHttp</code>, <code>acme.httpPort</code> (Default <code>80</code>) für die HTTP→HTTPS-Weiterleitung.</li>
+</ul>
+<p>Mit <code>https.enabled=false</code> liefert das Modul normales HTTP auf <code>https.port</code>, etwa hinter einem externen TLS-Terminator in einem privaten Netz.</p>
+<p><code>GET /healthz</code> liefert JSON mit <code>status</code>, <code>static</code>, <code>https</code>, <code>cert</code> (Ablauf des Zertifikats) und <code>bundle</code> (Bundle-Commit, wenn bekannt).</p>
+<h3 id="konfiguration">Konfiguration</h3>
+<p>Datei: <code>plugins/SimpleVoiceChatWebFront/config.yml</code> (HOCON). Aufgeführt sind nur Optionen, die das Modul liest.</p>
+<table><thead><tr><th>Option</th><th>Default</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>enabled</code></td><td><code>true</code></td><td>Modul überhaupt starten</td></tr><tr><td><code>https.enabled</code></td><td><code>true</code></td><td>TLS im Modul beenden</td></tr><tr><td><code>https.host</code></td><td><code>&quot;0.0.0.0&quot;</code></td><td>Bind-Adresse</td></tr><tr><td><code>https.port</code></td><td><code>443</code></td><td>HTTPS-Port (normaler HTTP-Port, wenn TLS aus ist)</td></tr><tr><td><code>https.keystore</code></td><td><code>&quot;tls/keystore.p12&quot;</code></td><td>PKCS12-Keystore, relativ zum Datenordner</td></tr><tr><td><code>https.keystorePassword</code></td><td><code>&quot;&quot;</code></td><td>Keystore-Passwort - besser die Umgebungsvariable</td></tr><tr><td><code>https.redirectHttp</code></td><td><code>true</code></td><td>HTTP auf dem zweiten Listener auf HTTPS umleiten</td></tr><tr><td><code>https.hsts</code></td><td><code>true</code></td><td><code>Strict-Transport-Security</code> senden</td></tr><tr><td><code>acme.httpPort</code></td><td><code>80</code></td><td>HTTP-Listener für die Weiterleitung (später auch ACME-Challenge-Port)</td></tr><tr><td><code>static.enabled</code></td><td><code>true</code></td><td>Site-Bundle ausliefern</td></tr><tr><td><code>static.bundle</code></td><td><code>&quot;classpath&quot;</code></td><td><code>classpath</code> oder ein Verzeichnis mit dem Bundle</td></tr><tr><td><code>static.root</code></td><td><code>&quot;web&quot;</code></td><td>Unterverzeichnis im Bundle (Classpath-Präfix oder Pfad unter <code>static.bundle</code>)</td></tr><tr><td><code>static.landingRedirect</code></td><td><code>&quot;/app/&quot;</code></td><td>Weiterleitung für <code>/</code>; leer liefert <code>index.html</code></td></tr><tr><td><code>static.spaFallback</code></td><td><code>true</code></td><td><code>/app/<em></code> und <code>/tools/</em></code> fallen auf ihre <code>index.html</code> zurück</td></tr></tbody></table>
+
+</section>
+<section class="doc-section">
 <h2 id="ports-und-firewall">Ports und Firewall</h2>
 <table><thead><tr><th>Port</th><th>Protokoll</th><th>Zweck</th></tr></thead><tbody><tr><td>25565</td><td>TCP</td><td>Minecraft Game</td></tr><tr><td>24454</td><td>TCP</td><td>WebSocket-Signaling (<code>wss://</code>)</td></tr><tr><td>24454</td><td>UDP</td><td>SVC Voice</td></tr><tr><td>443</td><td>TCP (ausgehend)</td><td>PeerJS-Signalisierung</td></tr></tbody></table>
 <pre data-lang="bash"><code class="language-bash"># UFW Beispiel
@@ -161,6 +194,6 @@ ufw enable</code></pre>
             <ul id="toc"></ul>
         </nav>
     </div>
-    <script src="assets/js/main.js?v=b174c70"></script>
+    <script src="assets/js/main.js?v=c5d1f25"></script>
 </body>
 </html>

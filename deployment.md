@@ -14,6 +14,65 @@ Der Web-Client und diese Doku setzen voraus, dass sie im **Wurzelpfad** der Doma
 
 Für das Front-Modul gibt es ein Site-Bundle, das Landing, App, Doku und Tools in einem Verzeichnis bündelt; ohne gesetzte Site-URL entfallen Canonical- und OG-Tags.
 
+## Front-Modul
+
+`SimpleVoiceChatWebFront` ist ein optionales Paper-Plugin, das das Site-Bundle selbst ausliefert und TLS beendet. Es ist ein eigenes Jar, damit der Core klein bleibt und ohne das Modul läuft.
+
+### Installation
+
+1. `SimpleVoiceChatWebFront-<version>.jar` nach `plugins/` kopieren.
+2. In `plugins/SimpleVoiceChatWeb/config.yml` den Namen `front` zu `modules.enabled` hinzufügen:
+
+```yaml
+modules {
+  enabled = ["front"]
+}
+```
+
+3. Server neu starten. Beim ersten Start legt das Modul `plugins/SimpleVoiceChatWebFront/config.yml` mit Defaults an.
+
+Zum Deaktivieren `front` aus `modules.enabled` entfernen und neu starten. Das Jar darf in `plugins/` bleiben: Das Plugin wird geladen, bindet aber keine Ports. Erst das Löschen des Jars entfernt es vollständig.
+
+### Site-Bundle
+
+Das Modul liefert das Site-Bundle aus dem Jar: Landing unter `/`, Web-Client unter `/app/`, Doku unter `/docs/`, Tools unter `/tools/`. Das Bundle wird beim Build mit `SVCWEB_WEB_ASSETS_ZIP=<Pfad>` (oder `-PwebAssetsZip=<Pfad>`) eingebettet. Ohne eingebettete Assets antwortet das Modul mit `503`; alternativ ein entpacktes Bundle nach `plugins/SimpleVoiceChatWebFront/web/` legen und `static.bundle` auf dieses Verzeichnis setzen.
+
+Das Bundle setzt den Wurzelpfad der Domain voraus (`/`, `/app/`, `/docs/`, `/tools/`). Ein Unterpfad wie `/voice/` wird nicht unterstützt.
+
+### TLS
+
+Browser geben das Mikrofon nur in einem Secure Context frei; selbstsignierte Zertifikate reichen nicht. Verwende ein Zertifikat einer öffentlichen CA, zum Beispiel von deinem Hosting-Anbieter.
+
+- Keystore: PKCS12 unter `plugins/SimpleVoiceChatWebFront/tls/keystore.p12` (oder `https.keystore`, relativ zum Datenordner des Moduls).
+- Passwort: `SVCWEB_FRONT_KEYSTORE_PASSWORD` hat Vorrang vor `https.keystorePassword`.
+- Erneuerung: Keystore-Datei ersetzen. Das Modul lädt sie beim nächsten Handshake neu, ohne Neustart.
+- Ports: `https.port` (Default `443`) und, mit `https.redirectHttp`, `acme.httpPort` (Default `80`) für die HTTP→HTTPS-Weiterleitung.
+
+Mit `https.enabled=false` liefert das Modul normales HTTP auf `https.port`, etwa hinter einem externen TLS-Terminator in einem privaten Netz.
+
+`GET /healthz` liefert JSON mit `status`, `static`, `https`, `cert` (Ablauf des Zertifikats) und `bundle` (Bundle-Commit, wenn bekannt).
+
+### Konfiguration
+
+Datei: `plugins/SimpleVoiceChatWebFront/config.yml` (HOCON). Aufgeführt sind nur Optionen, die das Modul liest.
+
+| Option | Default | Beschreibung |
+|--------|---------|--------------|
+| `enabled` | `true` | Modul überhaupt starten |
+| `https.enabled` | `true` | TLS im Modul beenden |
+| `https.host` | `"0.0.0.0"` | Bind-Adresse |
+| `https.port` | `443` | HTTPS-Port (normaler HTTP-Port, wenn TLS aus ist) |
+| `https.keystore` | `"tls/keystore.p12"` | PKCS12-Keystore, relativ zum Datenordner |
+| `https.keystorePassword` | `""` | Keystore-Passwort - besser die Umgebungsvariable |
+| `https.redirectHttp` | `true` | HTTP auf dem zweiten Listener auf HTTPS umleiten |
+| `https.hsts` | `true` | `Strict-Transport-Security` senden |
+| `acme.httpPort` | `80` | HTTP-Listener für die Weiterleitung (später auch ACME-Challenge-Port) |
+| `static.enabled` | `true` | Site-Bundle ausliefern |
+| `static.bundle` | `"classpath"` | `classpath` oder ein Verzeichnis mit dem Bundle |
+| `static.root` | `"web"` | Unterverzeichnis im Bundle (Classpath-Präfix oder Pfad unter `static.bundle`) |
+| `static.landingRedirect` | `"/app/"` | Weiterleitung für `/`; leer liefert `index.html` |
+| `static.spaFallback` | `true` | `/app/*` und `/tools/*` fallen auf ihre `index.html` zurück |
+
 ## Ports und Firewall
 
 | Port | Protokoll | Zweck |
